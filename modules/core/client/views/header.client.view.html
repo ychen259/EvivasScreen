@@ -1,0 +1,56 @@
+<section>
+<div class="" ng-controller="HeaderController as vm">
+
+
+<div id="wrapper">
+<!----><br>
+<div id="main">
+
+  <div id="number"> 
+  	Nova Screen <span> <a href="tel:626-386-3905" data-phonenumber="property-phone" target="_blank" rel="nofollow">(626) 386-3905‬</a></span> 
+  </div>
+
+  <!--hotel logo-->
+  <div id="mylogo">
+    <div class="logo-inner">
+    	<div id="centerImg">
+      		<a ng-click="backToHomePage()" href="#">
+      			<img class="img-responsive text-center" src="/modules/core/client/img/brand/nova_logo.png" alt="Aztec Hotel Logo" style="width: 100%; height: 100%;"></a>
+    	</div>
+	</div>
+  </div>
+
+  <div id="subnav">
+    <ul>
+      <li class="sub-email-offers">
+        <a ng-click="goToContact()" href="#" class="nav"><span class="sub-icon icon-email"></span>Email</a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+  <div id="nav">
+  <nav id="topnav">
+    <ul class="topnav">
+      <li class="home"><a ng-click="backToHomePage()" href="#" class="nav"><span class="home-icon icon-home"></span><span class="home-text">Home</span></a></li>
+
+      <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+        <a style="color:#fff" class="nav" ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret" ></span></a>
+        <ul ng-switch-when="dropdown" class="dropdown-menu" >
+          <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
+            <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
+          </li>
+        </ul>
+        <a  style="color:#fff" class="nav" ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+      </li>
+
+
+
+    </ul>
+    <div class="clear"></div>
+  </nav>
+  </div>
+</div>
+</div>
+
+</section>

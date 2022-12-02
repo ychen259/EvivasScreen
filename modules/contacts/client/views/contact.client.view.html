@@ -1,0 +1,181 @@
+<section>
+<section id="wrapper">
+
+  
+    <div class="bankforreserv"></div>
+      <section id="contentinfo" class="fixheader">
+        <div class="contentwrap">
+          <div id="container">
+            <section id="content">
+              <div id="breadcrumb">
+                <a ng-click="backToHomePage()" href="#">Home</a><span class="brd-icon icon-rightArrow"></span>Contact
+              </div>
+              <section id="header">Contact Us</section>
+              <div id="box">
+                <article class="box2 text-center">
+               
+                  <div class="boxspacer">&nbsp;</div>
+
+                </article>
+
+                <article class="box2">
+                  <div class="contactusfrm">
+                    <div class="con-info">
+                      <div class="contact-title">
+                        <span>Contact Details</span> 
+                      </div>
+                      <div class="con-block con-block-first">
+                        <div class="cont-icon"><span class="icon-location"></span></div>
+                        <div class="cont-desc">
+                          <span class="contactus-phone"> 
+                            <span class="contactus-title">Nova Screen</span> 
+                            <span class="spbold conalignbottom spbold">
+                              <a  href="#" ng-click="goToLocation()" id="hotel-address">317 W Foothill Blvd, Monrovia, CA 91016</a>
+                            </span> 
+                          </span>
+                        </div>
+                        <div class="clear"></div>
+                      </div>
+                      <div class="con-block con-block-second">
+                        <div class="cont-icon"><span class="icon-email"></span></div>
+                        <div class="cont-desc">
+                          <div class="contactus-email"> 
+                            <span class="contactus-title">Email</span> 
+                            <span class="conalignbottom spbold">info@novascreenus.com</span> 
+                          </div>
+                        </div>
+                        <div class="clear"></div>
+                      </div>
+                      <div class="con-block con-block-thrd">
+                        <div class="cont-icon"><span class="icon-phone"></span></div>
+                        <div class="cont-desc">
+                          <span class="contactus-phone"> 
+                            <span class="contactus-title">Phone</span> 
+                            <span class="spbold conalignbottom spbold"><a href="tel:626-386-3905" data-phonenumber="property-phone" target="_blank" rel="nofollow">(626) 386-3905‬</a></span> 
+                          </span>
+                        </div>
+                        <div class="clear"></div>
+                      </div>
+
+
+                      <div class="clear"></div>
+                    </div>
+
+<!-------------------------form---------------------------->
+                    <div class="con-form">
+                      <div class="contact-title">Get in Touch</div>
+                      <div id="gdpr-rfp">
+                        By submitting this form, you consent to share your personal information with us to service your request and for communication purposes. We do not sell your data to third parties. <br>
+                      </div>
+                      <div class="boxspacer"></div>
+
+                      <!--form Email-->
+                      <form name="email_form" class="form-horizontal" ng-submit="submit(email_form.$valid)" novalidate>
+                        <div class="quickrfpbox formbox">
+                          <div class="commentrow">
+
+                            <!--ask for name-->
+                            <div class="frmfieldset form-input frmfieldset-fullwidth">
+
+                              <!--lable-->
+                              <div class="commentlable">
+                                <label for="name" class="quickrfp-title">Name <span class="asterisk"> - Required</span></label>
+                              </div>
+
+                              <!--name input-->
+                              <div class="commentinput form-group" show-errors>
+                                <input name="name" type='text' ng-model="name" class='quickrfpforminputbox form-control' ng-required="true">
+                                <div ng-messages="email_form.name.$error" role="alert">
+                                  <p class="help-block error-text" ng-message="required">Name can not be empty</p>
+                                </div>                                
+                              </div>
+                            </div>
+
+                            <!--ask for email-->
+                            <div class="frmfieldset form-input">
+
+                              <!--lable-->
+                              <div class="commentlable">
+                                <label for="EMAIL" class="quickrfp-title">Email <span class="asterisk"> - Required</span></label>
+                              </div>
+
+                              <!--email input-->
+                              <div class="commentinput form-group" show-errors>
+                                <input name="email" type='email' ng-model="email" class='quickrfpforminputbox form-control email' ng-required="true">
+                                <div ng-messages="email_form.email.$error" role="alert">
+                                  <p class="help-block error-text" ng-message="required">Email can not be empty</p>
+                                  <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
+                                </div>                                
+                              </div>
+                            </div>
+
+
+                            <!--ask for phone-->
+                            <div class="frmfieldset con-frmfieldset-right form-input">
+                              <!--lable-->
+                              <div class="commentlable">
+                                <label for="PHONE">Phone <span class="asterisk"> - Required</span></label>
+                              </div>
+
+                              <!--phone input-->
+                              <div class="commentinput form-group" show-errors>
+                                <input name="phone" type='text' ng-model="phone" class='rfpforminputbox form-control phone' pattern="\d{10}" ng-required="true">
+                                <div ng-messages="email_form.phone.$error" role="alert">
+                                  <p class="help-block error-text" ng-message="required">Phone can not be empty</p>
+                                  <p class="help-block error-text" ng-message = "pattern">Please provide valid phone number</p>
+                                </div>                                
+                              </div>
+                            </div>
+
+
+                            <!--ask for detail-->
+                            <div class="frmfieldset frmfieldset-fullwidth form-input">
+                              <!--lable-->
+                              <div class="commentlable">
+                                <label for="DETAILS">Details <span class="asterisk"> - Optional</span> </label>
+                              </div>
+
+                              <!--detail input-->
+                              <div class="commentinput form-group" show-errors>
+                                <textarea name="detail" type='text' ng-model="detail" class='rfpformtextarea form-control phone' ng-required="false"></textarea>
+                                <div ng-messages="email_form.detail.$error" role="alert">
+                                  <p class="help-block error-text" ng-message="required">Detail can not be empty</p>
+                                </div>                                
+                              </div>
+                            </div>
+
+
+                            <div class="clear"></div>
+                            <!--submit button-->
+                            <div class='form-group'>
+                              <button type='submit' class='button' class="form-control">Submit</button>
+                            </div>
+                            
+                            <div class="clear"></div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="clear"></div>
+                    </div>
+<!-----------------------form end--------------------------->
+                  </article>
+                </div>
+              </section>
+              <div class="clear"> </div>
+            </div>
+            <div class="fullwidth"><div class="contact-map">
+              <div class="map-holder">
+                <div class="loactionmap-box">
+                  <div id='gmap_canvas' class="location-map" aria-hidden="true" tabindex="-1"><div id="map" style="width: 100%; height:100%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="clear">&nbsp;</div>
+        </div>
+      </div>
+    </section>
+</section>
+  
+</section>
