@@ -54,6 +54,8 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+<!--shopping cart-->
+<link href="http://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
 
   <!-- Application CSS Files -->
   {{#each cssFiles}}<link rel="stylesheet" href="/{{this}}">{{/each}}
@@ -64,8 +66,8 @@
   <section class="content"> <!--go with fixed top and need to fix #middle in home.css-->
 
   <!--<section class="">-->
-    <section class="container-fluid">
-      <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar"></header>
+    <section class="" >
+      <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top"></header>
 	 <!--  <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top"></header>-->
       {{{block "content"}}}
       <span ng-include="'/modules/core/client/views/footer.client.view.html'"></span>
@@ -109,7 +111,6 @@ function scrollToTop() {
     });*/
 }
 
-
 </script>
 
 
@@ -151,6 +152,12 @@ function scrollToTop() {
   <!--Livereload script rendered -->
   <script type="text/javascript" src="{{host}}:35729/livereload.js"></script>
   {{/if}}
+
+
+ 
+
+
+
 </body>
 
 </html>

@@ -16,13 +16,26 @@
       })
       .state('things-to-dos.default', {
         url: '',
-        templateUrl: 'modules/things-to-dos/client/views/things-to-do.client.view.html',
+        templateUrl: 'modules/things-to-dos/client/views/list-product.client.view.html',
         controller: 'ThingsToDosController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'Products'
         }
-      });
+      })
+      .state('things-to-dos.view', {
+        url: '/projectorScreen',
+        templateUrl: 'modules/things-to-dos/client/views/view-product.client.view.html',
+        controller: 'ThingsToDosController',
+        controllerAs: 'vm',
+        params: {
+          product_name: 'projectorScreen'
+        },
+        data: {
+          pageTitle: 'Projector Screen'
+        }
+      })
+      ;
   }
 
   getThingsToDo.$inject = ['$stateParams', 'ThingsToDosService'];

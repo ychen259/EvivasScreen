@@ -4,7 +4,8 @@ var defaultEnvConfig = require('./default');
 
 module.exports = {
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb+srv://admin-nova:novascreen@cluster0.eqvri.mongodb.net/novascreen?retryWrites=true&w=majority',
+    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb+srv://admin-nova:novascreen@cluster0.eqvri.mongodb.net/test',
+    // 'mongodb+srv://admin-nova:novascreen@cluster0.eqvri.mongodb.net/novascreen?retryWrites=true&w=majority',
     /*'mongodb://ychen259:Aa947496@cluster0-shard-00-00.wccdn.mongodb.net:27017,cluster0-shard-00-01.wccdn.mongodb.net:27017,cluster0-shard-00-02.wccdn.mongodb.net:27017/sasasas?ssl=true&replicaSet=atlas-iulcjf-shard-0&authSource=admin&retryWrites=true&w=majority',*/
     //mongodb+srv://ychen259:<password>@cluster0.wccdn.mongodb.net/test
     //
