@@ -167,9 +167,15 @@
 
 
   //for testing purpose
-  $scope.goToDetailPage= function(name){
-    console.log("go to detail page");
+  /*$scope.goToDetailPage= function(name){
     $state.go('things-to-dos.view', {product_name:name});
+  }*/
+  $scope.goToTabTensionPage= function(){
+    $state.go('things-to-dos.tab-tension');
+  }
+
+  $scope.goToFloorRisingPage= function(){
+    $state.go('things-to-dos.floor-rising');
   }
 }
 }());

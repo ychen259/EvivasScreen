@@ -11,9 +11,9 @@
     // Set top bar menu items
     menuService.addMenuItem('topbar', {
       title: 'Products',
-      state: 'things-to-dos.default',
+      state: 'things-to-dos.list',
       //type: 'dropdown',
-      position: 11,
+      position: 1,
       roles: ['*']
     });
 

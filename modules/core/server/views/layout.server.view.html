@@ -57,6 +57,7 @@
 <!--shopping cart-->
 <link href="http://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
 
+
   <!-- Application CSS Files -->
   {{#each cssFiles}}<link rel="stylesheet" href="/{{this}}">{{/each}}
 </head>
@@ -66,11 +67,11 @@
   <section class="content"> <!--go with fixed top and need to fix #middle in home.css-->
 
   <!--<section class="">-->
-    <section class="" >
-      <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top"></header>
+    <section class="container-fluid" >
+      <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar"></header>
 	 <!--  <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top"></header>-->
       {{{block "content"}}}
-      <span ng-include="'/modules/core/client/views/footer.client.view.html'"></span>
+      <footer ng-include="'/modules/core/client/views/footer.client.view.html'"></footer>
     </section>
 
       <button onclick="scrollToTop()" id="backtotop" title="Go to top"><span class="icon-arrow-up2" aria-hidden="true"></span></button>

@@ -38,5 +38,12 @@
     $scope.goToThingToDo = function(){
        $state.go('things-to-dos.default');
     }
+
+    /*get page width*/
+    const root = document.documentElement;
+    var scale = window.innerWidth / 1500;
+        console.log("width: " +window.innerWidth);
+    console.log("scale: " +scale);
+        root.style.setProperty('--page-width', scale);
   }
 }());

@@ -1197,7 +1197,7 @@ a {
 
 .header-container {
     width: 100%;
-    position: fixed;
+    //position: fixed;
     top: 0;
     z-index: 1;
     -webkit-transition: all .5s;
@@ -1230,7 +1230,9 @@ a {
 .header-container .logo {
     width: auto;
     height: 80px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-right: 8%;
 
 }
@@ -1248,8 +1250,9 @@ a {
 }
 
 .header-container .logo a {
-    margin-top: 10px;
-    display: block
+   /* display: flex;
+    align-items: center;
+    justify-content: center;*/
 }
 
 @media(max-width: 767px) {
@@ -1578,14 +1581,14 @@ a {
         text-align:center
     }
 }
-
+/*
 .btn {
     border: none;
     outline: none;
     background: none;
     margin: 0;
     padding: 0
-}
+}*/
 
 .btn.hollow {
     font-size: 16px;

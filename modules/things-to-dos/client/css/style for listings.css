@@ -157,6 +157,7 @@
 	background: hsl(249,32% 17%);
 }
 
+/*
 @media(max-width: 1080px){
 	.nav{
 		padding: 15px;
@@ -172,7 +173,7 @@
 		margin-top: 2rem !important;
 	}
 }
-
+*/
 @media(max-width: 400px){
 	.nav{
 		padding: 11px;

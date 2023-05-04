@@ -25,21 +25,11 @@
     }
 
     $scope.goToThingToDo = function(){
-       $state.go('things-to-dos.default');
+       $state.go('things-to-dos.list');
        window.scrollTo(0, 0);
     }
-
-    $scope.goToMeetingEvent = function(){
-       $state.go('meeting-events.default');
-       window.scrollTo(0, 0);
-    }
-    $scope.goToDining = function(){
-       $state.go('dinings.default');
-       window.scrollTo(0, 0);
-    }
-
-     $scope.goToRooms = function(){
-       $state.go('rooms.default');
+   $scope.aboutUs = function(){
+       $state.go('about-us.default');
        window.scrollTo(0, 0);
     }
   }

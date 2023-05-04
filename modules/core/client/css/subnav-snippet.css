@@ -1167,7 +1167,11 @@ ul.anchor{background-color:#fff;border-color:#d3d3d3;border-style:solid;border-w
       vertical-align:top;
       //margin-left:5%;
       }
-      .googleaddress,.popular-links,.helpful,.information{margin-right:50px}.ftr-rightcontent.ftr-rightcontent3{width:180px}.title-f{display:block;font-size:15px;padding-bottom:7px;text-transform:capitalize;font-weight:bold}.footer-ul li{display:block}#quick-signup.button{font-size:13px;margin:10px auto 0;width:180px;text-transform:capitalize}#quick-signup.button:hover,#quick-signup.button:focus{background:#fff;color:#dea329!important}
+      .googleaddress,.popular-links,.helpful,.information{
+        margin-right:50px;
+        margin-left: 8%;
+      }
+      .ftr-rightcontent.ftr-rightcontent3{width:180px}.title-f{display:block;font-size:15px;padding-bottom:7px;text-transform:capitalize;font-weight:bold}.footer-ul li{display:block}#quick-signup.button{font-size:13px;margin:10px auto 0;width:180px;text-transform:capitalize}#quick-signup.button:hover,#quick-signup.button:focus{background:#fff;color:#dea329!important}
       footer .googleaddress a:link,footer .googleaddress a:visited{
         //color:#8bc963;
         color:#dea329;
@@ -1507,7 +1511,7 @@ margin-top:14px;
   #weather-box {	top: 31px; left: 0;}
   #subnav {	max-width: 350px;	top: 6px; right:5%;}
   //#subnav { max-width: 290px; top: 6px;}
-  #topnav li {	padding-right: 3%;}
+  #topnav li {	padding-right: 10%;}
   #topnav li.logocenter {	width: 23%;	padding-right: 1%;}
   #topnav li.tright {	padding-right: 1.5%;}
   #topnav li a {	font-size: 14px;}

@@ -1,7 +1,9 @@
 <section>
-<div  class="header-container fixedHeader"  onmouseout="hideBar()" onmouseover="showBar()" ng-controller="HeaderController as vm">
+<div  class="header-container"  style = "background-color:black" ng-controller="HeaderController as vm">
 
-
+<!--
+<div  class="header-container fixedHeader"  style = "background-color:black" onmouseout="hideBar()" onmouseover="showBar()" ng-controller="HeaderController as vm">
+-->
 <div id="wrapper" class="content">
 
 
@@ -10,10 +12,10 @@
 
       <div class="topnav flex">
         <div class="logo">
-          <a ng-click="backToHomePage()" href="#"><i class="iconfont iconanker-cn undefined"></i></a>
+          <a ng-click="backToHomePage()" href="#"><img class="img-responsive text-center" src="/modules/core/client/img/logo/logo.png" alt="Logo" style="width: 80%; height: 80%;"></a>
         </div>
 
-        <ul class="nav flex moveSigninright navHidden">
+        <ul class="navbar-nav navbar-right flex moveSigninright navHidden">
           <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
             
             <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
@@ -23,7 +25,7 @@
               </li>
             </ul>
 
-            <a  style="color:black" class="nav" ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+            <a  style="color:white" class="nav" ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
 
           </li>
 
@@ -32,8 +34,6 @@
 
 
         <ul class="navbar-nav navbar-right" ng-hide="vm.authentication.user" >
-          <li class="divider-vertical"></li>
-          <li class="divider-vertical"></li> 
           <li ui-sref-active="active" > <!--box sign up button -->
             <a ui-sref="authentication.signup" style="font-size:18px;color:white" >Sign Up</a>
           </li>
@@ -45,8 +45,7 @@
     
         <ul class="navbar-nav navbar-right" ng-show="vm.authentication.user" >
           <li class="dropdown" uib-dropdown>
-            <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
-              <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.username}}" class="header-profile-image" />
+            <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button" style="color: white;">
               <span ng-bind="vm.authentication.user.username"></span> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" role="menu" >
@@ -61,9 +60,9 @@
           </li>
         </ul>
 
-        <i class='bx bx-shopping-bag' id='cart-icon'></i>
 
-
+        <i class='bx bx-shopping-bag' style="color: white;" id='cart-icon'></i>
+        
         <div class="cart">
           <h2 class="cart-title">Your Cart</h2>
 
@@ -94,7 +93,9 @@
 
 </section>
 
+<!--
 <script>
+
 
 //function to hide top bar is not hover and show bar is hover
 function hideBar() {
@@ -103,6 +104,22 @@ function hideBar() {
 }
 
 function showBar() {
-        $('.header-container ').css('background-color', 'white');
+  $('.header-container ').css('background-color', 'white');
 }
 </script>
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    showBar();
+  }else{
+    hideBar();
+  }
+}
+</script>
+-->
+

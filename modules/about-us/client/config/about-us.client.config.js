@@ -14,7 +14,7 @@
       state: 'about-us.default',
       //type: 'dropdown',
       roles: ['*'],
-      position: 10,
+      position: 2,
     });
 
   }

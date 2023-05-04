@@ -1,0 +1,14 @@
+.nextElement{
+	background-image: url(../../../core/client/img/brand/images_noindex/h1-bg.png);
+	background-position: center bottom;
+	background-repeat: no-repeat;
+	padding-bottom: 50px;
+	margin: 50px;
+}
+
+.titleForDescription{
+	margin-bottom: 6px!important;
+	font-weight: bold;
+	font-size: 19px;
+	line-height: 1.255;
+}
