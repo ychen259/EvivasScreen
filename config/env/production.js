@@ -89,16 +89,25 @@ module.exports = {
       }
     }
   },*/
-mailer: {
-    from: process.env.MAILER_FROM || 'MAILER_FROM' || 'novascreenwebsite@gmail.com',
-    to: "novascreen123@gmail.com",
+  mailer: {
+    /*
+    from: process.env.MAILER_FROM || 'MAILER_FROM',
+    options: {
+      service: process.env.MAILER_SERVICE_PROVIDER || 'MAILER_SERVICE_PROVIDER',
+      auth: {
+        user: process.env.MAILER_EMAIL_ID || 'MAILER_EMAIL_ID',
+        pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
+      }
+    }*/
+    from: process.env.MAILER_FROM || 'MAILER_FROM' || 'evivasscreenwebsite@gmail.com',
+    to: "rockybikellc@gmail.com",
     options: {
       service: 'Gmail',
       secure: false,
       port:465,
       auth: {
-        user: 'novascreenwebsite@gmail.com',
-        pass: 'Aa947496'
+        user: 'evivasscreenwebsite@gmail.com',
+        pass: 'wnssubrzjviqofeh'
       }
     }
   },
