@@ -11,7 +11,7 @@ var path = require('path'),
 
 /**
  * Create a Things to do
- */
+ *//*
 exports.create = function(req, res) {
   var thingsToDo = new ThingsToDo(req.body);
   thingsToDo.user = req.user;
@@ -25,7 +25,7 @@ exports.create = function(req, res) {
       res.jsonp(thingsToDo);
     }
   });
-};
+};*/
 
 /**
  * Show the current Things to do
@@ -80,17 +80,25 @@ exports.delete = function(req, res) {
 /**
  * List of Things to dos
  */
-exports.list = function(req, res) {
-  ThingsToDo.find().sort('-created').populate('user', 'displayName').exec(function(err, thingsToDos) {
+ /*
+exports.getUserRecord = function(req, res) {
+
+  var user = req.user;
+  ThingsToDo.find({"user": user}).populate().exec(function(err, thingsToDos) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(thingsToDos);
+      res.json(thingsToDos[0]);
     }
   });
 };
+
+exports.updateShoppingCart = function(req, res) {
+  var listing = req.listing;
+   console.log("update function: " + listing);
+};*/
 
 /**
  * Things to do middleware

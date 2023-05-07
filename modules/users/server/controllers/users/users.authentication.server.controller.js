@@ -21,7 +21,7 @@ var noReturnUrls = [
 exports.signup = function (req, res) {
   // For security measurement we remove the roles from the req.body object
   delete req.body.roles;
-
+  console.log("signup function in service side");
   // Init user and add missing fields
   var user = new User(req.body);
   user.provider = 'local';
@@ -76,8 +76,16 @@ exports.signin = function (req, res, next) {
  * Signout
  */
 exports.signout = function (req, res) {
-  req.logout();
-  res.redirect('/');
+  console.log("signout function in service side");
+ // req.logout();
+
+    req.logout(function(err) {
+      if (err) { return next(err); }
+    res.redirect('/');
+  });
+
+    console.log("signout function in service side2");
+  //res.redirect('/');
 };
 
 /**

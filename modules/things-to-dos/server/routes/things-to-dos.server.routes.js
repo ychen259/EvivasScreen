@@ -9,8 +9,9 @@ var thingsToDosPolicy = require('../policies/things-to-dos.server.policy'),
 module.exports = function(app) {
   // Things to dos Routes
   app.route('/api/things-to-dos').all(thingsToDosPolicy.isAllowed)
-    .get(thingsToDos.list)
-    .post(thingsToDos.create);
+    //.get(thingsToDos.getUserRecord)  //get shopping record and purchase record from databasse
+    //.post(thingsToDos.create)  //create shopping record and purchase record from databasse
+    //.put(thingsToDos.updateShoppingCart);  //update shopping cart
 
   app.route('/api/things-to-dos/:thingsToDoId').all(thingsToDosPolicy.isAllowed)
     .get(thingsToDos.read)

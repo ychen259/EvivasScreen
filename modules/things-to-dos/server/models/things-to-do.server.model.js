@@ -13,7 +13,7 @@ var ThingsToDoSchema = new Schema({
   name: {
     type: String,
     default: '',
-    required: 'Please fill Things to do name',
+    required: 'Please fill Service name',
     trim: true
   },
   created: {
@@ -25,5 +25,16 @@ var ThingsToDoSchema = new Schema({
     ref: 'User'
   }
 });
+
+ThingsToDoSchema.pre('save', function(next) {
+  var currentTime = new Date;
+  this.updated_at = currentTime;
+  if(!this.created_at)
+  {
+    this.created_at = currentTime;
+  }
+  next();
+});
+
 
 mongoose.model('ThingsToDo', ThingsToDoSchema);

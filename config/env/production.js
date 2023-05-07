@@ -13,7 +13,7 @@ module.exports = {
   // Binding to 127.0.0.1 is safer in production.
   host: process.env.HOST || '0.0.0.0',
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb+srv://admin-nova:novascreen@cluster0.eqvri.mongodb.net/test',
+    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb+srv://novascreen:novascreen@test.tlfof4d.mongodb.net/?retryWrites=true&w=majority',
     options: {
       /**
       * Uncomment to enable ssl certificate based authentication to mongodb

@@ -6,9 +6,9 @@
     .module('things-to-dos')
     .controller('ThingsToDosController', ThingsToDosController);
 
-  ThingsToDosController.$inject = ['$scope', '$state', '$window', 'Authentication'];
+  ThingsToDosController.$inject = ['$scope', '$state', '$window', 'Authentication', "Notification"];
 
-  function ThingsToDosController ($scope, $state, $window, Authentication) {
+  function ThingsToDosController ($scope, $state, $window, Authentication, Notification) {
 
     $scope.backToHomePage = function(){
        $state.go('home');
@@ -16,7 +16,7 @@
     }
 
 
-
+/*
   let cartIcon= document.querySelector('#cart-icon');
   let cart= document.querySelector('.cart');
   let closeCart= document.querySelector('#close-cart');
@@ -109,6 +109,7 @@
     updateTotal();
   }
 
+  
   //add product to cart
   function addProductToCart(title, price, productImg){
     var cartShopBox = document.createElement('div');
@@ -116,17 +117,24 @@
     var cartItems = document.getElementsByClassName('cart-content')[0];
     var cartItemsNames = cartItems.getElementsByClassName('cart-product-title');
 
+
+    var cartItemQuantity = cartItems.getElementsByClassName('cart-quantity');
+
     for(var i=0; i<cartItemsNames.length;i++){
       if(cartItemsNames[i].innerText == title){
-        alert("You have already add this item to cart");
+        cartItemQuantity[i].setAttribute("value", cartItemQuantity[i].value++);
+        Notification.info({ message: "You have already add this item to cart.", title: '<i class="glyphicon glyphicon-ok"></i> Watch Out!' });
+        return;
       }
     }
 
+    Notification.success({ message: "You add this item to cart.", title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
+
     var cartBoxContent = '<img src='+productImg+' alt="" class="cart-img">'+
              '<div class="detail-box">'+
-              '<div class="cart-product-title">'+title+'</div>'+
-              '<div class="cart-price">' + price + '</div>'+
-              '<input type="number" value="1" class="cart-quantity" style="padding: 0">'+
+                '<div class="cart-product-title">'+title+'</div>'+
+                '<div class="cart-price">' + price + '</div>'+
+                '<input type="number" value="1" class="cart-quantity" style="padding: 0">'+
              '</div>'+
              '<i class="bx bxs-trash-alt cart-remove"></i>';
 
@@ -141,7 +149,6 @@
 
 
   }
-
 
   //update total
   function updateTotal(){
@@ -164,7 +171,7 @@
     document.getElementsByClassName('total-price')[0].innerText = "$" + total;
   }
 
-
+*/
 
   //for testing purpose
   /*$scope.goToDetailPage= function(name){
