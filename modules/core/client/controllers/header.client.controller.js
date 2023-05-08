@@ -5,9 +5,9 @@
     .module('core')
     .controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService', '$window', 'UsersRecordService'];
+  HeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService', '$window', 'UsersRecordService', 'PurchaseHistoriesService','Notification'];
 
-  function HeaderController($scope, $state, Authentication, menuService, $window, UsersRecordService) {
+  function HeaderController($scope, $state, Authentication, menuService, $window, UsersRecordService, PurchaseHistoriesService,Notification) {
     var vm = this;
 
     vm.accountMenu = menuService.getMenu('account').items[0];
@@ -73,36 +73,43 @@
 
   //buy button
   function buyButtonClicked(){
-    alert('Your Order is placed');
+
+    //show notification to user
+    Notification.success({ message: "Your Order is placed.", title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
+
+    var totalPrices = document.getElementsByClassName('total-price');
+    var total =parseFloat(totalPrices[0].innerText.replace('$',""));    //total is for purchase history record
+
+    /*remove shopping cart item from shopping cart*/
     var cartContent = document.getElementsByClassName('cart-content')[0];
     while(cartContent.hasChildNodes()){
       cartContent.removeChild(cartContent.firstChild);
     }
-
-    $window.historyTabTension92 += $window.cartTabTension92;
-    $window.historyTabTension100 += $window.cartTabTension100;
-    $window.historyTabTension110 += $window.cartTabTension110;
-    $window.historyFloorRising92 += $window.cartFloorRising92;
-    $window.historyFloorRising100 += $window.cartFloorRising100;
-    $window.historyFloorRising110 += $window.cartFloorRising110;
-    $window.historyMobile92 += $window.cartMobile92;
-    $window.historyMobile100 += $window.cartMobile100;
-    $window.historyMobile110 += $window.cartMobile110;
 
     var data = {
         "shoppingCart":{
           "tab_tension": {"_92inch":0,"_100inch":0, "_110inch":0},
           "floor_rising": {"_92inch":0,"_100inch":0, "_110inch":0},
           "mobile": {"_92inch":0,"_100inch":0, "_110inch":0}
-        },
-        "purchaseHistory":{
-          "tab_tension": {"_92inch":$window.historyTabTension92,"_100inch":$window.historyTabTension100, "_110inch":$window.historyTabTension110},
-          "floor_rising": {"_92inch":$window.historyFloorRising92,"_100inch":$window.historyFloorRising100, "_110inch":$window.historyFloorRising110},
-          "mobile": {"_92inch":$window.historyMobile92,"_100inch":$window.historyMobile100, "_110inch":$window.historyMobile110}
         }
     };
+
+    //store value to user database
     updateShoppingToDatabase(data);
+
+    data = {
+        "purchaseHistory":{
+          "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
+          "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
+          "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
+        },
+        "total": total
+    };
+    updatePurchaseHistoryToDataBase(data);
+    
+    //updata Total back to 0
     updateTotal();
+
   }
 
 
@@ -145,17 +152,6 @@
           $window.cartMobile92 = productRecord.shoppingCart.mobile._92inch;
           $window.cartMobile100 = productRecord.shoppingCart.mobile._100inch;
           $window.cartMobile110 = productRecord.shoppingCart.mobile._110inch;
-
-          /*quantity for each type of screen for different size in purchase history*/
-          $window.historyTabTension92 = productRecord.purchaseHistory.tab_tension._92inch;
-          $window.historyTabTension100 = productRecord.purchaseHistory.tab_tension._100inch;
-          $window.historyTabTension110 = productRecord.purchaseHistory.tab_tension._110inch;
-          $window.historyFloorRising92 = productRecord.purchaseHistory.floor_rising._92inch;
-          $window.historyFloorRising100 = productRecord.purchaseHistory.floor_rising._100inch;
-          $window.historyFloorRising110 = productRecord.purchaseHistory.floor_rising._110inch;
-          $window.historyMobile92 = productRecord.purchaseHistory.mobile._92inch;
-          $window.historyMobile100 = productRecord.purchaseHistory.mobile._100inch;
-          $window.historyMobile110 = productRecord.purchaseHistory.mobile._110inch;
 
           //if database show that shopping cart tab tension screen 92 inch is not 0, add it to shopping cart
           if(cartTabTension92){
@@ -328,6 +324,18 @@
 
     function updateShoppingToDatabase(data){
       $window.updateShoppingToDatabase(data);
+    }
+
+    function updatePurchaseHistoryToDataBase(data){
+      $window.updatePurchaseHistoryToDataBase(data);
+    }
+
+    $window.updatePurchaseHistoryToDataBase = function(data){
+        PurchaseHistoriesService.create(data)
+        .then(function(response) {
+      }, function(error) {
+        console.log(error);
+      });
     }
 
     $window.updateShoppingToDatabase = function(data){

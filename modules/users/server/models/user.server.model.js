@@ -144,23 +144,6 @@ var UserSchema = new Schema({
       _100inch: { type: Number, default: 0},
       _110inch: { type: Number, default: 0}
     }
-  },
-  purchaseHistory: {
-    tab_tension: {
-      _92inch: { type: Number, default: 0},
-      _100inch: { type: Number, default: 0},
-      _110inch: { type: Number, default: 0}
-    },
-    floor_rising: {
-      _92inch: { type: Number, default: 0},
-      _100inch: { type: Number, default: 0},
-      _110inch: { type: Number, default: 0}
-    },
-    mobile: {
-      _92inch: { type: Number, default: 0},
-      _100inch: { type: Number, default: 0},
-      _110inch: { type: Number, default: 0}
-    }
   }
 });
 

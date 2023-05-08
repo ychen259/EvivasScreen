@@ -1,0 +1,20 @@
+<section>
+  <div class="page-header">
+    <h1>Purchase histories</h1>
+  </div>
+  <div class="list-group" ng-init="find()">
+    <a ng-repeat="purchaseHistory in purchaseHistories"
+       ui-sref="purchase-histories.view({ purchaseHistoryId: purchaseHistory._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="purchaseHistory.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="purchaseHistory.user" ng-bind="purchaseHistory.user.displayName"></span>
+        <span ng-if="!purchaseHistory.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="purchaseHistory.total"></h4>
+    </a>
+  </div>
+</section>
+  

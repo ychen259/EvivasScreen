@@ -132,11 +132,6 @@
           "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
           "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
           "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
-        },
-        "purchaseHistory":{
-          "tab_tension": {"_92inch":$window.historyTabTension92,"_100inch":$window.historyTabTension100, "_110inch":$window.historyTabTension110},
-          "floor_rising": {"_92inch":$window.historyFloorRising92,"_100inch":$window.historyFloorRising100, "_110inch":$window.historyFloorRising110},
-          "mobile": {"_92inch":$window.historyMobile92,"_100inch":$window.historyMobile100, "_110inch":$window.historyMobile110}
         }
     };
 
