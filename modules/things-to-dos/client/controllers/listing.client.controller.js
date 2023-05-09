@@ -184,5 +184,10 @@
   $scope.goToFloorRisingPage= function(){
     $state.go('things-to-dos.floor-rising');
   }
+
+  $scope.goToMobliePage= function(){
+    $state.go('things-to-dos.portable');
+  }
+
 }
 }());

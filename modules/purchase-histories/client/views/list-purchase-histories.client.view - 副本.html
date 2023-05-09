@@ -1,0 +1,360 @@
+<section>
+  <div class="page-header">
+    <h1>Purchase histories</h1>
+  </div>
+          <div id="yourOrders" role='main'>
+            <div id="yourOrdersContent">
+                <div id="ordersContainer">
+
+  <div class="list-group" ng-init="find()">
+    <a ng-repeat="purchaseHistory in purchaseHistories" ui-sref="purchase-histories.view({ purchaseHistoryId: purchaseHistory._id })" class="list-group-item">
+
+
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="purchaseHistory.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="purchaseHistory.user" ng-bind="purchaseHistory.user.displayName"></span>
+      </small>
+
+
+            <div class="a-box-group a-spacing-base order js-order-card">
+                <div class="a-box a-color-offset-background order-info">
+                    <div class="a-box-inner">
+                        <div class="a-fixed-right-grid">
+                            <div class="a-fixed-right-grid-inner" style="padding-right:290px">
+                                <div class="a-fixed-right-grid-col a-col-left" style="padding-right:0%;float:left;">
+                                    <div class="a-row">
+                                        <div class="a-column a-span3">
+                                            <div class="a-row a-size-mini">
+                                                <span class="a-color-secondary label">Order placed</span>
+                                            </div>
+                                            <div class="a-row a-size-base">
+                                                <span class="a-color-secondary value">December 23, 2021</span>
+                                            </div>
+                                        </div>
+                                        <div class="a-column a-span2 yohtmlc-order-total">
+                                            <div class="a-row a-size-mini">
+                                                <span class="a-color-secondary label">Total</span>
+
+                                            </div>
+                                            <div class="a-row a-size-base">
+                                                <span class="a-color-secondary value">$0.00</span>
+                                            </div>
+                                        </div>
+                                        <div class="a-column a-span7 recipient a-span-last">
+                                            <div class="a-row a-size-mini">
+                                                <span class="a-color-secondary label">Ship to</span>
+                                            </div>
+                                            <div class="a-row a-size-base">
+                                                <span class="a-color-secondary">
+                                                    <span class="a-declarative">
+                                                        <a aria-label="Link to Shipping Address" href="javascript:void(0)" class="a-popover-trigger a-declarative value">
+                                                            <span class="trigger-text">Amazon Locker - Corsage</span>
+                                                            <i class="a-icon a-icon-popover"></i>
+                                                        </a>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>         
+                                        <div class="a-column a-span2"></div>
+                                    </div>
+                                </div>
+                                <div class="a-fixed-right-grid-col actions a-col-right" style="width:290px;margin-right:-290px;float:left;">
+                                    <div class="a-row a-size-mini yohtmlc-order-id">
+                                        <span class="a-color-secondary label">Order #</span>           
+                                            <span class="a-color-secondary value">
+                                                <bdi dir="ltr">112-7200308-8488269</bdi>
+                                            </span>
+                                    </div>
+                                    <div class="a-row a-size-base yohtmlc-order-level-connections">
+                                        <ul class="a-unordered-list a-nostyle a-vertical">
+                                            <a class="a-link-normal yohtmlc-order-details-link" href="/gp/your-account/order-details/ref=ppx_yo_dt_b_order_details_o00?ie=UTF8&amp;orderID=112-7200308-8488269">
+                                                View order details
+                                            </a>
+                                            <i class="a-icon a-icon-text-separator" role="img"></i>
+                                            <a class="a-link-normal" href="/gp/css/summary/print.html/ref=ppx_yo_dt_b_invoice_o00?ie=UTF8&amp;orderID=112-7200308-8488269">View invoice</a>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="a-box shipment">
+                    <div class="a-box-inner">
+                        <div class="a-fixed-right-grid a-spacing-top-medium">
+                            <div class="a-fixed-right-grid-inner a-grid-vertical-align a-grid-top">
+                                <div class="a-fixed-right-grid-col a-col-left" style="padding-right:3.2%;float:left;">
+                                    <div class="a-row">
+                                        <div class="a-fixed-left-grid a-spacing-none">
+                                            <div class="a-fixed-left-grid-inner" style="padding-left:100px">
+                                                <div class="a-text-center a-fixed-left-grid-col a-col-left" style="width:100px;margin-left:-100px;float:left;">
+                                                    <div class="item-view-left-col-inner">
+                                                        <a class="a-link-normal" href="/gp/product/B081STX6FB/ref=ppx_yo_dt_b_asin_image_o00_s00?ie=UTF8&amp;psc=1">
+                                                            <img alt="" src="https://m.media-amazon.com/images/I/31OLwPh1f6L._SX90_.jpg" class="yo-critical-feature" height="82" width="90">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="a-fixed-left-grid-col yohtmlc-item a-col-right" style="padding-left:1.5%;float:left;">
+                                                    <div class="a-row">
+                                                        <a class="a-link-normal" href="/gp/product/B081STX6FB/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&amp;psc=1">
+                                                            Lifetime Appliance 2169142 Evaporator Fan Blade Compatible with Whirlpool, KitchenAid, Jenn-Air, Amana, Refrigerators - WP2169142
+                                                        </a>
+
+
+                                                    </div>
+                                                    <div class="a-row">
+                                                        <span class="a-size-small">
+                                                            <div class="a-row a-size-small">Return window closed on Jan 27, 2022</div>
+                                                        </span> 
+
+                                                    </div>
+                                                    <div class="a-row">
+                                                        <div class="a-row a-spacing-top-mini">
+                                                            <span class="a-declarative" data-action="bia_button" data-bia_button="{}">
+                                                                <span class="a-button a-spacing-mini a-button-primary yohtmlc-buy-it-again" id="a-autoid-3">
+                                                                    <span class="a-button-inner">
+                                                                        <a href="/gp/buyagain/ref=ppx_yo_dt_b_bia?ie=UTF8&amp;ats=eyJjdXN0b21lcklkIjoiQTNRRExSVjhBSTFQUDkiLCJleHBsaWNpdENhbmRpZGF0ZXMiOiJCMDgx%0AU1RYNkZCIn0%3D%0A" aria-label="Buy it again" class="a-button-text" role="button" id="a-autoid-3-announce">
+                                                                            <div class="reorder-modal-trigger-text">
+                                                                                <i class="reorder-modal-trigger-icon"></i>
+                                                                                Buy it again
+                                                                            </div>
+                                                                        </a>
+                                                                    </span>
+                                                                </span>
+                                                            </span>
+                                                            <span class="a-button a-spacing-mini a-button-base" id="a-autoid-4">
+                                                                <span class="a-button-inner">
+                                                                    <a href="/your-orders/pop/ref=ppx_yo_dt_b_pop?_encoding=UTF8&amp;gen=canonical&amp;lineItemId=nhjgsuqlpmktsny&amp;orderId=112-7200308-8488269&amp;packageId=1&amp;returnSummaryId=&amp;returnUnitIndices=&amp;returnUnitMappingId=&amp;shipmentId=UhzwVPyYZ" class="a-button-text" role="button" id="a-autoid-4-announce">
+                                                                        View your item
+                                                                    </a>
+                                                                </span>
+                                                            </span>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="a-fixed-right-grid-col a-col-right" style="width:220px;margin-right:-220px;float:left;">
+                                    <div class="a-row">
+                                        <div class="a-button-stack yohtmlc-shipment-level-connections">
+                                            <span class="a-button a-button-normal a-spacing-mini a-button-primary" id="a-autoid-5">
+                                                <span class="a-button-inner">
+                                                    <a id="Get-product-support_2" href="/ps/product-support/resolutions?_encoding=UTF8&amp;itemId=nhjgsuqlpmktsn&amp;orderId=112-7200308-8488269&amp;ref_=ppx_yo_dt_b_prod_support_single_item_o00_s00&amp;shipmentId=UhzwVPyYZ" class="a-button-text" role="button">
+                                                        Get product support
+                                                    </a>
+                                                </span>
+                                            </span>
+                                            <span class="a-button a-button-normal a-spacing-mini a-button-base" id="a-autoid-6">
+                                                <span class="a-button-inner">
+                                                    <a id="Write-a-product-review_2" href="/review/review-your-purchases/ref=ppx_yo_dt_b_rev_prod_o00_s00?_encoding=UTF8&amp;asins=B081STX6FB&amp;channel=YAcc-wr" class="a-button-text" role="button">
+                                                        Write a product review
+                                                    </a>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+      <h4 class="list-group-item-heading" ng-bind="purchaseHistory.total"></h4>
+    </a>
+  </div>
+
+<!----------------------------------------------->
+<!--
+<div id="yourOrders" role='main'>
+    <div id="yourOrdersContent">
+        <div id="ordersContainer">
+            <div class="a-box-group a-spacing-base order js-order-card">
+                <div class="a-box a-color-offset-background order-info">
+                    <div class="a-box-inner">
+                        <div class="a-fixed-right-grid">
+                            <div class="a-fixed-right-grid-inner" style="padding-right:290px">
+                                <div class="a-fixed-right-grid-col a-col-left" style="padding-right:0%;float:left;">
+                                    <div class="a-row">
+                                        <div class="a-column a-span3">
+                                            <div class="a-row a-size-mini">
+                                                <span class="a-color-secondary label">Order placed</span>
+                                            </div>
+                                            <div class="a-row a-size-base">
+                                                <span class="a-color-secondary value">December 23, 2021</span>
+                                            </div>
+                                        </div>
+                                        <div class="a-column a-span2 yohtmlc-order-total">
+                                            <div class="a-row a-size-mini">
+                                                <span class="a-color-secondary label">Total</span>
+
+                                            </div>
+                                            <div class="a-row a-size-base">
+                                                <span class="a-color-secondary value">$0.00</span>
+                                            </div>
+                                        </div>
+                                        <div class="a-column a-span7 recipient a-span-last">
+                                            <div class="a-row a-size-mini">
+                                                <span class="a-color-secondary label">Ship to</span>
+                                            </div>
+                                            <div class="a-row a-size-base">
+                                                <span class="a-color-secondary">
+                                                    <span class="a-declarative">
+                                                        <a aria-label="Link to Shipping Address" href="javascript:void(0)" class="a-popover-trigger a-declarative value">
+                                                            <span class="trigger-text">Amazon Locker - Corsage</span>
+                                                            <i class="a-icon a-icon-popover"></i>
+                                                        </a>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>         
+                                        <div class="a-column a-span2"></div>
+                                    </div>
+                                </div>
+                                <div class="a-fixed-right-grid-col actions a-col-right" style="width:290px;margin-right:-290px;float:left;">
+                                    <div class="a-row a-size-mini yohtmlc-order-id">
+                                        <span class="a-color-secondary label">Order #</span>           
+                                            <span class="a-color-secondary value">
+                                                <bdi dir="ltr">112-7200308-8488269</bdi>
+                                            </span>
+                                    </div>
+                                    <div class="a-row a-size-base yohtmlc-order-level-connections">
+                                        <ul class="a-unordered-list a-nostyle a-vertical">
+                                            <a class="a-link-normal yohtmlc-order-details-link" href="/gp/your-account/order-details/ref=ppx_yo_dt_b_order_details_o00?ie=UTF8&amp;orderID=112-7200308-8488269">
+                                                View order details
+                                            </a>
+                                            <i class="a-icon a-icon-text-separator" role="img"></i>
+                                            <a class="a-link-normal" href="/gp/css/summary/print.html/ref=ppx_yo_dt_b_invoice_o00?ie=UTF8&amp;orderID=112-7200308-8488269">View invoice</a>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="a-box shipment">
+                    <div class="a-box-inner">
+                        <div class="a-fixed-right-grid a-spacing-top-medium">
+                            <div class="a-fixed-right-grid-inner a-grid-vertical-align a-grid-top">
+                                <div class="a-fixed-right-grid-col a-col-left" style="padding-right:3.2%;float:left;">
+                                    <div class="a-row">
+                                        <div class="a-fixed-left-grid a-spacing-none">
+                                            <div class="a-fixed-left-grid-inner" style="padding-left:100px">
+                                                <div class="a-text-center a-fixed-left-grid-col a-col-left" style="width:100px;margin-left:-100px;float:left;">
+                                                    <div class="item-view-left-col-inner">
+                                                        <a class="a-link-normal" href="/gp/product/B081STX6FB/ref=ppx_yo_dt_b_asin_image_o00_s00?ie=UTF8&amp;psc=1">
+                                                            <img alt="" src="https://m.media-amazon.com/images/I/31OLwPh1f6L._SX90_.jpg" class="yo-critical-feature" height="82" width="90">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="a-fixed-left-grid-col yohtmlc-item a-col-right" style="padding-left:1.5%;float:left;">
+                                                    <div class="a-row">
+                                                        <a class="a-link-normal" href="/gp/product/B081STX6FB/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&amp;psc=1">
+                                                            Lifetime Appliance 2169142 Evaporator Fan Blade Compatible with Whirlpool, KitchenAid, Jenn-Air, Amana, Refrigerators - WP2169142
+                                                        </a>
+
+
+                                                    </div>
+                                                    <div class="a-row">
+                                                        <span class="a-size-small">
+                                                            <div class="a-row a-size-small">Return window closed on Jan 27, 2022</div>
+                                                        </span> 
+
+                                                    </div>
+                                                    <div class="a-row">
+                                                        <div class="a-row a-spacing-top-mini">
+                                                            <span class="a-declarative" data-action="bia_button" data-bia_button="{}">
+                                                                <span class="a-button a-spacing-mini a-button-primary yohtmlc-buy-it-again" id="a-autoid-3">
+                                                                    <span class="a-button-inner">
+                                                                        <a href="/gp/buyagain/ref=ppx_yo_dt_b_bia?ie=UTF8&amp;ats=eyJjdXN0b21lcklkIjoiQTNRRExSVjhBSTFQUDkiLCJleHBsaWNpdENhbmRpZGF0ZXMiOiJCMDgx%0AU1RYNkZCIn0%3D%0A" aria-label="Buy it again" class="a-button-text" role="button" id="a-autoid-3-announce">
+                                                                            <div class="reorder-modal-trigger-text">
+                                                                                <i class="reorder-modal-trigger-icon"></i>
+                                                                                Buy it again
+                                                                            </div>
+                                                                        </a>
+                                                                    </span>
+                                                                </span>
+                                                            </span>
+                                                            <span class="a-button a-spacing-mini a-button-base" id="a-autoid-4">
+                                                                <span class="a-button-inner">
+                                                                    <a href="/your-orders/pop/ref=ppx_yo_dt_b_pop?_encoding=UTF8&amp;gen=canonical&amp;lineItemId=nhjgsuqlpmktsny&amp;orderId=112-7200308-8488269&amp;packageId=1&amp;returnSummaryId=&amp;returnUnitIndices=&amp;returnUnitMappingId=&amp;shipmentId=UhzwVPyYZ" class="a-button-text" role="button" id="a-autoid-4-announce">
+                                                                        View your item
+                                                                    </a>
+                                                                </span>
+                                                            </span>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="a-fixed-right-grid-col a-col-right" style="width:220px;margin-right:-220px;float:left;">
+                                    <div class="a-row">
+                                        <div class="a-button-stack yohtmlc-shipment-level-connections">
+                                            <span class="a-button a-button-normal a-spacing-mini a-button-primary" id="a-autoid-5">
+                                                <span class="a-button-inner">
+                                                    <a id="Get-product-support_2" href="/ps/product-support/resolutions?_encoding=UTF8&amp;itemId=nhjgsuqlpmktsn&amp;orderId=112-7200308-8488269&amp;ref_=ppx_yo_dt_b_prod_support_single_item_o00_s00&amp;shipmentId=UhzwVPyYZ" class="a-button-text" role="button">
+                                                        Get product support
+                                                    </a>
+                                                </span>
+                                            </span>
+                                            <span class="a-button a-button-normal a-spacing-mini a-button-base" id="a-autoid-6">
+                                                <span class="a-button-inner">
+                                                    <a id="Write-a-product-review_2" href="/review/review-your-purchases/ref=ppx_yo_dt_b_rev_prod_o00_s00?_encoding=UTF8&amp;asins=B081STX6FB&amp;channel=YAcc-wr" class="a-button-text" role="button">
+                                                        Write a product review
+                                                    </a>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="a-row">
+                <div class="a-text-center pagination-full">
+                    <ul class="a-pagination">
+                        <li class="a-disabled">
+                            <span class="a-letter-space"></span>
+                            <span class="a-letter-space"></span>Previous
+                        </li>
+                        <li class="a-selected">
+                            <a href="/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_1?ie=UTF8&amp;orderFilter=year-2021&amp;search=&amp;startIndex=0">1</a>
+                        </li>
+                        <li class="a-normal">
+                            <a href="/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_2?ie=UTF8&amp;orderFilter=year-2021&amp;search=&amp;startIndex=10">2</a>
+                        </li>
+                        <li class="a-normal">
+                            <a href="/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_3?ie=UTF8&amp;orderFilter=year-2021&amp;search=&amp;startIndex=20">3</a>
+                        </li>
+                        <li class="a-normal">
+                            <a href="/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_4?ie=UTF8&amp;orderFilter=year-2021&amp;search=&amp;startIndex=30">4</a>
+                        </li>
+                        <li class="a-last">
+                            <a href="/gp/your-account/order-history/ref=ppx_yo_dt_b_pagination_1_2?ie=UTF8&amp;orderFilter=year-2021&amp;search=&amp;startIndex=10">
+                                Next
+                                <span class="a-letter-space"></span>
+                                <span class="a-letter-space"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+-->
+                </div>
+            </div>
+        </div>
+</section>

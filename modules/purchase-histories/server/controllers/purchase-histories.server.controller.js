@@ -83,15 +83,21 @@ exports.delete = function(req, res) {
  * List of Purchase histories
  */
 exports.list = function(req, res) {
-  PurchaseHistory.find().sort('-created').populate('user', 'displayName').exec(function(err, purchaseHistories) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(purchaseHistories);
-    }
-  });
+  if(req.user){
+    console.log("has user");
+    var user = req.user;
+    PurchaseHistory.find({"user": user}).sort('-created').populate('user', 'displayName').exec(function(err, purchaseHistories) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.jsonp(purchaseHistories);
+      }
+    });
+  }else{
+console.log("do not has user");
+  return res.status(400);}
 };
 
 /**

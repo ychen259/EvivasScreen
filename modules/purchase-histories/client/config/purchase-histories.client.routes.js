@@ -12,7 +12,10 @@
       .state('purchase-histories', {
         abstract: true,
         url: '/purchase-histories',
-        template: '<ui-view/>'
+        template: '<ui-view/>',
+        data: {
+          roles: ['user', 'admin']
+        }
       })
       .state('purchase-histories.list', {
         url: '',

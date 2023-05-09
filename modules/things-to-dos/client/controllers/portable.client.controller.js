@@ -7,7 +7,7 @@
   // Things to dos controller
   angular
     .module('things-to-dos')
-    .controller('Tab-tension-Controller', ThingsToDosViewController);
+    .controller('Portable-Outdoor-Controller', ThingsToDosViewController);
 
   ThingsToDosViewController.$inject = ['$scope', '$state', '$window', 'Authentication', 'Notification', 'UsersRecordService'];
 

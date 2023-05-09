@@ -10,6 +10,7 @@
   function PurchaseHistoriesListController(PurchaseHistoriesService, $scope) {
 
     $scope.find = function(){
+      
       PurchaseHistoriesService.getAll()
         .then(function(response) {
           $scope.purchaseHistories = response.data;

@@ -20,6 +20,11 @@
     });
 
     menuService.addSubMenuItem('account', 'settings', {
+      title: 'Purchase History',
+      state: 'purchase-histories.list'
+    });
+
+    menuService.addSubMenuItem('account', 'settings', {
       title: 'Edit Profile',
       state: 'settings.profile'
     });

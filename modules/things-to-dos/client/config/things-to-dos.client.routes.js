@@ -53,6 +53,15 @@
           pageTitle: 'Floor Rising Projector Screen'
         }
       })
+      .state('things-to-dos.portable', {
+        url: '/portable-Outdoor-projector-screen',
+        templateUrl: '/modules/things-to-dos/client/views/view-product-portable.client.view.html',
+        controller: 'Portable-Outdoor-Controller',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Portable Outdoor Projector Screen'
+        }
+      })
       ;
   }
 
