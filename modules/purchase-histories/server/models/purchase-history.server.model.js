@@ -28,6 +28,7 @@ var PurchaseHistorySchema = new Schema({
     }
   },
   total:{ type: Number, default:0},
+  address:{type: String, default: 'No Address Provided'},
   created: {
     type: Date,
     default: Date.now

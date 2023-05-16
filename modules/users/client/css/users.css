@@ -16,6 +16,7 @@
 .user-profile-picture {
   max-height: 150px;
   min-height: 150px;
+  max-width:  150px;
 }
 .social-button {
   -webkit-transition-duration: 0.4s;

@@ -4,7 +4,8 @@ var defaultEnvConfig = require('./default');
 
 module.exports = {
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb+srv://novascreen:Aa947496@cluster0.cuiun1m.mongodb.net/?retryWrites=true&w=majority',
+    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb+srv://admin-nova:Aa947496@cluster0.hfjg9le.mongodb.net/?retryWrites=true&w=majority',
+    //'mongodb+srv://novascreen:Aa947496@cluster0.cuiun1m.mongodb.net/?retryWrites=true&w=majority',
     // 'mongodb+srv://admin-nova:novascreen@cluster0.eqvri.mongodb.net/novascreen?retryWrites=true&w=majority',
     /*'mongodb://ychen259:Aa947496@cluster0-shard-00-00.wccdn.mongodb.net:27017,cluster0-shard-00-01.wccdn.mongodb.net:27017,cluster0-shard-00-02.wccdn.mongodb.net:27017/sasasas?ssl=true&replicaSet=atlas-iulcjf-shard-0&authSource=admin&retryWrites=true&w=majority',*/
     //mongodb+srv://ychen259:<password>@cluster0.wccdn.mongodb.net/test
@@ -56,8 +57,8 @@ module.exports = {
     callbackURL: '/api/auth/github/callback'
   },
   paypal: {
-    clientID: process.env.PAYPAL_ID || 'CLIENT_ID',
-    clientSecret: process.env.PAYPAL_SECRET || 'CLIENT_SECRET',
+    clientID: process.env.PAYPAL_ID || 'CLIENT_ID'|| 'AY1MyhC3J0flDf_jJIDmxFWdtLQhPf1ekMRVNMKstOBM9WFPGhIdsciDkOrIGeYz9Di9eeMqO30KbJ_4',
+    clientSecret: process.env.PAYPAL_SECRET || 'CLIENT_SECRET' || "EEdeCmewXtXmpKv9CptNa_YHXw35G3ODUsZCe44o_Y76_qrQtkVi6x0UQW13Nh6VtGE4sKEFJzX9MuZW",
     callbackURL: '/api/auth/paypal/callback',
     sandbox: true
   },

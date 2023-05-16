@@ -49,11 +49,11 @@
               <span ng-bind="vm.authentication.user.username"></span> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" role="menu" >
-              <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
+              <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items" style="padding-left: 5%;">
                 <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
               </li>
-              <li>
-                <a href="/api/auth/signout" target="_self" >Signout</a>
+              <li style="padding-left: 5%;">
+                <a href="/api/auth/signout" target="_self"  >Signout</a>
               </li>
             </ul>
           </li>

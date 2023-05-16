@@ -56,61 +56,73 @@
       cart.classList.remove('active');
     };
 
-  //cart working js
-  if(document.readyState=="loading"){
-    document.addEventListener('DOMContentLoaded', ready);
-  }
-  else{
-    ready();
-  }
-
-  //call this function is the page is finish loadding
-  function ready(){
-    document
-      .getElementsByClassName('btn-buy')[0]
-      .addEventListener('click', buyButtonClicked);
-  };
-
-  //buy button
-  function buyButtonClicked(){
-
-    //show notification to user
-    Notification.success({ message: "Your Order is placed.", title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
-
-    var totalPrices = document.getElementsByClassName('total-price');
-    var total =parseFloat(totalPrices[0].innerText.replace('$',""));    //total is for purchase history record
-
-    /*remove shopping cart item from shopping cart*/
-    var cartContent = document.getElementsByClassName('cart-content')[0];
-    while(cartContent.hasChildNodes()){
-      cartContent.removeChild(cartContent.firstChild);
+    //cart working js
+    if(document.readyState=="loading"){
+      document.addEventListener('DOMContentLoaded', ready);
+    }
+    else{
+      ready();
     }
 
-    var data = {
-        "shoppingCart":{
-          "tab_tension": {"_92inch":0,"_100inch":0, "_110inch":0},
-          "floor_rising": {"_92inch":0,"_100inch":0, "_110inch":0},
-          "mobile": {"_92inch":0,"_100inch":0, "_110inch":0}
-        }
+    //call this function is the page is finish loadding
+    function ready(){
+      document
+        .getElementsByClassName('btn-buy')[0]
+        .addEventListener('click', buyButtonClicked);
     };
 
-    //store value to user database
-    updateShoppingToDatabase(data);
+    //buy button
+    function buyButtonClicked(){
 
-    data = {
-        "purchaseHistory":{
-          "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
-          "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
-          "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
-        },
-        "total": total
-    };
-    updatePurchaseHistoryToDataBase(data);
-    
-    //updata Total back to 0
-    updateTotal();
+      //show notification to user
+      Notification.success({ message: "Your Order is placed.", title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
 
-  }
+      var totalPrices = document.getElementsByClassName('total-price');
+      var total =parseFloat(totalPrices[0].innerText.replace('$',""));    //total is for purchase history record
+
+      /*remove shopping cart item from shopping cart*/
+      var cartContent = document.getElementsByClassName('cart-content')[0];
+      while(cartContent.hasChildNodes()){
+        cartContent.removeChild(cartContent.firstChild);
+      }
+
+      //clean up the shopping record back to 0
+      var data = {
+          "shoppingCart":{
+            "tab_tension": {"_92inch":0,"_100inch":0, "_110inch":0},
+            "floor_rising": {"_92inch":0,"_100inch":0, "_110inch":0},
+            "mobile": {"_92inch":0,"_100inch":0, "_110inch":0}
+          }
+      };
+
+      //store value to user database
+      updateShoppingToDatabase(data);
+
+      data = {
+          "purchaseHistory":{
+            "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
+            "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
+            "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
+          },
+          "total": total
+      };
+      updatePurchaseHistoryToDataBase(data);
+      
+      //updata Total back to 0
+      updateTotal();
+
+      /*reset globlo value back to 0*/
+      $window.cartTabTension92 = 0;
+      $window.cartTabTension100 = 0;
+      $window.cartTabTension110 = 0;
+      $window.cartFloorRising92 = 0;
+      $window.cartFloorRising100 = 0;
+      $window.cartFloorRising110 = 0;
+      $window.cartMobile92 = 0;
+      $window.cartMobile100 = 0;
+      $window.cartMobile110 = 0;
+
+    }
 
 
     $window.tabTension92Title = "Nova Spectrum Tab-Tension, 92-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
@@ -119,6 +131,10 @@
     $window.floorRising92Title = "Nova Spectrum Floor-Rising, 92-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
     $window.floorRising100Title = "Nova Spectrum Floor-Rising, 100-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
     $window.floorRising110Title = "Nova Spectrum Floor-Rising, 110-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
+    $window.mobile92Title = "Nova Spectrum Portable Outdoor, 92-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
+    $window.mobile100Title = "Nova Spectrum Portable Outdoor, 100-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
+    $window.mobile110Title = "Nova Spectrum Portable Outdoor, 110-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
+   
 
     $window.tabTension92Price = '$779';
     $window.tabTension100Price = '$799';
@@ -126,6 +142,9 @@
     $window.floorRising92Price = '$1299';
     $window.floorRising100Price = '$1499';
     $window.floorRising110Price = '$1599';
+    $window.mobile92Price = '$50';
+    $window.mobile100Price = '$60';
+    $window.mobile110Price = '$70';
 
     $window.tabTensionImg = '/modules/things-to-dos/client/img/Tab-Tension/1.png';
     $window.floorRisingImg = '/modules/things-to-dos/client/img/floor-rising/1.png';
@@ -154,42 +173,42 @@
           $window.cartMobile110 = productRecord.shoppingCart.mobile._110inch;
 
           //if database show that shopping cart tab tension screen 92 inch is not 0, add it to shopping cart
-          if(cartTabTension92){
+          if($window.cartTabTension92){
             var productImg = $window.tabTensionImg;
             var title = $window.tabTension92Title;
             var price = $window.tabTension92Price;
             var quantity = $window.cartTabTension92;
             addProductToCart(title, price, productImg, quantity);
           }
-          if(cartTabTension100){
+          if($window.cartTabTension100){
             var productImg = $window.tabTensionImg;
             var title = $window.tabTension100Title;
             var price = $window.tabTension100Price;
             var quantity = $window.cartTabTension100;
             addProductToCart(title, price, productImg, quantity);
           }
-          if(cartTabTension110){
+          if($window.cartTabTension110){
             var productImg = $window.tabTensionImg;
             var title = $window.tabTension110Title;
             var price = $window.tabTension110Price;
             var quantity = $window.cartTabTension110;
             addProductToCart(title, price, productImg, quantity);
           }
-          if(cartFloorRising92){
+          if($window.cartFloorRising92){
             var productImg = $window.floorRisingImg ;
             var title = $window.floorRising92Title;
             var price = $window.floorRising92Price;
             var quantity = $window.cartFloorRising92;
             addProductToCart(title, price, productImg, quantity);
           }
-          if(cartFloorRising100){
+          if($window.cartFloorRising100){
             var productImg = $window.floorRisingImg ;
             var title = $window.floorRising100Title;
             var price = $window.floorRising100Price;
             var quantity = $window.cartFloorRising100;
             addProductToCart(title, price, productImg, quantity);
           }
-          if(cartFloorRising110){
+          if($window.cartFloorRising110){
             var productImg = $window.floorRisingImg ;
             var title = $window.floorRising110Title;
             var price = $window.floorRising110Price;
@@ -263,21 +282,27 @@
 
       if(title == $window.tabTension92Title){
         data.shoppingCart.tab_tension._92inch = updatedQuantity;
+        $window.cartTabTension92 = updatedQuantity;
       }
       else if(title == $window.tabTension100Title){
         data.shoppingCart.tab_tension._100inch = updatedQuantity;
+        $window.cartTabTension100 = updatedQuantity;
       }
       else if(title == $window.tabTension110Title){
         data.shoppingCart.tab_tension._110inch = updatedQuantity;
+        $window.cartTabTension110 = updatedQuantity;
       }
       else if(title == $window.floorRising92Title){
         data.shoppingCart.floor_rising._92inch = updatedQuantity;
+        $window.cartFloorRising92 =updatedQuantity;
       }
       else if(title == $window.floorRising100Title){
         data.shoppingCart.floor_rising._100inch = updatedQuantity;
+        $window.cartFloorRising100 = updatedQuantity;
       }
       else if(title == $window.floorRising110Title){
         data.shoppingCart.floor_rising._110inch = updatedQuantity;
+        $window.cartFloorRising110 = updatedQuantity;
       }
 
       updateShoppingToDatabase(data);
@@ -300,21 +325,28 @@
 
       if(title == $window.tabTension92Title){
         data.shoppingCart.tab_tension._92inch = 0;
+        $window.cartTabTension92 = 0;
+
       }
       else if(title == $window.tabTension100Title){
         data.shoppingCart.tab_tension._100inch = 0;
+        $window.cartTabTension100 = 0;
       }
       else if(title == $window.tabTension110Title){
         data.shoppingCart.tab_tension._110inch = 0;
+        $window.cartTabTension110 = 0;
       }
       else if(title == $window.floorRising92Title){
         data.shoppingCart.floor_rising._92inch = 0;
+        $window.cartFloorRising92 = 0;
       }
       else if(title == $window.floorRising100Title){
         data.shoppingCart.floor_rising._100inch = 0;
+        $window.cartFloorRising100 = 0;
       }
       else if(title == $window.floorRising110Title){
         data.shoppingCart.floor_rising._110inch = 0;
+        $window.cartFloorRising110 = 0;
       }
 
        updateShoppingToDatabase(data);
@@ -339,7 +371,7 @@
     }
 
     $window.updateShoppingToDatabase = function(data){
-      /* Save the products record and purchase history using the ThingsToDosService factory */
+      /* Save the products record and purchase history using the UsersRecordService factory */
       UsersRecordService.update(data)
         .then(function(response) {
 
