@@ -6,7 +6,6 @@
   "private": false,
   "author": "https://github.com/meanjs/mean/graphs/contributors",
   "license": "MIT",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/meanjs/mean.git"
