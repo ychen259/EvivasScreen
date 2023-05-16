@@ -148,7 +148,7 @@
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	color: :var(--bg-color);
+	color: var(--bg-color);
 	background: #e3ae37;
 	padding: 10px;
 	cursor: pointer;

@@ -74,7 +74,7 @@
 
 @media (max-width: 767px) {
     .ProductInfo_sliderContainer__xINQm .ProductInfo_swiper__pfX_8 {
-        height:100vw
+        height:100vw;
         top: 0px;
     }
 }
@@ -2696,4 +2696,3 @@
     }
 }
 
-/*# sourceMappingURL=6ae5e27e09476b70.css.map*/
