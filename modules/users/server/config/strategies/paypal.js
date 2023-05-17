@@ -14,7 +14,8 @@ module.exports = function (config) {
     callbackURL: config.paypal.callbackURL,
     scope: 'openid profile email',
     sandbox: config.paypal.sandbox,
-    passReqToCallback: true
+    passReqToCallback: true,
+    issuer: "https://www.paypal.com"
 
   },
   function (req, accessToken, refreshToken, profile, done) {
