@@ -1,14 +1,15 @@
-// Checkouts service used to communicate Checkouts REST endpoints
+// CheckoutsService service used to communicate Ducs REST endpoints
 (function () {
   'use strict';
 
   angular
     .module('checkouts')
-    .factory('CheckoutsService', CheckoutsService);
+    .factory('CheckoutsService', ['$http', function($http){
+    var methods = {
 
-  CheckoutsService.$inject = ['$resource'];
+    };
+    return methods;
+  }]);
+}()
 
-  function CheckoutsService($resource) {
-return 0;
-  }
-}());
+);

@@ -1,0 +1,7 @@
+ paypal_sdk.Buttons({
+      style: {
+        color: 'gold',
+        shape: 'rect',
+        label: 'pay',
+        layout: 'vertical'
+      }

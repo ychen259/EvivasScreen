@@ -107,12 +107,20 @@
 
   //Add to cart
   function addCartClicked(event){
-    var title = $scope.title;
-    var price = $scope.price;
-    var productImg = $scope.imgSrc;
-    addProductToCart(title, price, productImg);
 
-    updateTotal();
+    if($window.user){
+      var title = $scope.title;
+      var price = $scope.price;
+      var productImg = $scope.imgSrc;
+      addProductToCart(title, price, productImg);
+
+      updateTotal();
+    }else{
+      console.log("no window.user");
+      $state.go('authentication.signin');
+    }
+
+
   }
 
   //quantity changes function

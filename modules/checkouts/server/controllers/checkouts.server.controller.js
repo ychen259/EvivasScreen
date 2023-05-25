@@ -15,18 +15,20 @@ var paypal = require('./paypal-api.js');
  * Create a Checkout
  */
 exports.createOrder =   async function(req, res) {
-  try {
+  console.log("createorder function server");
+  /*try {
     const order = await paypal.createOrder();
     res.json(order);
   } catch (err) {
     res.status(500).send(err.message);
-  }
+  }*/
 };
 
 /**
  * Show the current Checkout
  */
 exports.captureOrder =  async function(req, res) {
+    console.log("captureOrder function server");
   const { orderID } = req.body;
   try {
     const captureData = await paypal.capturePayment(orderID);

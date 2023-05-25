@@ -25,6 +25,9 @@
     // If user is signed in then redirect back home
     if (vm.authentication.user) {
       $location.path('/');
+
+      //$state.go($state.previous.state.name , $state.previous.params);
+           // console.log($state.previous.state.name);
     }
 
     function signup(isValid) {
@@ -108,9 +111,10 @@
       Notification.info({ message: 'Welcome ' + response.firstName });
       // And redirect to the previous or home page
       $state.go($state.previous.state.name || 'home', $state.previous.params);
-
+//console.log("back to previous page");
       /*refresh the page to let it call header controller again to load shopping cart*/
-      window.location.reload()
+      //$window.location.reload()
+      $window.getProductRecord();
     }
 
     function onUserSigninError(response) {

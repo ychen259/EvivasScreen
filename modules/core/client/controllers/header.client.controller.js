@@ -74,6 +74,14 @@
     //buy button
     function buyButtonClicked(){
 
+      //if the shopping cart is empty, do not store the data to database
+      if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
+        $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
+        $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
+        Notification.error({ message: "Sorry, You do not have anything in shopping Cart.", title: '<i class="glyphicon glyphicon-remove"></i> Thank you!' });
+        return;
+      }
+
       //show notification to user
       Notification.success({ message: "Your Order is placed.", title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
 
@@ -150,14 +158,10 @@
     $window.floorRisingImg = '/modules/things-to-dos/client/img/floor-rising/1.png';
     $window.mobileImg = '/modules/things-to-dos/client/img/mobile/1.png';
 
-    /*If */
-    if($window.user){
-      getProductRecord();
-    }
 
 
     /*get  shopping cart and purchase history when a user finish sign in process*/
-    function getProductRecord(){
+    $window.getProductRecord = function(){
       UsersRecordService.getRecord()
         .then(function(response) {
           var productRecord = response.data;
@@ -220,6 +224,15 @@
         }, function(error) {
              console.log(error);
         });
+    }
+
+    /*If */
+    if($window.user){
+      getProductRecord();
+    }
+
+    function getProductRecord(){
+      $window.getProductRecord();
     }
 
     //add product to cart

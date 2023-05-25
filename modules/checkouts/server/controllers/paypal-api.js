@@ -1,14 +1,21 @@
 var path = require('path');
 var config = require(path.resolve('./config/config'));
 
-var CLIENT_ID = config.paypal.clientID;
-var APP_SECRET = config.paypal.clientSecret;
+//var fetch = import('node-fetch');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+var CLIENT_ID = config.paypal.clientID; //AY1MyhC3J0flDf_jJIDmxFWdtLQhPf1ekMRVNMKstOBM9WFPGhIdsciDkOrIGeYz9Di9eeMqO30KbJ_4
+var APP_SECRET = config.paypal.clientSecret; //EEdeCmewXtXmpKv9CptNa_YHXw35G3ODUsZCe44o_Y76_qrQtkVi6x0UQW13Nh6VtGE4sKEFJzX9MuZW
 
 const base = "https://api-m.sandbox.paypal.com";
 
 exports.createOrder = async function() {
+  console.log("create order fuunction in payapl-api.js");
   const accessToken = await generateAccessToken();
+
+   console.log("create order fuunction in payapl-api.js111"); 
   const url = `${base}/v2/checkout/orders`;
+
+     console.log("create order fuunction in payapl-api.js222"); 
   const response = await fetch(url, {
     method: "post",
     headers: {
@@ -27,11 +34,12 @@ exports.createOrder = async function() {
       ],
     }),
   });
-
+console.log("finish");
   return handleResponse(response);
 }
 
 exports.capturePayment = async function(orderId) {
+    console.log("cccccccccccccccccccccccccccc");
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders/${orderId}/capture`;
   const response = await fetch(url, {
@@ -45,8 +53,10 @@ exports.capturePayment = async function(orderId) {
   return handleResponse(response);
 }
 
-exports.generateAccessToken = async function() {
-  const auth = Buffer.from(CLIENT_ID + ":" + APP_SECRET).toString("base64");
+
+async function generateAccessToken() {
+  console.log("client id: " + CLIENT_ID);
+    const auth = Buffer.from(CLIENT_ID + ":" + APP_SECRET).toString("base64");
   const response = await fetch(`${base}/v1/oauth2/token`, {
     method: "post",
     body: "grant_type=client_credentials",
@@ -54,16 +64,19 @@ exports.generateAccessToken = async function() {
       Authorization: `Basic ${auth}`,
     },
   });
+console.log("almost finish generateAccessToken");
 
   const jsonData = await handleResponse(response);
   return jsonData.access_token;
-}
+  
 
+}
 async function handleResponse(response) {
   if (response.status === 200 || response.status === 201) {
     return response.json();
   }
 
   const errorMessage = await response.text();
+  console.log("error:" + errorMessage);
   throw new Error(errorMessage);
 }
