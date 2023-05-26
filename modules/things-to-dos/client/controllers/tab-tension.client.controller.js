@@ -96,6 +96,9 @@
         $scope.title = $window.tabTension110Title;
       }      
 
+      //call this function to update total otherwise the value on the bottom will be 0
+      updateTotal();
+      
       /*------------------------------------Shopping cart -----------------------------------------------*/
 
     //Add to Cart
@@ -112,11 +115,15 @@
       var title = $scope.title;
       var price = $scope.price;
       var productImg = $scope.imgSrc;
-      addProductToCart(title, price, productImg);
+
+      var size = $scope.sizePick;
+      var quantity = $scope.quantity;
+      var type = "tab-tension";
+      addProductToCart(title, price, productImg, size, quantity, type);
 
       updateTotal();
     }else{
-      console.log("no window.user");
+
       $state.go('authentication.signin');
     }
 
@@ -134,10 +141,15 @@
 
   }; 
 
+function addProductToCart(title, price, productImg, size, quantity, type){
+  $window.addProductToCart(title, price, productImg, size, quantity, type);
+}
 
-
+/*
   //add product to cart
   function addProductToCart(title, price, productImg){
+    $window.isEmptyShoppingCart = false;
+
     var data = {
         "shoppingCart":{
           "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
@@ -155,7 +167,7 @@
     var cartItemQuantity = cartItems.getElementsByClassName('cart-quantity');
 
     /*If the item already in cart, then update the quantity*/
-    for(var i=0; i<cartItemsNames.length;i++){
+  /*  for(var i=0; i<cartItemsNames.length;i++){
       if(cartItemsNames[i].innerText == title){
         var updateQuantity = parseInt(cartItemQuantity[i].value) + $scope.quantity; //update cart quantity depend on quantity on page   
         cartItemQuantity[i].value = updateQuantity;
@@ -214,7 +226,7 @@
     updateShoppingToDatabase(data);
 
   }
-
+*/
   function updateShoppingToDatabase(data){
     $window.updateShoppingToDatabase(data);
   }

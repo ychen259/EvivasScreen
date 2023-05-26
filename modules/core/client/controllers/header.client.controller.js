@@ -17,6 +17,8 @@
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
+    $scope.isEmptyShoppingCart = false;
+
     function stateChangeSuccess() {
       // Collapsing the menu after navigation
       vm.isCollapsed = false;
@@ -73,62 +75,72 @@
 
     //buy button
     function buyButtonClicked(){
-
-      //if the shopping cart is empty, do not store the data to database
-      if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
-        $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
-        $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
-        Notification.error({ message: "Sorry, You do not have anything in shopping Cart.", title: '<i class="glyphicon glyphicon-remove"></i> Thank you!' });
-        return;
-      }
-
-      //show notification to user
-      Notification.success({ message: "Your Order is placed.", title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
-
-      var totalPrices = document.getElementsByClassName('total-price');
-      var total =parseFloat(totalPrices[0].innerText.replace('$',""));    //total is for purchase history record
-
-      /*remove shopping cart item from shopping cart*/
-      var cartContent = document.getElementsByClassName('cart-content')[0];
-      while(cartContent.hasChildNodes()){
-        cartContent.removeChild(cartContent.firstChild);
-      }
-
-      //clean up the shopping record back to 0
-      var data = {
-          "shoppingCart":{
-            "tab_tension": {"_92inch":0,"_100inch":0, "_110inch":0},
-            "floor_rising": {"_92inch":0,"_100inch":0, "_110inch":0},
-            "mobile": {"_92inch":0,"_100inch":0, "_110inch":0}
+      if($window.user){
+  console.log($window.user)
+          //if the shopping cart is empty, do not store the data to database
+          if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
+            $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
+            $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
+            Notification.error({ message: "Sorry, You do not have anything in shopping Cart.", title: '<i class="glyphicon glyphicon-remove"></i> Thank you!' });
+            return;
           }
-      };
 
-      //store value to user database
-      updateShoppingToDatabase(data);
+          //show notification to user
+          Notification.success({ message: "Your Order is placed.", title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
 
-      data = {
-          "purchaseHistory":{
-            "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
-            "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
-            "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
-          },
-          "total": total
-      };
-      updatePurchaseHistoryToDataBase(data);
-      
-      //updata Total back to 0
-      updateTotal();
+          var totalPrices = document.getElementsByClassName('total-price');
+          var total =parseFloat(totalPrices[0].innerText.replace('$',""));    //total is for purchase history record
 
-      /*reset globlo value back to 0*/
-      $window.cartTabTension92 = 0;
-      $window.cartTabTension100 = 0;
-      $window.cartTabTension110 = 0;
-      $window.cartFloorRising92 = 0;
-      $window.cartFloorRising100 = 0;
-      $window.cartFloorRising110 = 0;
-      $window.cartMobile92 = 0;
-      $window.cartMobile100 = 0;
-      $window.cartMobile110 = 0;
+          /*remove shopping cart item from shopping cart*/
+          var cartContent = document.getElementsByClassName('cart-content')[0];
+          while(cartContent.hasChildNodes()){
+            cartContent.removeChild(cartContent.firstChild);
+          }
+
+          //clean up the shopping record back to 0
+          var data = {
+              "shoppingCart":{
+                "tab_tension": {"_92inch":0,"_100inch":0, "_110inch":0},
+                "floor_rising": {"_92inch":0,"_100inch":0, "_110inch":0},
+                "mobile": {"_92inch":0,"_100inch":0, "_110inch":0}
+              }
+          };
+
+          //store value to user database
+          updateShoppingToDatabase(data);
+
+          data = {
+              "purchaseHistory":{
+                "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
+                "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
+                "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
+              },
+              "total": total
+          };
+          updatePurchaseHistoryToDataBase(data);
+          
+          //updata Total back to 0
+          updateTotal();
+
+          /*reset globlo value back to 0*/
+          $window.cartTabTension92 = 0;
+          $window.cartTabTension100 = 0;
+          $window.cartTabTension110 = 0;
+          $window.cartFloorRising92 = 0;
+          $window.cartFloorRising100 = 0;
+          $window.cartFloorRising110 = 0;
+          $window.cartMobile92 = 0;
+          $window.cartMobile100 = 0;
+          $window.cartMobile110 = 0;
+
+          $scope.isEmptyShoppingCart = true;
+      }
+      //if there is no user go to login
+      else{
+        //go to login page and close shopping cart
+        $state.go('authentication.signin');
+        cart.classList.remove('active');
+      }
 
     }
 
@@ -175,6 +187,12 @@
           $window.cartMobile92 = productRecord.shoppingCart.mobile._92inch;
           $window.cartMobile100 = productRecord.shoppingCart.mobile._100inch;
           $window.cartMobile110 = productRecord.shoppingCart.mobile._110inch;
+
+          if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
+            $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
+            $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
+            $scope.isEmptyShoppingCart = true;
+          }
 
           //if database show that shopping cart tab tension screen 92 inch is not 0, add it to shopping cart
           if($window.cartTabTension92){
@@ -229,6 +247,8 @@
     /*If */
     if($window.user){
       getProductRecord();
+    }else{
+      $scope.isEmptyShoppingCart = true;
     }
 
     function getProductRecord(){
@@ -237,6 +257,9 @@
 
     //add product to cart
     function addProductToCart(title, price, productImg, quantity){
+
+      $scope.isEmptyShoppingCart = false;
+
       var cartShopBox = document.createElement('div');
       cartShopBox.classList.add('cart-box');
       var cartItems = document.getElementsByClassName('cart-content')[0];
@@ -362,6 +385,12 @@
         $window.cartFloorRising110 = 0;
       }
 
+      if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
+            $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
+            $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
+            $scope.isEmptyShoppingCart = true;
+      }
+
        updateShoppingToDatabase(data);
 
       updateTotal();
@@ -418,6 +447,175 @@
       for(var i = 0; i < totalPrices.length; i++){
         totalPrices[i].innerText =  "$" + total;
       }
+
     }
-  }
+
+
+    //add product to cart
+    $window.addProductToCart = function(title, price, productImg, size, quantity, type){
+      if(type == "tab-tension"){
+          $scope.isEmptyShoppingCart = false;
+          
+          var data = {
+              "shoppingCart":{
+                "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
+                "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
+                "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
+              }
+          };
+
+          var cartShopBox = document.createElement('div');
+          cartShopBox.classList.add('cart-box');
+          var cartItems = document.getElementsByClassName('cart-content')[0];
+          var cartItemsNames = cartItems.getElementsByClassName('cart-product-title');
+
+
+          var cartItemQuantity = cartItems.getElementsByClassName('cart-quantity');
+
+          /*If the item already in cart, then update the quantity*/
+          for(var i=0; i<cartItemsNames.length;i++){
+            if(cartItemsNames[i].innerText == title){
+              var updateQuantity = parseInt(cartItemQuantity[i].value) + quantity; //update cart quantity depend on quantity on page   
+              cartItemQuantity[i].value = updateQuantity;
+              Notification.info({ message: "You have already add this item to cart.", title: '<i class="glyphicon glyphicon-ok"></i> Watch Out!' });
+
+              if(size == 92){
+                data.shoppingCart.tab_tension._92inch = updateQuantity;
+                $window.cartTabTension92 = updateQuantity;
+              }
+              if(size == 100){
+                data.shoppingCart.tab_tension._100inch = updateQuantity;
+                $window.cartTabTension100 = updateQuantity;
+              }
+              if(size == 110){
+                data.shoppingCart.tab_tension._110inch = updateQuantity;
+                $window.cartTabTension110 = updateQuantity;
+              }
+
+              updateShoppingToDatabase(data);
+              return;
+            }
+          }
+
+          Notification.success({ message: "You add this item to cart.", title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
+
+          var cartBoxContent =  '<img src='+productImg+' alt="" class="cart-img">'+
+                                '<div class="detail-box">'+
+                                  '<div class="cart-product-title">'+title+'</div>'+
+                                  '<div class="cart-price">' + price + '</div>'+
+                                  '<input type="number" value="'+ quantity + '" class="cart-quantity" style="padding: 0">'+
+                                '</div>'+
+                                '<i class="bx bxs-trash-alt cart-remove"></i>';
+
+          cartShopBox.innerHTML = cartBoxContent;
+          cartItems.append(cartShopBox);
+          cartShopBox
+            .getElementsByClassName('cart-remove')[0]
+            .addEventListener('click', removeCartItem);
+          cartShopBox
+            .getElementsByClassName('cart-quantity')[0]
+            .addEventListener('change', quantityChanged);
+
+          if(size == 92){
+                data.shoppingCart.tab_tension._92inch = quantity;
+                $window.cartTabTension92 = quantity;
+          }
+          if(size == 100){
+                data.shoppingCart.tab_tension._100inch = quantity;
+                $window.cartTabTension100 = quantity;
+          }
+          if(size == 110){
+                data.shoppingCart.tab_tension._110inch = quantity;
+                $window.cartTabTension110 = quantity;
+          }
+
+          updateShoppingToDatabase(data);
+      }
+    }
+
+
+    //buy now button with paypal
+    function loadAsync(url, callback) {
+      var s = document.createElement('script');
+      s.setAttribute('src', url); s.onload = callback;
+      document.head.insertBefore(s, document.head.firstElementChild);
+    }
+
+    loadAsync('https://www.paypal.com/sdk/js?client-id=AY1MyhC3J0flDf_jJIDmxFWdtLQhPf1ekMRVNMKstOBM9WFPGhIdsciDkOrIGeYz9Di9eeMqO30KbJ_4', function() {
+                paypal
+                  .Buttons({
+                    style: {
+                      color:  'blue',
+                      shape:  'pill',
+                      label:  'pay',
+                      height: 40,
+     
+                    },
+                    // Sets up the transaction when a payment button is clicked
+                    createOrder: function () {
+                      console.log("create order function in controller");
+                      return fetch("/api/my-server/create-paypal-order", {
+                        method: "post",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        // use the "body" param to optionally pass additional order information
+                        // like product skus and quantities
+                        body: JSON.stringify({
+                          cart: [
+                            {
+                              sku: "YOUR_PRODUCT_STOCK_KEEPING_UNIT",
+                              quantity: "YOUR_PRODUCT_QUANTITY",
+                            },
+                          ],
+                        }),
+                      })
+                        .then((response) => response.json())
+                        .then((order) => order.id);
+
+                    },
+                    // Finalize the transaction after payer approval
+                    onApprove: function (data) {
+                      console.log(" onApprove function in controller");
+                      return fetch("/api/my-server/capture-paypal-order", {
+                        method: "post",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          orderID: data.orderID,
+                        }),
+                      })
+                        .then((response) => response.json())
+                        .then((orderData) => {
+                          // Successful capture! For dev/demo purposes:
+                          /*console.log(
+                            "Capture result",
+                            orderData,
+                            JSON.stringify(orderData, null, 2)
+                          );*/
+                          const transaction = orderData.purchase_units[0].payments.captures[0];
+                      /*    alert(
+                            "Transaction " +
+                              transaction.status +
+                              ": " +
+                              transaction.id +
+                              "\n\nSee console for all available details"
+                          );*/
+                          cart.classList.remove('active'); // close shopping cart
+                          $state.go('home');
+                          Notification.success({ message: "Transaction " + transaction.status + ": " + transaction.id, title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
+
+                          // When ready to go live, remove the alert and show a success message within this page. For example:
+                          // var element = document.getElementById('paypal-button-container');
+                          // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                          // Or go to another URL:  actions.redirect('thank_you.html');
+                        });
+
+                    },
+                  })
+                  .render("#paypal-button-container");
+
+    });
+}
 }());

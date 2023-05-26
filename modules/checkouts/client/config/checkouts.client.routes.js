@@ -8,7 +8,7 @@
   routeConfig.$inject = ['$stateProvider'];
 
   function routeConfig($stateProvider) {
-    $stateProvider
+    /*$stateProvider
       .state('checkouts', {
         abstract: true,
         url: '/checkouts',
@@ -22,7 +22,7 @@
         data: {
           pageTitle: 'Checkouts List'
         }
-      });
+      });*/
   }
 
   getCheckout.$inject = ['$stateParams', 'CheckoutsService'];

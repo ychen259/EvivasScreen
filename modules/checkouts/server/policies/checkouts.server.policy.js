@@ -20,6 +20,12 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/checkouts/:checkoutId',
       permissions: '*'
+    },{
+      resources: '/api/my-server/create-paypal-order',
+      permissions: ['post']
+    },{
+      resources: '/api/my-server/capture-paypal-order',
+      permissions: ['post']
     }]
   }, {
     roles: ['user'],
@@ -29,6 +35,12 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/checkouts/:checkoutId',
       permissions: ['get']
+    },{
+      resources: '/api/my-server/create-paypal-order',
+      permissions: ['post']
+    },{
+      resources: '/api/my-server/capture-paypal-order',
+      permissions: ['post']
     }]
   }, {
     roles: ['guest'],

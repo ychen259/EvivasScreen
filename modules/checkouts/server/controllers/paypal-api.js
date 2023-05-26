@@ -9,13 +9,10 @@ var APP_SECRET = config.paypal.clientSecret; //EEdeCmewXtXmpKv9CptNa_YHXw35G3ODU
 const base = "https://api-m.sandbox.paypal.com";
 
 exports.createOrder = async function() {
-  console.log("create order fuunction in payapl-api.js");
   const accessToken = await generateAccessToken();
 
-   console.log("create order fuunction in payapl-api.js111"); 
   const url = `${base}/v2/checkout/orders`;
 
-     console.log("create order fuunction in payapl-api.js222"); 
   const response = await fetch(url, {
     method: "post",
     headers: {
@@ -39,7 +36,6 @@ console.log("finish");
 }
 
 exports.capturePayment = async function(orderId) {
-    console.log("cccccccccccccccccccccccccccc");
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders/${orderId}/capture`;
   const response = await fetch(url, {
@@ -55,7 +51,6 @@ exports.capturePayment = async function(orderId) {
 
 
 async function generateAccessToken() {
-  console.log("client id: " + CLIENT_ID);
     const auth = Buffer.from(CLIENT_ID + ":" + APP_SECRET).toString("base64");
   const response = await fetch(`${base}/v1/oauth2/token`, {
     method: "post",
@@ -77,6 +72,5 @@ async function handleResponse(response) {
   }
 
   const errorMessage = await response.text();
-  console.log("error:" + errorMessage);
   throw new Error(errorMessage);
 }

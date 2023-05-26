@@ -14,14 +14,14 @@ var paypal = require('./paypal-api.js');
 /**
  * Create a Checkout
  */
-exports.createOrder =   async function(req, res) {
-  console.log("createorder function server");
-  /*try {
+exports.createOrder = async function(req, res){
+  console.log("createorder function sedddddddddddddddddddddddddddddddddddddddddddddddrver");
+  try {
     const order = await paypal.createOrder();
     res.json(order);
   } catch (err) {
     res.status(500).send(err.message);
-  }*/
+  }
 };
 
 /**

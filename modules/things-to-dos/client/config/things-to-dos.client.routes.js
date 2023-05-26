@@ -43,6 +43,7 @@
         data: {
           pageTitle: 'Tab-Tensioned Projector Screen'
         }
+
       })
       .state('things-to-dos.floor-rising', {
         url: '/floor-rising-projector-screen',
