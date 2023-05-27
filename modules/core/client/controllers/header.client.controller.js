@@ -68,15 +68,17 @@
 
     //call this function is the page is finish loadding
     function ready(){
-      document
+
+      /*this one is for old buy now button*/
+     /* document
         .getElementsByClassName('btn-buy')[0]
-        .addEventListener('click', buyButtonClicked);
+        .addEventListener('click', buyButtonClicked);*/
     };
 
     //buy button
     function buyButtonClicked(){
       if($window.user){
-  console.log($window.user)
+
           //if the shopping cart is empty, do not store the data to database
           if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
             $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
@@ -156,6 +158,7 @@
     $window.mobile110Title = "Nova Spectrum Portable Outdoor, 110-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
    
 
+    /*If you want to change the price, please change the price in config file, config file is for database to calculate the total*/
     $window.tabTension92Price = '$779';
     $window.tabTension100Price = '$799';
     $window.tabTension110Price = '$999';
@@ -553,7 +556,6 @@
                     },
                     // Sets up the transaction when a payment button is clicked
                     createOrder: function () {
-                      console.log("create order function in controller");
                       return fetch("/api/my-server/create-paypal-order", {
                         method: "post",
                         headers: {
@@ -562,12 +564,11 @@
                         // use the "body" param to optionally pass additional order information
                         // like product skus and quantities
                         body: JSON.stringify({
-                          cart: [
-                            {
-                              sku: "YOUR_PRODUCT_STOCK_KEEPING_UNIT",
-                              quantity: "YOUR_PRODUCT_QUANTITY",
-                            },
-                          ],
+                          "purchaseHistory":{
+                                "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
+                                "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
+                                "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
+                           }
                         }),
                       })
                         .then((response) => response.json())
@@ -588,12 +589,10 @@
                       })
                         .then((response) => response.json())
                         .then((orderData) => {
-                          // Successful capture! For dev/demo purposes:
-                          /*console.log(
-                            "Capture result",
-                            orderData,
-                            JSON.stringify(orderData, null, 2)
-                          );*/
+
+                          /*after paypal success then update shopping cart database and purchase history database*/
+                          buyButtonClicked();
+                   
                           const transaction = orderData.purchase_units[0].payments.captures[0];
                       /*    alert(
                             "Transaction " +

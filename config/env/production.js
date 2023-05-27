@@ -89,6 +89,19 @@ module.exports = {
       }
     }
   },*/
+  
+  /*If you want to change the price, please change the price in header controller file, header controller file is for brower to calculate the total*/
+  productPrice:{
+    tabTension92Price: '$779',
+    tabTension100Price:'$799',
+    tabTension110Price: '$999',
+    floorRising92Price: '$1299',
+    floorRising100Price: '$1499',
+    floorRising110Price: '$1599',
+    mobile92Price: '$50',
+    mobile100Price: '$60',
+    mobile110Price: '$70'
+  },
   mailer: {
     /*
     from: process.env.MAILER_FROM || 'MAILER_FROM',

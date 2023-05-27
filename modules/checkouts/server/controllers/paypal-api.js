@@ -8,7 +8,7 @@ var APP_SECRET = config.paypal.clientSecret; //EEdeCmewXtXmpKv9CptNa_YHXw35G3ODU
 
 const base = "https://api-m.sandbox.paypal.com";
 
-exports.createOrder = async function() {
+exports.createOrder = async function(total) {
   const accessToken = await generateAccessToken();
 
   const url = `${base}/v2/checkout/orders`;
@@ -25,7 +25,7 @@ exports.createOrder = async function() {
         {
           amount: {
             currency_code: "USD",
-            value: "100.00",
+            value: total,
           },
         },
       ],
