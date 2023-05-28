@@ -1,0 +1,369 @@
+<body class="" style="background-color: rgb(255, 255, 255);" data-new-gr-c-s-check-loaded="14.1111.0" data-gr-ext-installed="">
+    <style nonce="">
+    #zoid-paypal-buttons-uid_6267c43878_mdu6nde6ndm {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        min-height: 25px;
+        min-width: 150px;
+        font-size: 0;
+    }
+
+    #zoid-paypal-buttons-uid_6267c43878_mdu6nde6ndm > iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    #zoid-paypal-buttons-uid_6267c43878_mdu6nde6ndm > iframe.component-frame {
+        z-index: 100;
+    }
+
+    #zoid-paypal-buttons-uid_6267c43878_mdu6nde6ndm > iframe.prerender-frame {
+        transition: opacity .2s linear;
+        z-index: 200;
+    }
+
+    #zoid-paypal-buttons-uid_6267c43878_mdu6nde6ndm > iframe.visible {
+        opacity: 1;
+    }
+
+    #zoid-paypal-buttons-uid_6267c43878_mdu6nde6ndm > iframe.invisible {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #zoid-paypal-buttons-uid_6267c43878_mdu6nde6ndm > .smart-menu {
+        position: absolute;
+        z-index: 300;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+</style>
+<style> 
+    .Layout0 > .i602M > :nth-child(1) {
+      flex: 0 0 100%;
+    }
+   .Layout0 > .i602M { flex-wrap: wrap; }  .Layout0 > .i602M { max-width: 56rem; } @media all and (min-width: 1000px) { .Layout0 > .i602M { max-width: 100%; } }
+</style>
+
+<div id="app">
+    <div class="_1coqx421">
+        <div class="g9gqqf1 _1fragembe _1fragem1j">
+            <div class="_1fragem15 _1fragemaf">
+                <div role="region" aria-labelledby="step-section-primary-header">
+                    <div class="Yil88 TpQRn ny1C6">
+                        <div class="I3DjT TeFT5">
+                            <div class="RTcqB">
+
+    
+
+
+                                <!-------------------------------------------------------------------------------->
+                                <div class="">
+                                  <div class="contact-title"><strong>Nova Screen</strong></div>
+                                  <div id="gdpr-rfp">
+                                    Shipping Address <br>
+                                  </div>
+                                  <div class="boxspacer"></div>
+
+                                  <!--form Email-->
+                                  <form name="info_form" class="form-horizontal" ng-submit="submit(info_form.$valid)" novalidate>
+                                    <div class="quickrfpbox formbox">
+                                      <div class="commentrow">
+
+                                        <!--ask for name-->
+                                        <div class="frmfieldset_checkout form-input frmfieldset-fullwidth">
+
+                                          <!--lable-->
+                                          <div class="commentlable">
+                                            <label for="name" class="quickrfp-title">Name:</label>
+                                          </div>
+
+                                          <!--name input-->
+                                          <div class="commentinput form-group" show-errors>
+                                            <input name="name" type='text' ng-model="name" class='quickrfpforminputbox form-control' ng-required="true">
+                                            <div ng-messages="info_form.name.$error" role="alert">
+                                              <p class="help-block error-text" ng-message="required">Name can not be empty</p>
+                                            </div>                                
+                                          </div>
+                                        </div>
+
+                                        <!--ask for postal code-->
+                                        <div class="frmfieldset_checkout form-input">
+
+                                          <!--lable-->
+                                          <div class="commentlable">
+                                            <label for="zipcode" class="quickrfp-title">Postal Code:</label>
+                                          </div>
+
+                                          <!--zipcode input-->
+                                          <div class="commentinput form-group" show-errors>
+                                            <input name="zipcode" type='text' ng-model="zipcode" class='quickrfpforminputbox form-control zipcode' pattern="\d{5}" ng-required="true">
+                                            <div ng-messages="info_form.zipcode.$error" role="alert">
+                                              <p class="help-block error-text" ng-message="required">Postal code can not be empty</p>
+                                              <p class="help-block error-text" ng-message="pattern">Postal code is invalid.</p>
+                                            </div>                                
+                                          </div>
+                                        </div>
+
+
+                                        <!--ask for phone-->
+                                        <div class="frmfieldset_checkout con-frmfieldset-right form-input">
+                                          <!--lable-->
+                                          <div class="commentlable">
+                                            <label for="PHONE">Phone:</label>
+                                          </div>
+
+                                          <!--phone input-->
+                                          <div class="commentinput form-group" show-errors>
+                                            <input name="phone" type='text' ng-model="phone" class='rfpforminputbox form-control phone' pattern="\d{10}" ng-required="true">
+                                            <div ng-messages="info_form.phone.$error" role="alert">
+                                              <p class="help-block error-text" ng-message="required">Phone can not be empty</p>
+                                              <p class="help-block error-text" ng-message = "pattern">Please provide valid phone number</p>
+                                            </div>                                
+                                          </div>
+                                        </div>
+
+
+                                        <!--ask for city-->
+                                        <div class="frmfieldset_checkout form-input frmfieldset-fullwidth">
+
+                                          <!--lable-->
+                                          <div class="commentlable">
+                                            <label for="city" class="quickrfp-title">City:</label>
+                                          </div>
+                                        <!--city input-->
+                                          <div class="commentinput form-group" show-errors>
+                                            <input name="city" type='text' ng-model="city" class='quickrfpforminputbox form-control' ng-required="true">
+                                            <div ng-messages="info_form.city.$error" role="alert">
+                                              <p class="help-block error-text" ng-message="required">City can not be empty</p>
+                                            </div>                                
+                                          </div>
+                                        </div>
+
+                                        <!--ask for address-->
+                                        <div class="frmfieldset_checkout form-input frmfieldset-fullwidth">
+
+                                          <!--lable-->
+                                          <div class="commentlable">
+                                            <label for="address" class="quickrfp-title">Address:</label>
+                                          </div>
+                                        <!--address input-->
+                                          <div class="commentinput form-group" show-errors>
+                                            <input name="address" type='text' ng-model="address" class='quickrfpforminputbox form-control' ng-required="true">
+                                            <div ng-messages="info_form.address.$error" role="alert">
+                                              <p class="help-block error-text" ng-message="required">Address can not be empty</p>
+                                            </div>                                
+                                          </div>
+                                        </div>
+
+                                        <!--ask for appartment-->
+                                        <div class="frmfieldset_checkout form-input frmfieldset-fullwidth">
+
+                                          <!--lable-->
+                                          <div class="commentlable">
+                                            <label for="appartment" class="quickrfp-title">Appartment or Suite:</label>
+                                          </div>
+                                        <!--appartment input-->
+                                          <div class="commentinput form-group" show-errors>
+                                            <input name="appartment" type='text' ng-model="appartment" class='quickrfpforminputbox form-control' ng-required="false">
+                                          </div>
+                                        </div>
+
+                                        <!--ask for detail-->
+                                        <div class="frmfieldset_checkout frmfieldset-fullwidth form-input">
+                                          <!--lable-->
+                                          <div class="commentlable">
+                                            <label for="DETAILS">Details:</label>
+                                          </div>
+
+                                          <!--detail input-->
+                                          <div class="commentinput form-group" show-errors>
+                                            <textarea name="detail" type='text' ng-model="detail" class='rfpformtextarea form-control phone' ng-required="false"></textarea>       
+                                          </div>
+                                        </div>
+
+
+                                        <div class="clear"></div>
+                                        <!--submit button-->
+                                        <div class='form-group'>
+                                          <button type='submit' class='button' class="form-control">Submit</button>
+                                        </div>
+                                        
+                                        <div class="clear"></div>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                                <div class="clear"></div>
+
+                            <!-------------------------------------------------------------------------------->
+                            </div>
+
+
+
+                        </div>
+
+                        <!--right side shopping summary-->
+                        <aside class="I3DjT aADa7 fiOsL WrWRL">
+                            <div class="RTcqB">
+                                <div class="I_61l">
+                                    <div class="tAyc6">
+                                        <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1w _1fragem2d">
+
+                                            <!--shopping cart description-->
+                                            <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1w _1fragem2d">
+                                                <section class="_1fragem15 _1fragemaf">
+                                                    <div class="_1fragem15 _1fragemah _1fragemaf">
+                                                        <h3 id="ResourceList0" class="_1fragemaf n8k95w4">Shopping cart</h3>
+                                                    </div>
+                                                    <div role="table" aria-labelledby="ResourceList0" class="_6zbcq55 _1fragem17 _1fragem1d _6zbcq58 _6zbcq56">
+                                                        <div role="row" class="_6zbcq51f _1fragem17 _1fragem4 _1fragem34 _6zbcq51d">
+                                                            <div role="columnheader" class="_6zbcq51g">
+                                                                <div class="_1fragem15 _1fragemah _1fragemaf">Product image</div>
+                                                            </div>
+                                                            <div role="columnheader" class="_6zbcq51g">
+                                                                <div class="_1fragem15 _1fragemah _1fragemaf">Description</div>
+                                                            </div>
+                                                            <div role="columnheader" class="_6zbcq51g">
+                                                                <div class="_1fragem15 _1fragemah _1fragemaf">Quantity</div>
+                                                            </div>
+                                                            <div role="columnheader" class="_6zbcq51g">
+                                                                <div class="_1fragem15 _1fragemah _1fragemaf">Price</div>
+                                                            </div>
+                                                        </div>
+                                                        <div role="row" class="_6zbcq526 _1fragem17 _1fragem10 _6zbcq52d">
+                                                            <div role="cell" class="_6zbcq53y _1fragem17 _1fragem1d _1fragem38">
+                                                                <div class="_1fragem15 _1fragem48 _1fragem4d _1fragem4n _1fragem4i _1fragemaf _16s97g7r _16s97g7t _16s97g7v TOZIs" style="--_16s97g7q: 6.4rem; --_16s97g7s: 6.4rem; --_16s97g7u: 6.4rem;">
+                                                                    <div class="_1h3po421 _1h3po423 _1fragemaf" style="--_1h3po420: 1;">
+                                                                        <picture>
+                                                                            <source media="(min-width: 0px)" srcset="https://cdn.shopify.com/s/files/1/0349/5179/0732/products/vivid-storm-since-2004-projection-screen-pro-slimline-tension-screen-with-ultra-short-throw-ambient-light-rejecting-for-ust-alr-laser-projector-17556403814540_64x64.jpg?v=1676960789 1x, https://cdn.shopify.com/s/files/1/0349/5179/0732/products/vivid-storm-since-2004-projection-screen-pro-slimline-tension-screen-with-ultra-short-throw-ambient-light-rejecting-for-ust-alr-laser-projector-17556403814540_128x128.jpg?v=1676960789 2x, https://cdn.shopify.com/s/files/1/0349/5179/0732/products/vivid-storm-since-2004-projection-screen-pro-slimline-tension-screen-with-ultra-short-throw-ambient-light-rejecting-for-ust-alr-laser-projector-17556403814540_256x256.jpg?v=1676960789 4x">
+                                                                                <img src="https://cdn.shopify.com/s/files/1/0349/5179/0732/products/vivid-storm-since-2004-projection-screen-pro-slimline-tension-screen-with-ultra-short-throw-ambient-light-rejecting-for-ust-alr-laser-projector-17556403814540_64x64.jpg?v=1676960789" alt="VIVID STORM SINCE 2004 Projection screen PRO Slimline Tension Screen With Ultra short Throw Ambient Light Rejecting 【For UST ALR Laser Projector】" class="_1h3po424 _1fragem15 _1fragem9q _1fragem3k _1fragem3h _1fragem3n _1fragem3e _1fragem48 _1fragem4d _1fragem4n _1fragem4i _1fragem5b _1fragem56 _1fragem5g _1fragem51 _1fragem9t">
+                                                                        </picture>
+                                                                    </div>
+                                                                    <div aria-hidden="true" class="_1fragem17 _1fragem1d _1fragem49 _1fragem4e _1fragem4o _1fragem4j _1fragem4 _1fragem36 _1fragem8q _1fragem8u _1fragem89 _1fragem9b _1fragemad _16s97g7t _16s97g7v _16s97g7x _16s97g7h _16s97g7j _16s97g7l _16s97g7n AT21L" style="--_16s97g7s: 2.1rem; --_16s97g7u: 2.1rem; --_16s97g7w: translateX(calc(25% * var(--x-global-transform-direction-modifier))) translateY(-50%); --_16s97g7g: 0rem; --_16s97g7i: auto; --_16s97g7k: auto; --_16s97g7m: 0rem;">
+                                                                        <div class="_1fragem15 _1fragemaf s17WO">
+                                                                            <p class="_1x52f9s1 _1fragemaf _1x52f9sj _1fragem1i _1x52f9s2">1</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div role="cell" class="_6zbcq53y _1fragem17 _1fragem1d _1fragem36 _1fragem1g">
+                                                                <p class="_1x52f9s1 _1fragemaf _1x52f9sl _1fragem1j _1x52f9s2">VIVIDSTORM PRO Slimline Motorized Tension UST ALR&nbsp;Projector screen</p>
+                                                                <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1r _1fragem28">
+                                                                    <p class="_1x52f9s1 _1fragemaf _1x52f9sj _1fragem1i _1x52f9sf">120inch / Black</p>
+                                                                </div>
+                                                            </div>
+                                                            <div role="cell" class="_6zbcq53y _1fragem17 _1fragem1d _1fragem36 _6zbcq53w">
+                                                                <div class="_1fragem15 _1fragemah _1fragemaf">
+                                                                    <span class="_19gi7yt0 _19gi7yte _1fragem1j">1
+                                                                        <div aria-hidden="true" class="_1fragem15 _1fragemaf"> x</div>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div role="cell" class="_6zbcq53y _1fragem17 _1fragem1d _1fragem38">
+                                                                <div class="_1fragem17 _1fragem1d _1fragem5 _1fragem36 _1fragemaf _16s97g7r _16s97g7t _16s97g7v bua0H" style="--_16s97g7q: 6.4rem; --_16s97g7s: 6.4rem; --_16s97g7u: 6.4rem;">
+                                                                    <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1t _1fragem2a _1fragem3b">
+                                                                        <span translate="yes" class="_19gi7yt0 _19gi7yte _1fragem1j notranslate">$1,740.00</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                            <section class="_1fragem15 _1fragemaf">
+                                                <div class="_1fragem15 _1fragemah _1fragemaf">
+                                                    <h3 id="MoneyLine-Heading0" class="_1fragemaf n8k95w4">Cost summary</h3>
+                                                </div>
+                                                <div role="table" aria-labelledby="MoneyLine-Heading0" class="nfgb6p0">
+                                                    <div role="row" class="_1qy6ue61 _1fragem1b _1qy6ue68">
+                                                        <div role="cell" class="_1qy6ue69">
+                                                            <span class="_19gi7yt0 _19gi7yte _1fragem1j">Subtotal</span>
+                                                        </div>
+                                                        <div role="cell" class="_1qy6ue6a">
+                                                            <span translate="yes" class="_19gi7yt0 _19gi7yte _1fragem1j _19gi7yt1 notranslate">$1,740.00</span>
+                                                        </div>
+                                                    </div>
+                                                    <div role="row" class="_1qy6ue61 _1fragem1b _1qy6ue68">
+                                                        <div role="cell" class="_1qy6ue69">
+                                                            <div class="_1fragem17 _1fragemaf _1fragem38">
+                                                                <div class="_5uqybw2 _1fragem17 _1fragem9r _1fragem1r _1fragem28 _1fragem0 _1fragem4 _1fragem38">
+                                                                    <span class="_19gi7yt0 _19gi7yte _1fragem1j">Shipping</span>
+                                                                    <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x">
+                                                                        <span class="AjwsM">
+                                                                            <span class="_1fragem34 _1fragem10 _1fragem9q _1fragem9p a8x1wu5 _1fragem15 a8x1wuh a8x1wum">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" focusable="false" aria-hidden="true" class="a8x1wuo _1fragem15 _1fragem34 _1fragem9q _1fragem9p">
+                                                                                    <circle cx="7" cy="7" r="5.6"></circle>
+                                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.6 5.1c.2-1.3 2.6-1.3 2.8 0 .2 1.3-1.45 1.3-1.45 2.35m.055 2.35H7v.005h.005V9.8Z"></path>
+                                                                                    <circle cx="7" cy="9.7" r="0.1"></circle>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div role="cell" class="_1qy6ue6a">
+                                                            <span translate="yes" class="_19gi7yt0 _19gi7ytc _1fragem1i _19gi7yt7 notranslate">Calculated at next step</span>
+                                                        </div>
+                                                    </div>
+                                                    <div role="row" class="_1qy6ue61 _1fragem1b _1qy6ue68">
+                                                        <div role="cell" class="_1qy6ue69">
+                                                            <div class="_1fragem17 _1fragemaf _1fragem38">
+                                                                <div class="_5uqybw2 _1fragem17 _1fragem9r _1fragem1r _1fragem28 _1fragem0 _1fragem4 _1fragem38">
+                                                                    <span class="_19gi7yt0 _19gi7yte _1fragem1j">Estimated taxes</span>
+                                                                    <div class="_1fragemaf">
+                                                                        <button type="button" aria-pressed="false" class="_1vozb023 _1fragem15">
+                                                                            <span class="_1fragem34 _1fragem10 _1fragem9q _1fragem9p a8x1wu5 _1fragem15 a8x1wuh a8x1wum">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" focusable="false" aria-label="More information" class="a8x1wuo _1fragem15 _1fragem34 _1fragem9q _1fragem9p">
+                                                                                    <circle cx="7" cy="7" r="5.6"></circle>
+                                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.6 5.1c.2-1.3 2.6-1.3 2.8 0 .2 1.3-1.45 1.3-1.45 2.35m.055 2.35H7v.005h.005V9.8Z"></path>
+                                                                                    <circle cx="7" cy="9.7" r="0.1"></circle>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div role="cell" class="_1qy6ue6a">
+                                                            <div class="_1fragem17 _1fragemaf _1fragem38">
+                                                                <div class="_5uqybw2 _1fragem17 _1fragem9r _1fragem1t _1fragem2a _1fragem2 _1fragem6 _1fragem38">
+                                                                    <span class="_19gi7yt0 _19gi7yte _1fragem1j _19gi7yt1">$295.80</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="row" class="_1x41w3p1 _1fragem1b _1fragem4 _1x41w3p8">
+                                                        <div role="cell" class="_1x41w3p9">
+                                                            <span class="_19gi7yt0 _19gi7yti _1fragem1l _19gi7yt1">Total</span>
+                                                        </div>
+                                                        <div role="cell" class="_1x41w3pa">
+                                                            <div class="_1fragem17 _1fragemaf _1fragem38">
+                                                                <div class="_5uqybw2 _1fragem17 _1fragem9r _1fragem1t _1fragem2a _1fragem3 _1fragem38">
+                                                                    <abbr translate="yes" class="_19gi7yt0 _19gi7ytc _1fragem1i _19gi7yt7 notranslate _19gi7ytq _1fragemal">USD</abbr>
+                                                                    <strong translate="yes" class="_19gi7yt0 _19gi7yti _1fragem1l _19gi7yt1 notranslate">$2,035.80</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>

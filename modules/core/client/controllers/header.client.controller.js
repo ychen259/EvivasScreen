@@ -70,25 +70,29 @@
     function ready(){
 
       /*this one is for old buy now button*/
-     /* document
+      document
         .getElementsByClassName('btn-buy')[0]
-        .addEventListener('click', buyButtonClicked);*/
+        .addEventListener('click', buyButtonClicked);
     };
 
     //buy button
     function buyButtonClicked(){
       if($window.user){
+        cart.classList.remove('active');
+        $state.go('checkouts.form');
+      }
+      //if there is no user go to login
+      else{
+        //go to login page and close shopping cart
+        $state.go('authentication.signin');
+        cart.classList.remove('active');
+      }
 
-          //if the shopping cart is empty, do not store the data to database
-          if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
-            $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
-            $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
-            Notification.error({ message: "Sorry, You do not have anything in shopping Cart.", title: '<i class="glyphicon glyphicon-remove"></i> Thank you!' });
-            return;
-          }
+    }
 
-          //show notification to user
-          Notification.success({ message: "Your Order is placed.", title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
+    //buy button
+    $window.paypalButtonClicked = function(){
+      if($window.user){
 
           var totalPrices = document.getElementsByClassName('total-price');
           var total =parseFloat(totalPrices[0].innerText.replace('$',""));    //total is for purchase history record
@@ -116,8 +120,7 @@
                 "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
                 "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
                 "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
-              },
-              "total": total
+              }
           };
           updatePurchaseHistoryToDataBase(data);
           
@@ -145,7 +148,6 @@
       }
 
     }
-
 
     $window.tabTension92Title = "Nova Spectrum Tab-Tension, 92-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
     $window.tabTension100Title = "Nova Spectrum Tab-Tension, 100-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
@@ -535,86 +537,5 @@
           updateShoppingToDatabase(data);
       }
     }
-
-
-    //buy now button with paypal
-    function loadAsync(url, callback) {
-      var s = document.createElement('script');
-      s.setAttribute('src', url); s.onload = callback;
-      document.head.insertBefore(s, document.head.firstElementChild);
-    }
-
-    loadAsync('https://www.paypal.com/sdk/js?client-id=AY1MyhC3J0flDf_jJIDmxFWdtLQhPf1ekMRVNMKstOBM9WFPGhIdsciDkOrIGeYz9Di9eeMqO30KbJ_4', function() {
-                paypal
-                  .Buttons({
-                    style: {
-                      color:  'blue',
-                      shape:  'pill',
-                      label:  'pay',
-                      height: 40,
-     
-                    },
-                    // Sets up the transaction when a payment button is clicked
-                    createOrder: function () {
-                      return fetch("/api/my-server/create-paypal-order", {
-                        method: "post",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        // use the "body" param to optionally pass additional order information
-                        // like product skus and quantities
-                        body: JSON.stringify({
-                          "purchaseHistory":{
-                                "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
-                                "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
-                                "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
-                           }
-                        }),
-                      })
-                        .then((response) => response.json())
-                        .then((order) => order.id);
-
-                    },
-                    // Finalize the transaction after payer approval
-                    onApprove: function (data) {
-                      console.log(" onApprove function in controller");
-                      return fetch("/api/my-server/capture-paypal-order", {
-                        method: "post",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                          orderID: data.orderID,
-                        }),
-                      })
-                        .then((response) => response.json())
-                        .then((orderData) => {
-
-                          /*after paypal success then update shopping cart database and purchase history database*/
-                          buyButtonClicked();
-                   
-                          const transaction = orderData.purchase_units[0].payments.captures[0];
-                      /*    alert(
-                            "Transaction " +
-                              transaction.status +
-                              ": " +
-                              transaction.id +
-                              "\n\nSee console for all available details"
-                          );*/
-                          cart.classList.remove('active'); // close shopping cart
-                          $state.go('home');
-                          Notification.success({ message: "Transaction " + transaction.status + ": " + transaction.id, title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
-
-                          // When ready to go live, remove the alert and show a success message within this page. For example:
-                          // var element = document.getElementById('paypal-button-container');
-                          // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-                          // Or go to another URL:  actions.redirect('thank_you.html');
-                        });
-
-                    },
-                  })
-                  .render("#paypal-button-container");
-
-    });
 }
 }());

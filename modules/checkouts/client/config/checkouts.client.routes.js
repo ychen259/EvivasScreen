@@ -8,21 +8,21 @@
   routeConfig.$inject = ['$stateProvider'];
 
   function routeConfig($stateProvider) {
-    /*$stateProvider
+    $stateProvider
       .state('checkouts', {
         abstract: true,
         url: '/checkouts',
         template: '<ui-view/>'
       })
-      .state('checkouts.list', {
+      .state('checkouts.form', {
         url: '',
-        templateUrl: 'modules/checkouts/client/views/list-checkouts.client.view.html',
+        templateUrl: 'modules/checkouts/client/views/form-checkouts.client.view.html',
         controller: 'CheckoutsListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Checkouts List'
+          pageTitle: 'Checkouts form'
         }
-      });*/
+      });
   }
 
   getCheckout.$inject = ['$stateParams', 'CheckoutsService'];
