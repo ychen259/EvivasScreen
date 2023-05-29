@@ -242,6 +242,28 @@
             var quantity = $window.cartFloorRising110;
             addProductToCart(title, price, productImg, quantity);
           }
+          if($window.cartMobile92){
+            var productImg = $window.mobileImg ;
+            var title = $window.mobile92Title;
+            var price = $window.mobile92Price;
+            var quantity = $window.cartMobile92;
+            addProductToCart(title, price, productImg, quantity);
+          }
+          if($window.cartMobile100){
+            var productImg = $window.mobileImg ;
+            var title = $window.mobile100Title;
+            var price = $window.mobile100Price;
+            var quantity = $window.cartMobile100;
+            addProductToCart(title, price, productImg, quantity);
+          }
+          if($window.cartMobile110){
+            var productImg = $window.mobileImg ;
+            var title = $window.mobile110Title;
+            var price = $window.mobile110Price;
+            var quantity = $window.cartMobile110;
+            addProductToCart(title, price, productImg, quantity);
+          }
+
           updateTotal();
 
         }, function(error) {

@@ -47,7 +47,7 @@
         document.body.scrollLeft = scroll.left;
       }
     }
-
+console.log("bootstrap");
     // Then init the app
     angular.bootstrap(document, [app.applicationModuleName]);
   }
