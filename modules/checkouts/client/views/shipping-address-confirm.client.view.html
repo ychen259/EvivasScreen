@@ -67,125 +67,39 @@
                                   </div>
                                   <div class="boxspacer"></div>
 
-                                  <!--form Email-->
-                                  <form name="info_form" class="form-horizontal" ng-submit="submit(info_form.$valid)" novalidate>
-                                    <div class="quickrfpbox formbox">
-                                      <div class="commentrow">
+                                  <!--comfirm shipping-->
+                                  <div class="panel panel-primary">
+                                    <div class="panel-heading">Shipping Information</div>
 
-                                        <!--ask for name-->
-                                        <div class="frmfieldset_checkout form-input frmfieldset-fullwidth">
-
-                                          <!--lable-->
-                                          <div class="commentlable">
-                                            <label for="name" class="quickrfp-title">Name:</label>
-                                          </div>
-
-                                          <!--name input-->
-                                          <div class="commentinput form-group" show-errors>
-                                            <input name="name" type='text' ng-model="shippingName" class='quickrfpforminputbox form-control' ng-required="true">
-                                            <div ng-messages="info_form.name.$error" role="alert">
-                                              <p class="help-block error-text" ng-message="required">Name can not be empty</p>
-                                            </div>                                
-                                          </div>
-                                        </div>
-
-                                        <!--ask for postal code-->
-                                        <div class="frmfieldset_checkout form-input">
-
-                                          <!--lable-->
-                                          <div class="commentlable">
-                                            <label for="zipcode" class="quickrfp-title">Postal Code:</label>
-                                          </div>
-
-                                          <!--zipcode input-->
-                                          <div class="commentinput form-group" show-errors>
-                                            <input name="zipcode" type='text' ng-model="zipcode" class='quickrfpforminputbox form-control zipcode' pattern="\d{5}" ng-required="true">
-                                            <div ng-messages="info_form.zipcode.$error" role="alert">
-                                              <p class="help-block error-text" ng-message="required">Postal code can not be empty</p>
-                                              <p class="help-block error-text" ng-message="pattern">Postal code is invalid.</p>
-                                            </div>                                
-                                          </div>
-                                        </div>
+                                    <table class="table">
+                                        <tr>
+                                            <td><span class="_19gi7yt0 _19gi7yte _1fragem1j _19gi7yt7">Contact</span></td>
+                                            <td>{{email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="_19gi7yt0 _19gi7yte _1fragem1j _19gi7yt7">Ship to</span></td>
+                                            <td>{{detailAddress}}</td>
+                                                <td><a href='#' ng-click="backToForm()">Edit</a></td>
+                                        </tr>
+                                    </table>
+                                  </div>
 
 
-                                        <!--ask for phone-->
-                                        <div class="frmfieldset_checkout con-frmfieldset-right form-input">
-                                          <!--lable-->
-                                          <div class="commentlable">
-                                            <label for="PHONE">Phone:</label>
-                                          </div>
-
-                                          <!--phone input-->
-                                          <div class="commentinput form-group" show-errors>
-                                            <input name="phone" type='text' ng-model="phone" class='rfpforminputbox form-control phone' pattern="\d{10}" ng-required="true">
-                                            <div ng-messages="info_form.phone.$error" role="alert">
-                                              <p class="help-block error-text" ng-message="required">Phone can not be empty</p>
-                                              <p class="help-block error-text" ng-message = "pattern">Please provide valid phone number</p>
-                                            </div>                                
-                                          </div>
-                                        </div>
-
-
-                                        <!--ask for city-->
-                                        <div class="frmfieldset_checkout form-input frmfieldset-fullwidth">
-
-                                          <!--lable-->
-                                          <div class="commentlable">
-                                            <label for="city" class="quickrfp-title">City:</label>
-                                          </div>
-                                        <!--city input-->
-                                          <div class="commentinput form-group" show-errors>
-                                            <input name="city" type='text' ng-model="city" class='quickrfpforminputbox form-control' ng-required="true">
-                                            <div ng-messages="info_form.city.$error" role="alert">
-                                              <p class="help-block error-text" ng-message="required">City can not be empty</p>
-                                            </div>                                
-                                          </div>
-                                        </div>
-
-                                        <!--ask for address-->
-                                        <div class="frmfieldset_checkout form-input frmfieldset-fullwidth">
-
-                                          <!--lable-->
-                                          <div class="commentlable">
-                                            <label for="address" class="quickrfp-title">Address:</label>
-                                          </div>
-                                        <!--address input-->
-                                          <div class="commentinput form-group" show-errors>
-                                            <input name="address" type='text' ng-model="address" class='quickrfpforminputbox form-control' ng-required="true">
-                                            <div ng-messages="info_form.address.$error" role="alert">
-                                              <p class="help-block error-text" ng-message="required">Address can not be empty</p>
-                                            </div>                                
-                                          </div>
-                                        </div>
-
-                                        <!--ask for appartment-->
-                                        <div class="frmfieldset_checkout form-input frmfieldset-fullwidth">
-
-                                          <!--lable-->
-                                          <div class="commentlable">
-                                            <label for="appartment" class="quickrfp-title">Appartment or Suite:</label>
-                                          </div>
-                                        <!--appartment input-->
-                                          <div class="commentinput form-group" show-errors>
-                                            <input name="appartment" type='text' ng-model="appartment" class='quickrfpforminputbox form-control' ng-required="false">
-                                          </div>
-                                        </div>
-
-
-                                        <div class="clear"></div>
-                                        <!--submit button-->
-                                        <div class='form-group'>
-                                          <button type='submit' class='btn btn-primary' class="form-control">Continue to payment</button>
-                                        </div>
-                                        
-                                        <div class="clear"></div>
-                                      </div>
-                                    </div>
-                                  </form>
                                 </div>
                                 <div class="clear"></div>
+                                <div class="form-group" ng-hide="confirm">
+                                    <button type='submit' class='btn btn-primary' class="form-control" ng-click="continueToPayment()">Continue to payment</button>
+                                </div>
 
-                            <!-------------------------------------------------------------------------------->
+                                <div class="panel panel-primary" ng-show="confirm">
+                                  <!-- Default panel contents -->
+                                  <div class="panel-heading">Payment</div>
+                                  <div class="panel-body">
+                                    <div id="paypal-button-container"></div>
+                                  </div>
+
+                                </div>
+                                <!-------------------------------------------------------------------------------->
                             </div>
 
 

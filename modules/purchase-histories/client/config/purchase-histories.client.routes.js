@@ -19,7 +19,7 @@
       })
       .state('purchase-histories.list', {
         url: '',
-        templateUrl: 'modules/purchase-histories/client/views/list-purchase-histories.client.view.html',
+        templateUrl: '/modules/purchase-histories/client/views/list-purchase-histories.client.view.html',
         controller: 'PurchaseHistoriesListController',
         controllerAs: 'vm',
         data: {
@@ -28,7 +28,7 @@
       })
       .state('purchase-histories.view', {
         url: '/:purchaseHistoryId',
-        templateUrl: 'modules/purchase-histories/client/views/view-purchase-history.client.view.html',
+        templateUrl: '/modules/purchase-histories/client/views/view-purchase-history.client.view.html',
         controller: 'PurchaseHistoriesController',
         controllerAs: 'vm',
         data: {

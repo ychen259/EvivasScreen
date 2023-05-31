@@ -16,14 +16,26 @@
       })
       .state('checkouts.form', {
         url: '',
-        templateUrl: 'modules/checkouts/client/views/form-checkouts.client.view.html',
-        controller: 'CheckoutsListController',
+        templateUrl: '/modules/checkouts/client/views/form-checkouts.client.view.html',
+        controller: 'FormCheckoutsController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'Checkouts form'
         }
+      })
+      .state('checkouts.shipping_confirm', {
+        url: '/shipping',
+        templateUrl: '/modules/checkouts/client/views/shipping-address-confirm.client.view.html',
+        controller: 'ShippingComfirmController',
+        controllerAs: 'vm',
+        params: {
+          shippingInfo: ''
+        },
+        data: {
+          pageTitle: 'Shipping Address'
+        }
       });
-  }
+  } 
 
   getCheckout.$inject = ['$stateParams', 'CheckoutsService'];
 

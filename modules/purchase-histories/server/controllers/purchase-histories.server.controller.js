@@ -51,6 +51,10 @@ exports.create = function(req, res) {
   //if price contain some value like 0.4 x 5 comes out 1.9999, round up number
   total = Math.round(total*100)/100;
 
+  //after tax
+  total = total * (1 + config.taxPercentage);
+  total = Math.round(total*100)/100;
+
   purchaseHistory.total = total;
 
   console.log("purchase: " + purchaseHistory);

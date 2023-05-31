@@ -91,14 +91,10 @@
     }
 
     //buy button
-    $window.paypalButtonClicked = function(){
+   /* $window.paypalButtonClicked = function(){
       if($window.user){
-
-          var totalPrices = document.getElementsByClassName('total-price');
-          var total =parseFloat(totalPrices[0].innerText.replace('$',""));    //total is for purchase history record
-
           /*remove shopping cart item from shopping cart*/
-          var cartContent = document.getElementsByClassName('cart-content')[0];
+    /*      var cartContent = document.getElementsByClassName('cart-content')[0];
           while(cartContent.hasChildNodes()){
             cartContent.removeChild(cartContent.firstChild);
           }
@@ -128,7 +124,7 @@
           updateTotal();
 
           /*reset globlo value back to 0*/
-          $window.cartTabTension92 = 0;
+ /*         $window.cartTabTension92 = 0;
           $window.cartTabTension100 = 0;
           $window.cartTabTension110 = 0;
           $window.cartFloorRising92 = 0;
@@ -147,7 +143,7 @@
         cart.classList.remove('active');
       }
 
-    }
+    }*/
 
     $window.tabTension92Title = "Nova Spectrum Tab-Tension, 92-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
     $window.tabTension100Title = "Nova Spectrum Tab-Tension, 100-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
@@ -176,99 +172,113 @@
     $window.mobileImg = '/modules/things-to-dos/client/img/mobile/1.png';
 
 
+    $window.cartTabTension92 = 0; 
+    $window.cartTabTension100 = 0; 
+    $window.cartTabTension110 = 0;
+    $window.cartFloorRising92 = 0;
+    $window.cartFloorRising100 = 0; 
+    $window.cartFloorRising110 = 0;              
+    $window.cartMobile92 = 0; 
+    $window.cartMobile100 = 0; 
+    $window.cartMobile110 = 0;
 
     /*get  shopping cart and purchase history when a user finish sign in process*/
     $window.getProductRecord = function(){
-      UsersRecordService.getRecord()
-        .then(function(response) {
-          var productRecord = response.data;
-          /*quantity for each type of screen for different size in shopping cart*/
-          $window.cartTabTension92 = productRecord.shoppingCart.tab_tension._92inch;
-          $window.cartTabTension100 = productRecord.shoppingCart.tab_tension._100inch;
-          $window.cartTabTension110 = productRecord.shoppingCart.tab_tension._110inch;
-          $window.cartFloorRising92 = productRecord.shoppingCart.floor_rising._92inch;
-          $window.cartFloorRising100 = productRecord.shoppingCart.floor_rising._100inch;
-          $window.cartFloorRising110 = productRecord.shoppingCart.floor_rising._110inch;
-          $window.cartMobile92 = productRecord.shoppingCart.mobile._92inch;
-          $window.cartMobile100 = productRecord.shoppingCart.mobile._100inch;
-          $window.cartMobile110 = productRecord.shoppingCart.mobile._110inch;
+      if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
+          $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
+          $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
+        console.log("get user record");
+        UsersRecordService.getRecord()
+          .then(function(response){
+            var productRecord = response.data;
+            /*quantity for each type of screen for different size in shopping cart*/
+            $window.cartTabTension92 = productRecord.shoppingCart.tab_tension._92inch;
+            $window.cartTabTension100 = productRecord.shoppingCart.tab_tension._100inch;
+            $window.cartTabTension110 = productRecord.shoppingCart.tab_tension._110inch;
+            $window.cartFloorRising92 = productRecord.shoppingCart.floor_rising._92inch;
+            $window.cartFloorRising100 = productRecord.shoppingCart.floor_rising._100inch;
+            $window.cartFloorRising110 = productRecord.shoppingCart.floor_rising._110inch;
+            $window.cartMobile92 = productRecord.shoppingCart.mobile._92inch;
+            $window.cartMobile100 = productRecord.shoppingCart.mobile._100inch;
+            $window.cartMobile110 = productRecord.shoppingCart.mobile._110inch;
 
-          if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
-            $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
-            $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
-            $scope.isEmptyShoppingCart = true;
-          }
+            if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
+              $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
+              $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
+              $scope.isEmptyShoppingCart = true;
+            }
 
-          //if database show that shopping cart tab tension screen 92 inch is not 0, add it to shopping cart
-          if($window.cartTabTension92){
-            var productImg = $window.tabTensionImg;
-            var title = $window.tabTension92Title;
-            var price = $window.tabTension92Price;
-            var quantity = $window.cartTabTension92;
-            addProductToCart(title, price, productImg, quantity);
-          }
-          if($window.cartTabTension100){
-            var productImg = $window.tabTensionImg;
-            var title = $window.tabTension100Title;
-            var price = $window.tabTension100Price;
-            var quantity = $window.cartTabTension100;
-            addProductToCart(title, price, productImg, quantity);
-          }
-          if($window.cartTabTension110){
-            var productImg = $window.tabTensionImg;
-            var title = $window.tabTension110Title;
-            var price = $window.tabTension110Price;
-            var quantity = $window.cartTabTension110;
-            addProductToCart(title, price, productImg, quantity);
-          }
-          if($window.cartFloorRising92){
-            var productImg = $window.floorRisingImg ;
-            var title = $window.floorRising92Title;
-            var price = $window.floorRising92Price;
-            var quantity = $window.cartFloorRising92;
-            addProductToCart(title, price, productImg, quantity);
-          }
-          if($window.cartFloorRising100){
-            var productImg = $window.floorRisingImg ;
-            var title = $window.floorRising100Title;
-            var price = $window.floorRising100Price;
-            var quantity = $window.cartFloorRising100;
-            addProductToCart(title, price, productImg, quantity);
-          }
-          if($window.cartFloorRising110){
-            var productImg = $window.floorRisingImg ;
-            var title = $window.floorRising110Title;
-            var price = $window.floorRising110Price;
-            var quantity = $window.cartFloorRising110;
-            addProductToCart(title, price, productImg, quantity);
-          }
-          if($window.cartMobile92){
-            var productImg = $window.mobileImg ;
-            var title = $window.mobile92Title;
-            var price = $window.mobile92Price;
-            var quantity = $window.cartMobile92;
-            addProductToCart(title, price, productImg, quantity);
-          }
-          if($window.cartMobile100){
-            var productImg = $window.mobileImg ;
-            var title = $window.mobile100Title;
-            var price = $window.mobile100Price;
-            var quantity = $window.cartMobile100;
-            addProductToCart(title, price, productImg, quantity);
-          }
-          if($window.cartMobile110){
-            var productImg = $window.mobileImg ;
-            var title = $window.mobile110Title;
-            var price = $window.mobile110Price;
-            var quantity = $window.cartMobile110;
-            addProductToCart(title, price, productImg, quantity);
-          }
+            //if database show that shopping cart tab tension screen 92 inch is not 0, add it to shopping cart
+            if($window.cartTabTension92){
+              var productImg = $window.tabTensionImg;
+              var title = $window.tabTension92Title;
+              var price = $window.tabTension92Price;
+              var quantity = $window.cartTabTension92;
+              addProductToCart(title, price, productImg, quantity);
+            }
+            if($window.cartTabTension100){
+              var productImg = $window.tabTensionImg;
+              var title = $window.tabTension100Title;
+              var price = $window.tabTension100Price;
+              var quantity = $window.cartTabTension100;
+              addProductToCart(title, price, productImg, quantity);
+            }
+            if($window.cartTabTension110){
+              var productImg = $window.tabTensionImg;
+              var title = $window.tabTension110Title;
+              var price = $window.tabTension110Price;
+              var quantity = $window.cartTabTension110;
+              addProductToCart(title, price, productImg, quantity);
+            }
+            if($window.cartFloorRising92){
+              var productImg = $window.floorRisingImg ;
+              var title = $window.floorRising92Title;
+              var price = $window.floorRising92Price;
+              var quantity = $window.cartFloorRising92;
+              addProductToCart(title, price, productImg, quantity);
+            }
+            if($window.cartFloorRising100){
+              var productImg = $window.floorRisingImg ;
+              var title = $window.floorRising100Title;
+              var price = $window.floorRising100Price;
+              var quantity = $window.cartFloorRising100;
+              addProductToCart(title, price, productImg, quantity);
+            }
+            if($window.cartFloorRising110){
+              var productImg = $window.floorRisingImg ;
+              var title = $window.floorRising110Title;
+              var price = $window.floorRising110Price;
+              var quantity = $window.cartFloorRising110;
+              addProductToCart(title, price, productImg, quantity);
+            }
+            if($window.cartMobile92){
+              var productImg = $window.mobileImg ;
+              var title = $window.mobile92Title;
+              var price = $window.mobile92Price;
+              var quantity = $window.cartMobile92;
+              addProductToCart(title, price, productImg, quantity);
+            }
+            if($window.cartMobile100){
+              var productImg = $window.mobileImg ;
+              var title = $window.mobile100Title;
+              var price = $window.mobile100Price;
+              var quantity = $window.cartMobile100;
+              addProductToCart(title, price, productImg, quantity);
+            }
+            if($window.cartMobile110){
+              var productImg = $window.mobileImg ;
+              var title = $window.mobile110Title;
+              var price = $window.mobile110Price;
+              var quantity = $window.cartMobile110;
+              addProductToCart(title, price, productImg, quantity);
+            }
 
-          updateTotal();
+            updateTotal();
 
-        }, function(error) {
-             console.log(error);
-        });
+          }, function(error) {
+               console.log(error);
+          });
+      }
     }
 
     /*If */

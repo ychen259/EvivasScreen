@@ -102,6 +102,7 @@ module.exports = {
     mobile100Price: '$60',
     mobile110Price: '$70'
   },
+  taxPercentage: 0.1025,
   mailer: {
     /*
     from: process.env.MAILER_FROM || 'MAILER_FROM',

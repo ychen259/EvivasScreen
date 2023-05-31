@@ -3,26 +3,39 @@
 
   angular
     .module('checkouts')
-    .controller('CheckoutsListController', CheckoutsListController);
+    .controller('ShippingComfirmController', ShippingComfirmController);
 
-  CheckoutsListController.$inject = ['CheckoutsService', '$state', 'Notification', '$window', '$scope', 'UsersRecordService'];
+  ShippingComfirmController.$inject = ['CheckoutsService', '$state', 'Notification', '$window', '$scope', 'UsersRecordService'];
 
-  function CheckoutsListController(CheckoutsService, $state, Notification, $window, $scope, UsersRecordService  ) {
-    $window.taxPercentage = 0.1025;
+  function ShippingComfirmController(CheckoutsService, $state, Notification, $window, $scope, UsersRecordService  ) {
 
-    $scope.submit = function(isValid){
-        if (!isValid) {
-          $scope.$broadcast('show-errors-check-validity', 'info_form');
-          return false;
-        }
-        
-console.log($scope.name);
-console.log($scope.zipcode);
-console.log($scope.phone);
-console.log($scope.city);
-   console.log($scope.address);
-   console.log($scope.appartment);
-   console.log($scope.detail);
+    $scope.name = $state.params.shippingInfo.shippingName;
+    $scope.zipcode = $state.params.shippingInfo.zipcode;
+    $scope.phone = $state.params.shippingInfo.phone;
+    $scope.city = $state.params.shippingInfo.city;
+    $scope.address = $state.params.shippingInfo.address;
+    $scope.appartment = $state.params.shippingInfo.appartment;
+    $scope.email = $window.user.email;
+
+    if($scope.appartment)
+      $scope.detailAddress = 'APT #' + $scope.appartment + ', ' + $scope.address + ', ' + $scope.city + ', ' + $scope.zipcode;
+    else
+      $scope.detailAddress = $scope.address + ', ' + $scope.city + ', ' + $scope.zipcode;
+
+    $scope.confirm = false; //default user did not confirm the shipping address
+
+    /*if did not get shipping address from user then back to form page to ask for information*/
+    if(!$state.params.shippingInfo){
+      $state.go('checkouts.form');
+    }
+
+    //back to form page if user want to edit the address
+    $scope.backToForm = function(){
+      $state.go('checkouts.form');
+    }
+
+    $scope.continueToPayment = function(){
+        $scope.confirm = true;
     };
 
     $scope.getProductRecord = function(){
@@ -129,8 +142,7 @@ console.log($scope.city);
                              '<div class="detail-box">'+
                                 '<div class="cart-product-title">'+title+'</div>'+
                                 '<div class="cart-price">' + price + '</div>'+
-                             '</div>'+
-                             '<i class="bx bxs-trash-alt cart-remove"></i>';
+                             '</div>';
 
 
       cartShopBox.innerHTML = cartBoxContent;
@@ -195,6 +207,62 @@ console.log($scope.city);
       $scope.total = '$' + $scope.total;
     }
 
+    $window.paypalButtonClicked = function(){
+      if($window.user){
+          /*remove shopping cart item from shopping cart*/
+          var cartContent = document.getElementsByClassName('cart-content')[0];
+          while(cartContent.hasChildNodes()){
+            cartContent.removeChild(cartContent.firstChild);
+          }
+
+          //clean up the shopping record back to 0
+          var data = {
+              "shoppingCart":{
+                "tab_tension": {"_92inch":0,"_100inch":0, "_110inch":0},
+                "floor_rising": {"_92inch":0,"_100inch":0, "_110inch":0},
+                "mobile": {"_92inch":0,"_100inch":0, "_110inch":0}
+              }
+          };
+
+          //store value to user database
+          $window.updateShoppingToDatabase(data);
+
+          data = {
+              "purchaseHistory":{
+                "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
+                "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
+                "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
+              },
+              'address': $scope.detailAddress
+          };
+
+          $window.updatePurchaseHistoryToDataBase(data);
+          
+          //updata Total back to 0
+          $window.updateTotal();
+
+          /*reset globlo value back to 0*/
+          $window.cartTabTension92 = 0;
+          $window.cartTabTension100 = 0;
+          $window.cartTabTension110 = 0;
+          $window.cartFloorRising92 = 0;
+          $window.cartFloorRising100 = 0;
+          $window.cartFloorRising110 = 0;
+          $window.cartMobile92 = 0;
+          $window.cartMobile100 = 0;
+          $window.cartMobile110 = 0;
+
+          $scope.isEmptyShoppingCart = true;
+      }
+      //if there is no user go to login
+      else{
+        //go to login page and close shopping cart
+        $state.go('authentication.signin');
+        cart.classList.remove('active');
+      }
+
+    }
+
     //buy now button with paypal
     function loadAsync(url, callback) {
       var s = document.createElement('script');
@@ -206,10 +274,10 @@ console.log($scope.city);
       paypal
         .Buttons({
           style: {
-            color:  'blue',
+            color:  'gold',
             shape:  'pill',
-            label:  'pay',
-            height: 40,
+            label:  'checkout',
+            height: 55, 
 
           },
           // Sets up the transaction when a payment button is clicked

@@ -24,11 +24,17 @@
     // @link https://docs.angularjs.org/guide/production
     $compileProvider.debugInfoEnabled(app.applicationEnvironment !== 'production');
     $logProvider.debugEnabled(app.applicationEnvironment !== 'production');
+    console.log("bootstrapconfig");
   }
 
 
   // Then define the init function for starting up the application
+   var doesAppInitialized = angular.element(document).scope();
+console.log("init");
+  if(angular.isUndefined(doesAppInitialized)){
+    console.log("ular.element(document).ready(init);");
   angular.element(document).ready(init);
+}
 
   function init() {
     // Fixing facebook bug with redirect
@@ -52,3 +58,4 @@ console.log("bootstrap");
     angular.bootstrap(document, [app.applicationModuleName]);
   }
 }(ApplicationConfiguration));
+

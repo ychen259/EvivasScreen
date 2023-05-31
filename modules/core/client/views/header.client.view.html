@@ -1,95 +1,95 @@
 <section>
-<div  class="header-container"  style = "background-color:black" ng-controller="HeaderController as vm">
+  <div  class="header-container"  style = "background-color:black" ng-controller="HeaderController as vm">
 
 <!--
 <div  class="header-container fixedHeader"  style = "background-color:black" onmouseout="hideBar()" onmouseover="showBar()" ng-controller="HeaderController as vm">
 -->
-<div id="wrapper" class="content">
+    <div id="wrapper" class="content">
 
 
-  <div id="nav" class ="">
-    <nav id="topnav">
+      <div id="nav" class ="">
+        <nav id="topnav">
 
-      <div class="topnav flex">
-        <div class="logo">
-          <a ng-click="backToHomePage()" href="#"><img class="img-responsive text-center" src="/modules/core/client/img/logo/logo.png" alt="Logo" style="width: 80%; height: 80%;"></a>
-        </div>
+          <div class="topnav flex">
+            <div class="logo">
+              <a ng-click="backToHomePage()" href="#"><img class="img-responsive text-center" src="/modules/core/client/img/logo/logo.png" alt="Logo" style="width: 80%; height: 80%;"></a>
+            </div>
 
-        <ul class="navbar-nav navbar-right flex moveSigninright navHidden">
-          <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
-            
-            <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
-            <ul ng-switch-when="dropdown" class="dropdown-menu" >
-              <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
-                <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
+            <ul class="navbar-nav navbar-right flex moveSigninright navHidden">
+              <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+                
+                <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
+                <ul ng-switch-when="dropdown" class="dropdown-menu" >
+                  <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
+                    <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
+                  </li>
+                </ul>
+
+                <a  style="color:white" class="nav" ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+
               </li>
+
             </ul>
 
-            <a  style="color:white" class="nav" ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
-
-          </li>
-
-        </ul>
 
 
-
-        <ul class="navbar-nav navbar-right" ng-hide="vm.authentication.user" >
-          <li ui-sref-active="active" > <!--box sign up button -->
-            <a ui-sref="authentication.signup" style="font-size:18px;color:white" >Sign Up</a>
-          </li>
-    
-          <li ui-sref-active="active">
-            <a ui-sref="authentication.signin" style="font-size:18px;color: white">Sign In</a> 
-          </li>
-        </ul>
-    
-        <ul class="navbar-nav navbar-right" ng-show="vm.authentication.user" >
-          <li class="dropdown" uib-dropdown>
-            <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button" style="color: white;">
-              <span ng-bind="vm.authentication.user.username"></span> <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu" role="menu" >
-              <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items" style="padding-left: 5%;">
-                <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
+            <ul class="navbar-nav navbar-right" ng-hide="vm.authentication.user" >
+              <li ui-sref-active="active" > <!--box sign up button -->
+                <a ui-sref="authentication.signup" style="font-size:18px;color:white" >Sign Up</a>
               </li>
-              <li style="padding-left: 5%;">
-                <a href="/api/auth/signout" target="_self"  >Signout</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-
-
-        <i class='bx bx-shopping-bag' style="color: white;" id='cart-icon'></i>
         
-        <div class="cart">
-          <h2 class="cart-title">Your Cart</h2>
+              <li ui-sref-active="active">
+                <a ui-sref="authentication.signin" style="font-size:18px;color: white">Sign In</a> 
+              </li>
+            </ul>
+        
+            <ul class="navbar-nav navbar-right" ng-show="vm.authentication.user" >
+              <li class="dropdown" uib-dropdown>
+                <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button" style="color: white;">
+                  <span ng-bind="vm.authentication.user.username"></span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" >
+                  <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items" style="padding-left: 5%;">
+                    <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                  </li>
+                  <li style="padding-left: 5%;">
+                    <a href="/api/auth/signout" target="_self"  >Signout</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
 
-          <!--content in shopping cart-->
-          <div class="cart-content">
+
+            <i class='bx bx-shopping-bag' style="color: white;" id='cart-icon'></i>
+            
+            <div class="cart">
+              <h2 class="cart-title">Your Cart</h2>
+
+              <!--content in shopping cart-->
+              <div class="cart-content">
+
+              </div>
+
+              <div class="total">
+                <div class="total-title">Total</div>
+                <div class=total-price>$0</div>
+
+              </div>
+
+              <!--<div id="paypal-button-container" ng-hide="isEmptyShoppingCart"></div>-->
+              <button type="button" class="btn-buy" ng-hide="isEmptyShoppingCart">Buy Now</button>
+              <i class="bx bx-x" id="close-cart"></i>
+            </div>
+
 
           </div>
 
-          <div class="total">
-            <div class="total-title">Total</div>
-            <div class=total-price>$0</div>
-
-          </div>
-
-          <!--<div id="paypal-button-container" ng-hide="isEmptyShoppingCart"></div>-->
-          <button type="button" class="btn-buy" ng-hide="isEmptyShoppingCart">Buy Now</button>
-          <i class="bx bx-x" id="close-cart"></i>
-        </div>
-
-
+       
+        </nav>
       </div>
+    </div>
 
-      <div class="clear"></div>
-    </nav>
   </div>
-</div>
-
-</div>
 
 </section>
 

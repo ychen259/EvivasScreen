@@ -39,6 +39,9 @@ exports.createOrder = async function(req, res){
   //if price contain some value like 0.4 x 5 comes out 1.9999, round up number
   total = Math.round(total*100)/100;
 
+  total = total * (1 + config.taxPercentage);
+  total = Math.round(total*100)/100;
+
   console.log(req.body);
   try {
     const order = await paypal.createOrder(total);
