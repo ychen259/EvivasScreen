@@ -17,7 +17,7 @@ exports.sendEmail = function(req, res) {
   var name = req.body.name;
   var phone = req.body.phone;
   var detail = req.body.detail;
-
+console.log("start to send email");
   var smtpTransport = nodemailer.createTransport(config.mailer.options);
 
   var email_context = "<p> Dear Nova Screen Team, </p>" +
@@ -38,12 +38,13 @@ exports.sendEmail = function(req, res) {
     subject: "Request from Aztec Hotel Home Page",
     html: email_context
   }
-
+console.log("try to send email");
   smtpTransport.sendMail(mailOptions, function (err) {
         if (!err) {
           res.send({message: 'An email has been sent to the provided email with further instructions.'});
         } else {
           res.status(400).send({ message: 'Failure sending email'});
+          console.log("err: " + err);
         }
   });
 

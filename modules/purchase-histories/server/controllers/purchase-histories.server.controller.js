@@ -8,6 +8,7 @@ var path = require('path'),
   PurchaseHistory = mongoose.model('PurchaseHistory'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   config = require(path.resolve('./config/config')),
+  nodemailer = require('nodemailer'),
   _ = require('lodash');
 
 /**
@@ -18,17 +19,6 @@ exports.create = function(req, res) {
   var purchaseHistory = new PurchaseHistory(req.body);
   purchaseHistory.user = req.user;
 
-  /*  productPrice:{
-    tabTension92Price: '$779',
-    tabTension100Price:'$799',
-    tabTension110Price: '$999',
-    floorRising92Price: '$1299',
-    floorRising100Price: '$1499',
-    floorRising110Price: '$1599',
-    mobile92Price: '$50',
-    mobile100Price: '$60',
-    mobile110Price: '$70'
-  },*/
   var tabTension92Price = parseFloat(config.productPrice.tabTension92Price.replace('$',''));
   var tabTension100Price = parseFloat(config.productPrice.tabTension100Price.replace('$',''));
   var tabTension110Price = parseFloat(config.productPrice.tabTension110Price.replace('$',''));
@@ -58,6 +48,67 @@ exports.create = function(req, res) {
   purchaseHistory.total = total;
 
   console.log("purchase: " + purchaseHistory);
+
+//send email to me to let me know someone purchase
+  var email = req.user.email;
+  var name = req.user.displayName;
+  var address = purchaseHistory.address;
+
+  var detail = 'Total: $' + total + '<br>' +
+              'Address: ' + address + '<br>' +
+              'Purchase Item: ' + '<br>' + 
+              '<table  style="border: 1px solid black;">' +
+                  '<tr style="border: 1px solid black;">' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;"> </td>' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">92 inch</td>' + 
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">100 inch</td>' + 
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">110 inch</td>' + 
+                  '</tr>'+
+                  '<tr style="border: 1px solid black;">' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">Tab-tension</td>'+
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">' + purchaseHistory.purchaseHistory.tab_tension._92inch + '</td>' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">' + purchaseHistory.purchaseHistory.tab_tension._100inch + '</td>' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">' + purchaseHistory.purchaseHistory.tab_tension._110inch + '</td>' +
+                  '</tr>' +
+                  '<tr style="border: 1px solid black;">' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">Floor Rising</td>' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">' + purchaseHistory.purchaseHistory.floor_rising._92inch + '</td>' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">' + purchaseHistory.purchaseHistory.floor_rising._100inch + '</td>' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">' + purchaseHistory.purchaseHistory.floor_rising._110inch + '</td>' +
+                  '</tr>' +
+                  '<tr style="border: 1px solid black;">' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">Portable</td>' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">' + purchaseHistory.purchaseHistory.mobile._92inch + '</td>' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">' + purchaseHistory.purchaseHistory.mobile._100inch + '</td>' +
+                      '<td style ="text-align: center; vertical-align: middle; border: 1px solid black;">' + purchaseHistory.purchaseHistory.mobile._110inch + '</td>' +
+                  '</tr>' +
+              '</table>';
+
+
+  var smtpTransport = nodemailer.createTransport(config.mailer.options);
+
+  var email_context = "<p> Dear Nova Screen Team, </p>" +
+                      "<br />" +
+                      "<p>" + detail + "</p>" +
+                      "<br />" + 
+                      "<p> Sincerely, </p>" +
+                      "<p>" + name + "</p>" + 
+                      "<br />" + 
+                      "<p> My Contact Info: </p>" +                      
+                      "<p>Email : " + email + "</p>";
+
+
+  var mailOptions = {
+    from: config.mailer.from,
+    to: config.mailer.to,
+    subject: purchaseHistory.created + "Purchase from Evivas Screen Home Page",
+    html: email_context
+  }
+
+  smtpTransport.sendMail(mailOptions, function (err) {
+  });
+
+  /*save purchasehistory to database*/
   purchaseHistory.save(function(err) {
     if (err) {
       return res.status(400).send({
@@ -67,6 +118,7 @@ exports.create = function(req, res) {
       res.jsonp(purchaseHistory);
     }
   });
+
 };
 
 /**

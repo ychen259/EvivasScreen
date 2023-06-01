@@ -35,6 +35,14 @@
     }
 
     $scope.continueToPayment = function(){
+        /*avoid user delete the item in checkout page*/
+        if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
+              $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
+              $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
+              Notification.error({ message: "You have nothing in the cart.", title: '<i class="glyphicon glyphicon-ok"></i> Watch Out!' });
+              return;
+        }
+
         $scope.confirm = true;
     };
 
@@ -207,62 +215,6 @@
       $scope.total = '$' + $scope.total;
     }
 
-    $window.paypalButtonClicked = function(){
-      if($window.user){
-          /*remove shopping cart item from shopping cart*/
-          var cartContent = document.getElementsByClassName('cart-content')[0];
-          while(cartContent.hasChildNodes()){
-            cartContent.removeChild(cartContent.firstChild);
-          }
-
-          //clean up the shopping record back to 0
-          var data = {
-              "shoppingCart":{
-                "tab_tension": {"_92inch":0,"_100inch":0, "_110inch":0},
-                "floor_rising": {"_92inch":0,"_100inch":0, "_110inch":0},
-                "mobile": {"_92inch":0,"_100inch":0, "_110inch":0}
-              }
-          };
-
-          //store value to user database
-          $window.updateShoppingToDatabase(data);
-
-          data = {
-              "purchaseHistory":{
-                "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
-                "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
-                "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
-              },
-              'address': $scope.detailAddress
-          };
-
-          $window.updatePurchaseHistoryToDataBase(data);
-          
-          //updata Total back to 0
-          $window.updateTotal();
-
-          /*reset globlo value back to 0*/
-          $window.cartTabTension92 = 0;
-          $window.cartTabTension100 = 0;
-          $window.cartTabTension110 = 0;
-          $window.cartFloorRising92 = 0;
-          $window.cartFloorRising100 = 0;
-          $window.cartFloorRising110 = 0;
-          $window.cartMobile92 = 0;
-          $window.cartMobile100 = 0;
-          $window.cartMobile110 = 0;
-
-          $scope.isEmptyShoppingCart = true;
-      }
-      //if there is no user go to login
-      else{
-        //go to login page and close shopping cart
-        $state.go('authentication.signin');
-        cart.classList.remove('active');
-      }
-
-    }
-
     //buy now button with paypal
     function loadAsync(url, callback) {
       var s = document.createElement('script');
@@ -327,7 +279,7 @@
               .then((orderData) => {
 
                 /*after paypal success then update shopping cart database and purchase history database*/
-                $window.paypalButtonClicked();
+                $window.paypalButtonClicked($scope.detailAddress);
          
                 const transaction = orderData.purchase_units[0].payments.captures[0];
             /*    alert(
@@ -337,10 +289,6 @@
                     transaction.id +
                     "\n\nSee console for all available details"
                 );*/
-                let cart= document.querySelector('.cart');
-                cart.classList.remove('active'); // close shopping cart
-                $state.go('purchase-histories.list');
-                Notification.success({ message: "Transaction " + transaction.status + ": " + transaction.id, title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
               });
 
           },

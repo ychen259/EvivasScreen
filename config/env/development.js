@@ -77,16 +77,22 @@ module.exports = {
   },
   taxPercentage: 0.1025,
   mailer: {
-    from: process.env.MAILER_FROM || 'MAILER_FROM' || 'evivasscreenwebsite@gmail.com',
+    //from: process.env.MAILER_FROM || 'MAILER_FROM' || 'evivasscreenwebsite@gmail.com',
+    from: process.env.MAILER_FROM || 'MAILER_FROM' || 'aztechotelwebsite@gmail.com',
     to: "rockybikellc@gmail.com",
     options: {
       service: 'Gmail',
       secure: false,
       port:465,
-      auth: {
+      /*auth: {
         user: 'evivasscreenwebsite@gmail.com',
         pass: 'wnssubrzjviqofeh'
+      }*/
+      auth: {
+        user: 'aztechotelwebsite@gmail.com',
+        pass: 'ytviwnmyldcdgbkd'
       }
+      
     }
   },
   livereload: true,

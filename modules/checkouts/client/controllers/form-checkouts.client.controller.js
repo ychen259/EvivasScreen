@@ -15,6 +15,14 @@
           $scope.$broadcast('show-errors-check-validity', 'info_form');
           return false;
         } 
+        
+        /*avoid user delete the item in checkout page*/
+        if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
+              $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
+              $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
+              Notification.error({ message: "You have nothing in the cart.", title: '<i class="glyphicon glyphicon-ok"></i> Watch Out!' });
+              return;
+        }
 
          var shippingInfo = {   'name':$scope.shippingName, 
                                  'zipcode':$scope.zipcode, 

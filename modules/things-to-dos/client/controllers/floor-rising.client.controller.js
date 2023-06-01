@@ -6,27 +6,28 @@
     .module('things-to-dos')
     .controller('Floor-rising-Controller', ThingsToDosViewController);
 
-  ThingsToDosViewController.$inject = ['$scope', '$state', '$window', 'Authentication', 'Notification'];
+  ThingsToDosViewController.$inject = ['$scope', '$state', '$window', 'Authentication', 'Notification', 'UsersRecordService'];
 
-  function ThingsToDosViewController ($scope, $state, $window, Authentication, Notification) {
+  function ThingsToDosViewController ($scope, $state, $window, Authentication, Notification, UsersRecordService) {
 
-    //$scope.typeOfScreen = $state.params.product_name;
+    $scope.typeOfScreen = $state.params.product_name;
     
 
    // if($scope.typeOfScreen == "tab-tensioned"){
 
       /*Tab Tensioned Start*/
       $scope.quantity= 1;
-      $scope.maxPurchase = 5;
-      $scope.minPurchase = 1;
-      $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/1.png";    //link for pick image
+      $scope.maxPurchase = 5; //change header controller if you want to update this data
+      $scope.minPurchase = 1; //change header controller if you want to update this data
+      $scope.imgSrc = $window.floorRisingImg;    //link for pick image
       $scope.imgPickOrder = 1;                                      //Order of image is being pick
       $scope.sizePick = 92;                                         //size of screen is being pick
-      $scope.priceFor92 = 1299;
-      $scope.priceFor100 = 1499;
-      $scope.priceFor110 = 1599;
+      $scope.priceFor92 = $window.floorRising92Price;
+      $scope.priceFor100 = $window.floorRising100Price;
+      $scope.priceFor110 = $window.floorRising110Price;
       $scope.price = $scope.priceFor92;
-    
+      $scope.title = $window.floorRising92Title;
+
       $scope.increaseQuantity = function(){
         if($scope.quantity < $scope.maxPurchase)
           $scope.quantity++;
@@ -39,26 +40,26 @@
 
       /*change image from selection*/
       $scope.get1Img = function(){
-        $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/1.png";
+        $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/1.jpg";
         $scope.imgPickOrder = 1;
       }
       $scope.get2Img = function(){
-        $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/2.png";
+        $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/2.jpg";
         $scope.imgPickOrder = 2;
       }
     
       $scope.get3Img = function(){
-        $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/3dimension " + $scope.sizePick + "inch.png";
+        $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/3.jpg";
         $scope.imgPickOrder = 3;
       }
     
       $scope.get4Img = function(){
-        $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/4.png";
+        $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/4.jpg";
         $scope.imgPickOrder = 4;
       }
     
       $scope.get5Img = function(){
-        $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/5.png";
+        $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/5.jpg";
         $scope.imgPickOrder = 5;
       }
 
@@ -67,126 +68,93 @@
         $scope.sizePick = 92;
 
         if($scope.imgPickOrder == 3){
-          $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/3dimension " + $scope.sizePick + "inch.png";
+          $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/3.jpg";
         }
 
         $scope.price = $scope.priceFor92;
+        $scope.title = $window.floorRising92Title;
       }
       $scope.get100inch = function(){
         $scope.sizePick = 100;
         if($scope.imgPickOrder == 3){
-          $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/3dimension " + $scope.sizePick + "inch.png";
+          $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/3.jpg";
         }
 
         $scope.price = $scope.priceFor100;
+        $scope.title = $window.floorRising100Title;
       }
       $scope.get110inch = function(){
         $scope.sizePick = 110;
         if($scope.imgPickOrder == 3){
-          $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/3dimension " + $scope.sizePick + "inch.png";
+          $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/3.jpg";
         }
 
         $scope.price = $scope.priceFor110;
+        $scope.title = $window.floorRising110Title;
       }      
 
+      //call this function to update total otherwise the value on the bottom will be 0
+      updateTotal();
+      
       /*------------------------------------Shopping cart -----------------------------------------------*/
-  /*let cartIcon= document.querySelector('#cart-icon');
-  let cart= document.querySelector('.cart');
-  let closeCart= document.querySelector('#close-cart');
-
-  //open shopping cart
-  cartIcon.onclick = () => {
-    cart.classList.add('active');
-
-  };
-
-  //close shopping cart
-  closeCart.onclick = () => {
-    cart.classList.remove('active');
-  };*/
-
-  //cart working js
-  /*if(document.readyState=="loading"){
-    document.addEventListener('DOMContentLoaded', ready);
-  }
-  else{
-    ready();
-  }
-
-  //call this function is the page is finish loadding
-  function ready(){
-    //remove item from cart
-    var removeCartButtons = document.getElementsByClassName('cart-remove');
-
-    for(var i=0; i<removeCartButtons.length;i++){
-      var button = removeCartButtons[i];
-      button.addEventListener('click', removeCartItem);
-    }
-
-    //quantity changes
-    var quantityInputs = document.getElementsByClassName('cart-quantity');
-    for(var i = 0; i < quantityInputs.length; i++){
-      var input = quantityInputs[i];
-      input.addEventListener('change', quantityChanged);
-    }
 
     //Add to Cart
     var addCart = document.getElementsByClassName('addCart');
     for(var i = 0; i < addCart.length; i++){
       var button = addCart[i];
-      console.log("addcart: " + addCart.length);
       button.addEventListener('click', addCartClicked);
     }
 
-    document
-      .getElementsByClassName('btn-buy')[0]
-      .addEventListener('click', buyButtonClicked);
-  };*/
+  //Add to cart
+  function addCartClicked(event){
 
-  //buy button
-  function buyButtonClicked(){
-    alert('Your Order is placed');
-    var cartContent = document.getElementsByClassName('cart-content')[0];
-    while(cartContent.hasChildNodes()){
-      cartContent.removeChild(cartContent.firstChild);
+    if($window.user){
+      var title = $scope.title;
+      var price = $scope.price;
+      var productImg = $scope.imgSrc;
+
+      var size = $scope.sizePick;
+      var quantity = $scope.quantity;
+      var type = "floor-rising";
+      addProductToCart(title, price, productImg, size, quantity, type);
+
+      updateTotal();
+    }else{
+
+      $state.go('authentication.signin');
     }
 
-    updateTotal();
+
   }
 
   //quantity changes function
-  function quantityChanged(){
-    var input = event.target;
-    if(isNaN(input.value) || input.value <=0){
-      input.value = 1;
-    }
-    updateTotal();
+  function quantityChanged(event){
+    $window.quantityChanged(event)
   }
+
 
   function removeCartItem(event){
-    var buttonClicked = event.target;
-    buttonClicked.parentElement.remove();
+    $window.removeCartItem(event);
 
-    updateTotal();
+  }; 
 
-  };
+function addProductToCart(title, price, productImg, size, quantity, type){
+  $window.addProductToCart(title, price, productImg, size, quantity, type);
+}
 
-  //Add to cart
-  function addCartClicked(event){
-    //var button = event.target;
-    //var shopProducts = button.parentElement;
-    var title = document.getElementsByClassName('Text_heading__jNwbK')[0].innerText;
-    console.log("title:" + title);
-    var price = document.getElementsByClassName('itemPrice')[0].innerText;
-    var productImg = '/modules/things-to-dos/client/img/floor-rising/1.png';
-    addProductToCart(title, price, productImg);
-
-    updateTotal();
-  }
-
-  
+/*
   //add product to cart
   function addProductToCart(title, price, productImg){
+    $window.isEmptyShoppingCart = false;
+
+    var data = {
+        "shoppingCart":{
+          "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
+          "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
+          "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
+        }
+    };
+
     var cartShopBox = document.createElement('div');
     cartShopBox.classList.add('cart-box');
     var cartItems = document.getElementsByClassName('cart-content')[0];
@@ -195,24 +163,40 @@
 
     var cartItemQuantity = cartItems.getElementsByClassName('cart-quantity');
 
-    for(var i=0; i<cartItemsNames.length;i++){
+    /*If the item already in cart, then update the quantity*/
+  /*  for(var i=0; i<cartItemsNames.length;i++){
       if(cartItemsNames[i].innerText == title){
-        var updateQuantity = parseInt(cartItemQuantity[i].value) + $scope.quantity; //update cart quantity depend on quantity on page
-        cartItemQuantity[i].setAttribute("value", updateQuantity);
+        var updateQuantity = parseInt(cartItemQuantity[i].value) + $scope.quantity; //update cart quantity depend on quantity on page   
+        cartItemQuantity[i].value = updateQuantity;
         Notification.info({ message: "You have already add this item to cart.", title: '<i class="glyphicon glyphicon-ok"></i> Watch Out!' });
+
+        if($scope.sizePick == 92){
+          data.shoppingCart.tab_tension._92inch = updateQuantity;
+          $window.cartTabTension92 = updateQuantity;
+        }
+        if($scope.sizePick == 100){
+          data.shoppingCart.tab_tension._100inch = updateQuantity;
+          $window.cartTabTension100 = updateQuantity;
+        }
+        if($scope.sizePick == 110){
+          data.shoppingCart.tab_tension._110inch = updateQuantity;
+          $window.cartTabTension110 = updateQuantity;
+        }
+
+        updateShoppingToDatabase(data);
         return;
       }
     }
 
     Notification.success({ message: "You add this item to cart.", title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
 
-    var cartBoxContent = '<img src='+productImg+' alt="" class="cart-img">'+
-             '<div class="detail-box">'+
-                '<div class="cart-product-title">'+title+'</div>'+
-                '<div class="cart-price">' + price + '</div>'+
-                '<input type="number" value="1" class="cart-quantity" style="padding: 0">'+
-             '</div>'+
-             '<i class="bx bxs-trash-alt cart-remove"></i>';
+    var cartBoxContent =  '<img src='+productImg+' alt="" class="cart-img">'+
+                          '<div class="detail-box">'+
+                            '<div class="cart-product-title">'+title+'</div>'+
+                            '<div class="cart-price">' + price + '</div>'+
+                            '<input type="number" value="'+ $scope.quantity + '" class="cart-quantity" style="padding: 0">'+
+                          '</div>'+
+                          '<i class="bx bxs-trash-alt cart-remove"></i>';
 
     cartShopBox.innerHTML = cartBoxContent;
     cartItems.append(cartShopBox);
@@ -223,37 +207,30 @@
       .getElementsByClassName('cart-quantity')[0]
       .addEventListener('change', quantityChanged);
 
+    if($scope.sizePick == 92){
+          data.shoppingCart.tab_tension._92inch = $scope.quantity;
+          $window.cartTabTension92 = $scope.quantity;
+    }
+    if($scope.sizePick == 100){
+          data.shoppingCart.tab_tension._100inch = $scope.quantity;
+          $window.cartTabTension100 = $scope.quantity;
+    }
+    if($scope.sizePick == 110){
+          data.shoppingCart.tab_tension._110inch = $scope.quantity;
+          $window.cartTabTension110 = $scope.quantity;
+    }
+
+    updateShoppingToDatabase(data);
 
   }
-
-  //update total
+*/
+  function updateShoppingToDatabase(data){
+    $window.updateShoppingToDatabase(data);
+  }
   function updateTotal(){
-    var cartContent = document.getElementsByClassName('cart-content')[0];
-    var cartBoxes = cartContent.getElementsByClassName('cart-box');
- 
-
-    var total = 0;
-    for(var i=0; i<cartBoxes.length;i++){
-      var cartBox = cartBoxes[i];
-      var priceElement = cartBox.getElementsByClassName('cart-price')[0];
-      var quantityElement = cartBox.getElementsByClassName('cart-quantity')[0];
-      var price = parseFloat(priceElement.innerText.replace('$',""));
-      var quantity = quantityElement.value;
-      total = total + (price * quantity);
-    }
-
-    //if price contain some value like 0.4 x 5 comes out 1.9999, round up number
-    total = Math.round(total*100)/100;
-    //var totalPrices = document.getElementsByClassName('total-price')[0].innerText;
-    var totalPrices = document.getElementsByClassName('total-price');
-    //totalPrices[0].innerText = "$" + total;
-
-    for(var i = 0; i < totalPrices.length; i++){
-      totalPrices[i].innerText =  "$" + total;
-    }
+      $window.updateTotal();
   }
 
       /*------------------------------------Shopping cart end-----------------------------------------------*/
-
 } 
 }());

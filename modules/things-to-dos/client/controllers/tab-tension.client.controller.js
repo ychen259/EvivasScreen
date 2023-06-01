@@ -20,8 +20,8 @@
 
       /*Tab Tensioned Start*/
       $scope.quantity= 1;
-      $scope.maxPurchase = 5;
-      $scope.minPurchase = 1;
+      $scope.maxPurchase = 5; //change header controller if you want to update this data
+      $scope.minPurchase = 1; //change header controller if you want to update this data
       $scope.imgSrc = $window.tabTensionImg;    //link for pick image
       $scope.imgPickOrder = 1;                                      //Order of image is being pick
       $scope.sizePick = 92;                                         //size of screen is being pick

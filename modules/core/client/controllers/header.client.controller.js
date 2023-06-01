@@ -14,6 +14,8 @@
     vm.authentication = Authentication;
     vm.isCollapsed = false;
     vm.menu = menuService.getMenu('topbar');
+    $scope.maxPurchase = 5; //change header controller, tab-tension, floor rising, portable controllerif you want to update this data
+    $scope.minPurchase = 1; //change header controller, tab-tension, floor rising, portable controllerif you want to update this data
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
@@ -90,61 +92,6 @@
 
     }
 
-    //buy button
-   /* $window.paypalButtonClicked = function(){
-      if($window.user){
-          /*remove shopping cart item from shopping cart*/
-    /*      var cartContent = document.getElementsByClassName('cart-content')[0];
-          while(cartContent.hasChildNodes()){
-            cartContent.removeChild(cartContent.firstChild);
-          }
-
-          //clean up the shopping record back to 0
-          var data = {
-              "shoppingCart":{
-                "tab_tension": {"_92inch":0,"_100inch":0, "_110inch":0},
-                "floor_rising": {"_92inch":0,"_100inch":0, "_110inch":0},
-                "mobile": {"_92inch":0,"_100inch":0, "_110inch":0}
-              }
-          };
-
-          //store value to user database
-          updateShoppingToDatabase(data);
-
-          data = {
-              "purchaseHistory":{
-                "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
-                "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
-                "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
-              }
-          };
-          updatePurchaseHistoryToDataBase(data);
-          
-          //updata Total back to 0
-          updateTotal();
-
-          /*reset globlo value back to 0*/
- /*         $window.cartTabTension92 = 0;
-          $window.cartTabTension100 = 0;
-          $window.cartTabTension110 = 0;
-          $window.cartFloorRising92 = 0;
-          $window.cartFloorRising100 = 0;
-          $window.cartFloorRising110 = 0;
-          $window.cartMobile92 = 0;
-          $window.cartMobile100 = 0;
-          $window.cartMobile110 = 0;
-
-          $scope.isEmptyShoppingCart = true;
-      }
-      //if there is no user go to login
-      else{
-        //go to login page and close shopping cart
-        $state.go('authentication.signin');
-        cart.classList.remove('active');
-      }
-
-    }*/
-
     $window.tabTension92Title = "Nova Spectrum Tab-Tension, 92-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
     $window.tabTension100Title = "Nova Spectrum Tab-Tension, 100-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
     $window.tabTension110Title = "Nova Spectrum Tab-Tension, 110-Inch, Active 3D 1080 8K Ultra HD [16:9]. Electric Motorized Projector Screen, Indoor/Outdoor Projector Movie Screen for Home Theater.";
@@ -168,7 +115,7 @@
     $window.mobile110Price = '$70';
 
     $window.tabTensionImg = '/modules/things-to-dos/client/img/Tab-Tension/1.png';
-    $window.floorRisingImg = '/modules/things-to-dos/client/img/floor-rising/1.png';
+    $window.floorRisingImg = '/modules/things-to-dos/client/img/floor-rising/1.jpg';
     $window.mobileImg = '/modules/things-to-dos/client/img/mobile/1.png';
 
 
@@ -292,7 +239,7 @@
       $window.getProductRecord();
     }
 
-    //add product to cart
+    //add product to cart, for getProductRecord function
     function addProductToCart(title, price, productImg, quantity){
 
       $scope.isEmptyShoppingCart = false;
@@ -305,7 +252,7 @@
              '<div class="detail-box">'+
                 '<div class="cart-product-title">'+title+'</div>'+
                 '<div class="cart-price">' + price + '</div>'+
-                '<input type="number" value="' + quantity +  '"class="cart-quantity" style="padding: 0">'+
+                '<input type="number" value="' + quantity +  '"class="cart-quantity" style="padding: 0" max="' + $scope.maxPurchase +  '"min="' + $scope.minPurchase+ '">'+
              '</div>'+
              '<i class="bx bxs-trash-alt cart-remove"></i>';
 
@@ -444,6 +391,11 @@
     $window.updatePurchaseHistoryToDataBase = function(data){
         PurchaseHistoriesService.create(data)
         .then(function(response) {
+
+          let cart= document.querySelector('.cart');
+          cart.classList.remove('active'); // close shopping cart
+          $state.go('purchase-histories.list');
+          Notification.success({ message: "Transaction " + transaction.status + ": " + transaction.id, title: '<i class="glyphicon glyphicon-ok"></i> Thank you!' });
       }, function(error) {
         console.log(error);
       });
@@ -488,9 +440,8 @@
     }
 
 
-    //add product to cart
+    //add product to cart, but add to cart button
     $window.addProductToCart = function(title, price, productImg, size, quantity, type){
-      if(type == "tab-tension"){
           $scope.isEmptyShoppingCart = false;
           
           var data = {
@@ -513,22 +464,39 @@
           for(var i=0; i<cartItemsNames.length;i++){
             if(cartItemsNames[i].innerText == title){
               var updateQuantity = parseInt(cartItemQuantity[i].value) + quantity; //update cart quantity depend on quantity on page   
+
+              if(updateQuantity > 5){
+                Notification.info({ message: "You have already reach purchase maximum, you cannot add product to the cart!", title: '<i class="glyphicon glyphicon-ok"></i>I am Sorry!' });
+                return;
+              }
+
               cartItemQuantity[i].value = updateQuantity;
               Notification.info({ message: "You have already add this item to cart.", title: '<i class="glyphicon glyphicon-ok"></i> Watch Out!' });
 
-              if(size == 92){
+              if(size == 92 && type == "tab-tension"){
                 data.shoppingCart.tab_tension._92inch = updateQuantity;
                 $window.cartTabTension92 = updateQuantity;
               }
-              if(size == 100){
+              if(size == 100 && type == "tab-tension"){
                 data.shoppingCart.tab_tension._100inch = updateQuantity;
                 $window.cartTabTension100 = updateQuantity;
               }
-              if(size == 110){
+              if(size == 110 && type == "tab-tension"){
                 data.shoppingCart.tab_tension._110inch = updateQuantity;
                 $window.cartTabTension110 = updateQuantity;
               }
-
+              if(size == 92 && type == "floor-rising"){
+                data.shoppingCart.floor_rising._92inch = updateQuantity;
+                $window.cartFloorRising92 = updateQuantity;
+              }
+              if(size == 100 && type == "floor-rising"){
+                data.shoppingCart.floor_rising._100inch = updateQuantity;
+                $window.cartFloorRising100 = updateQuantity;
+              }
+              if(size == 110 && type == "floor-rising"){
+                data.shoppingCart.floor_rising._110inch = updateQuantity;
+                $window.cartFloorRising110 = updateQuantity;
+              }
               updateShoppingToDatabase(data);
               return;
             }
@@ -540,7 +508,7 @@
                                 '<div class="detail-box">'+
                                   '<div class="cart-product-title">'+title+'</div>'+
                                   '<div class="cart-price">' + price + '</div>'+
-                                  '<input type="number" value="'+ quantity + '" class="cart-quantity" style="padding: 0">'+
+                                  '<input type="number" value="' + quantity +  '"class="cart-quantity" style="padding: 0" max="' + $scope.maxPurchase +  '"min="' + $scope.minPurchase+ '">'+
                                 '</div>'+
                                 '<i class="bx bxs-trash-alt cart-remove"></i>';
 
@@ -553,21 +521,98 @@
             .getElementsByClassName('cart-quantity')[0]
             .addEventListener('change', quantityChanged);
 
-          if(size == 92){
+          if(size == 92 && type == "tab-tension"){
                 data.shoppingCart.tab_tension._92inch = quantity;
                 $window.cartTabTension92 = quantity;
           }
-          if(size == 100){
+          if(size == 100 && type == "tab-tension"){
                 data.shoppingCart.tab_tension._100inch = quantity;
                 $window.cartTabTension100 = quantity;
           }
-          if(size == 110){
+          if(size == 110 && type == "tab-tension"){
                 data.shoppingCart.tab_tension._110inch = quantity;
                 $window.cartTabTension110 = quantity;
           }
-
+          if(size == 92 && type == "floor-rising"){
+                data.shoppingCart.floor_rising._92inch = quantity;
+                $window.cartFloorRising92 = quantity;
+          }
+          if(size == 100 && type == "floor-rising"){
+                data.shoppingCart.floor_rising._100inch = quantity;
+                $window.cartFloorRising100 = quantity;
+          }
+          if(size == 110 && type == "floor-rising"){
+                data.shoppingCart.floor_rising._110inch = quantity;
+                $window.cartFloorRising110 = quantity;
+          }
           updateShoppingToDatabase(data);
+
+    }
+
+
+    $window.paypalButtonClicked = function(detailAddress){
+      if($window.user){
+          /*avoid user delete the item in checkout page*/
+          if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
+              $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
+              $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
+              Notification.error({ message: "You have nothing in the cart.", title: '<i class="glyphicon glyphicon-ok"></i> Watch Out!' });
+              return;
+          }
+
+          /*remove shopping cart item from shopping cart*/
+          var cartContent = document.getElementsByClassName('cart-content')[0];
+          while(cartContent.hasChildNodes()){
+            cartContent.removeChild(cartContent.firstChild);
+          }
+
+          //clean up the shopping record back to 0
+          var data = {
+              "shoppingCart":{
+                "tab_tension": {"_92inch":0,"_100inch":0, "_110inch":0},
+                "floor_rising": {"_92inch":0,"_100inch":0, "_110inch":0},
+                "mobile": {"_92inch":0,"_100inch":0, "_110inch":0}
+              }
+          };
+
+          //store value to user database
+          $window.updateShoppingToDatabase(data);
+
+          data = {
+              "purchaseHistory":{
+                "tab_tension": {"_92inch":$window.cartTabTension92,"_100inch":$window.cartTabTension100, "_110inch":$window.cartTabTension110},
+                "floor_rising": {"_92inch":$window.cartFloorRising92,"_100inch":$window.cartFloorRising100, "_110inch":$window.cartFloorRising110},
+                "mobile": {"_92inch":$window.cartMobile92,"_100inch":$window.cartMobile100, "_110inch":$window.cartMobile110}
+              },
+              'address': detailAddress
+          };
+
+          $window.updatePurchaseHistoryToDataBase(data);
+          
+          //updata Total back to 0
+          $window.updateTotal();
+
+          /*reset globlo value back to 0*/
+          $window.cartTabTension92 = 0;
+          $window.cartTabTension100 = 0;
+          $window.cartTabTension110 = 0;
+          $window.cartFloorRising92 = 0;
+          $window.cartFloorRising100 = 0;
+          $window.cartFloorRising110 = 0;
+          $window.cartMobile92 = 0;
+          $window.cartMobile100 = 0;
+          $window.cartMobile110 = 0;
+
+          $scope.isEmptyShoppingCart = true;
+
       }
+      //if there is no user go to login
+      else{
+        //go to login page and close shopping cart
+        $state.go('authentication.signin');
+        cart.classList.remove('active');
+      }
+
     }
 }
 }());

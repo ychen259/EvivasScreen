@@ -20,6 +20,10 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/contacts/:contactId',
       permissions: '*'
+    },
+    {
+      resources: '/api/sendEmail',
+      permissions: ['post']
     }]
   }, {
     roles: ['user'],
@@ -29,6 +33,10 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/contacts/:contactId',
       permissions: ['get']
+    },
+    {
+      resources: '/api/sendEmail',
+      permissions: ['post']
     }]
   }, {
     roles: ['guest'],
