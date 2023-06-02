@@ -78,7 +78,7 @@ module.exports = {
   taxPercentage: 0.1025,
   mailer: {
     //from: process.env.MAILER_FROM || 'MAILER_FROM' || 'evivasscreenwebsite@gmail.com',
-    from: process.env.MAILER_FROM || 'MAILER_FROM' || 'aztechotelwebsite@gmail.com',
+    from: 'aztechotelwebsite@gmail.com',
     to: "rockybikellc@gmail.com",
     options: {
       service: 'Gmail',
@@ -88,10 +88,13 @@ module.exports = {
         user: 'evivasscreenwebsite@gmail.com',
         pass: 'wnssubrzjviqofeh'
       }*/
+      logger: true,
+      transactionLog: true, // include SMTP traffic in the logs
       auth: {
         user: 'aztechotelwebsite@gmail.com',
-        pass: 'ytviwnmyldcdgbkd'
-      }
+        pass: 'hinvruqakfdhfwzq',
+
+      },
       
     }
   },

@@ -71,11 +71,11 @@
   }
 
   // TODO this should be Users service
-  angular
+  /*angular
     .module('users.admin.services')
     .factory('AdminService', AdminService);
 
-  AdminService.$inject = ['$resource'];
+  AdminService.$inject = ['$resource']; 
 
   function AdminService($resource) {
     return $resource('/api/users/:userId', {
@@ -85,5 +85,46 @@
         method: 'PUT'
       }
     });
+  }*/
+
+angular
+    .module('users.admin.services')
+    .factory('AdminService', AdminService);
+
+  AdminService.$inject = ['$http']; 
+
+  function AdminService($http) {
+    var methods = {
+      /*first four method is for manager user*/
+      getAll: function() {
+        return $http.get('/api/users');
+      },
+      read: function(id){
+        return $http.get('/api/users/' + id);
+      },
+      update: function(id, user){
+        return $http.put('/api/users/' + id, user);
+      },
+      delete: function(id){
+        return $http.delete('/api/users/' + id);
+      },
+
+      /*second four method is for manager order*/
+      getOrders: function() {
+        return $http.get('/api/orders');
+      },
+      readOrder: function(id){
+        return $http.get('/api/orders/' + id);
+      },
+      updateOrder: function(id, order){
+        return $http.put('/api/orders/' + id, order);
+      },
+      deleteOrder: function(id){
+        return $http.delete('/api/orders/' + id);
+      }
+    };
+    return methods;
   }
+
+
 }());

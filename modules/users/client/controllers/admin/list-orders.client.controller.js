@@ -3,11 +3,11 @@
 
   angular
     .module('users.admin')
-    .controller('UserListController', UserListController);
+    .controller('OrderListController', OrderListController);
 
-  UserListController.$inject = ['$scope', '$filter', 'AdminService'];
+  OrderListController.$inject = ['$scope', '$filter', 'AdminService'];
 
-  function UserListController($scope, $filter, AdminService) {
+  function OrderListController($scope, $filter, AdminService) {
     var vm = this;
     vm.buildPager = buildPager;
     vm.figureOutItemsToDisplay = figureOutItemsToDisplay;
@@ -18,7 +18,7 @@
       vm.buildPager();
     });*/
 
-    AdminService.getAll()
+    AdminService.getOrders()
       .then(function(response) {
         vm.users = response.data;
         vm.buildPager();

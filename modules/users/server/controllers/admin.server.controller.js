@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
+  PurchaseHistory = mongoose.model('PurchaseHistory'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
@@ -59,8 +60,22 @@ exports.delete = function (req, res) {
  * List of Users
  */
 exports.list = function (req, res) {
-  User.find({}, '-salt -password -providerData').sort('-created').populate('user', 'displayName').exec(function (err, users) {
+  User.find({}, '-salt -password -providerData').sort('-created').exec(function (err, users) {
     if (err) {
+              console.log(err);
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(users);
+  });
+};
+
+exports.listOrders = function (req, res) {
+  PurchaseHistory.find({}, '-salt -password -providerData').populate('user', 'username').sort('-created').exec(function (err, users) {
+    if (err) {
+              console.log(err);
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -88,6 +103,27 @@ exports.userByID = function (req, res, next, id) {
     }
 
     req.model = user;
+    next();
+  });
+};
+
+exports.purchaseHistoryByID = function(req, res, next, id) {
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Purchase history is invalid'
+    });
+  }
+
+  PurchaseHistory.findById(id).populate('user', 'displayName').exec(function (err, purchaseHistory) {
+    if (err) {
+      return next(err);
+    } else if (!purchaseHistory) {
+      return res.status(404).send({
+        message: 'No Purchase history with that identifier has been found'
+      });
+    }
+    req.purchaseHistory = purchaseHistory;
     next();
   });
 };

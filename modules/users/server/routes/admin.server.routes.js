@@ -20,6 +20,16 @@ module.exports = function (app) {
     .put(adminPolicy.isAllowed, admin.update)
     .delete(adminPolicy.isAllowed, admin.delete);
 
+  app.route('/api/orders')
+    .get(adminPolicy.isAllowed, admin.listOrders);
+
+  // Single user routes
+ /* app.route('/api/orders/:orderId')
+    .get(adminPolicy.isAllowed, admin.readOrder)
+    .put(adminPolicy.isAllowed, admin.updateOrder)
+    .delete(adminPolicy.isAllowed, admin.deleteOrder);*/
+
   // Finish by binding the user middleware
   app.param('userId', admin.userByID);
+  app.param('orderId', admin.purchaseHistoryByID);
 };

@@ -105,7 +105,10 @@ exports.create = function(req, res) {
     html: email_context
   }
 
+  console.log("try to send email");
   smtpTransport.sendMail(mailOptions, function (err) {
+    if(err)
+    console.log(err);
   });
 
   /*save purchasehistory to database*/

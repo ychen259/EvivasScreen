@@ -1,0 +1,150 @@
+<section class="container">
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Users</h2>
+      </div>
+      <div class="col-md-4" style="margin-top: 2em">
+        <input class="form-control col-md-4" type="text" ng-model="vm.search" placeholder="Search" ng-change="vm.figureOutItemsToDisplay()" />
+      </div>
+    </div>
+  </div>
+  <div class="list-group">
+    <div ng-repeat="purchaseHistory in vm.pagedItems" class="list-group-item">
+      <!--purchase history-->
+      <div class="a-box-group a-spacing-base order js-order-card">
+          <!--header of each purchase history-->
+          <div class="a-box a-color-offset-background order-info">
+              <div class="a-box-inner">
+                  <div class="a-fixed-right-grid">
+                      <div class="a-fixed-right-grid-inner" style="padding-right:290px">
+
+                          <!--left side of header with content order place date, total, address-->
+                          <div class="a-fixed-right-grid-col a-col-left" style="padding-right:0%;float:left;">
+                              <div class="a-row">
+
+                                  <!--ORDER PLACE DATE-->
+                                  <div class="a-column a-span3">
+                                      <div class="a-row a-size-mini">
+                                          <span class="a-color-secondary label" >Order placed</span>
+                                      </div>
+                                      <div class="a-row a-size-base">
+                                          <span class="a-color-secondary value">{{purchaseHistory.created}}</span>
+                                      </div>
+                                  </div>
+
+                                  <!--TOTAL-->
+                                  <div class="a-column a-span2 yohtmlc-order-total">
+                                      <div class="a-row a-size-mini">
+                                          <span class="a-color-secondary label">Total</span>
+
+                                      </div>
+                                      <div class="a-row a-size-base">
+                                          <span class="a-color-secondary value">${{purchaseHistory.total}}</span>
+                                      </div>
+                                      <div class="a-row a-size-mini">
+                                          <span class="a-color-secondary label">Username</span>
+
+                                      </div>
+                                      <div class="a-row a-size-base">
+                                          <span class="a-color-secondary value">{{purchaseHistory.user.username}}</span>
+                                      </div>
+                                  </div>
+
+                                  <!--shipping address-->
+                                  <div class="a-column a-span7 recipient a-span-last">
+                                      <div class="a-row a-size-mini">
+                                          <span class="a-color-secondary label">Ship to</span>
+                                      </div>
+                                      <div class="a-row a-size-base">
+                                          <span class="a-color-secondary">
+                                              <span class="a-declarative">
+                                                  <a aria-label="Link to Shipping Address" href="javascript:void(0)" class="a-popover-trigger a-declarative value">
+                                                      <span class="trigger-text">{{purchaseHistory.address}}</span>
+                                                      <i class="a-icon a-icon-popover"></i>
+                                                  </a>
+                                              </span>
+                                          </span>
+                                      </div>
+                                  </div>  
+                              </div>
+                          </div>
+
+                          <!--right side of header with content order number , view order detail, view invoice-->
+                          <div class="a-fixed-right-grid-col actions a-col-right" style="width:290px;margin-right:-290px;float:left;">
+
+                              <!--order number-->
+                              <div class="a-row a-size-mini yohtmlc-order-id">
+                                  <span class="a-color-secondary label">Order #</span>           
+                                      <span class="a-color-secondary value">
+                                          <bdi dir="ltr">{{purchaseHistory._id}}</bdi>
+                                      </span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!--content of each purchase history, image title buy again view your item get support-->
+          <div class="a-box shipment">
+              <div class="a-box-inner">
+                  <div class="a-fixed-right-grid a-spacing-top-medium">
+                      <div class="a-fixed-right-grid-inner a-grid-vertical-align a-grid-top">
+
+                          <!--left side of content of each purchase history-->
+                          <div class="a-fixed-right-grid-col a-col-left" style="padding-right:3.2%;float:left;">
+                              <div class="a-row">
+
+                                  <!--one item in purchase, you can make it duplicate-->
+                                  <div ng-repeat = "item in purchaseHistory.items">
+                                      <div class="a-fixed-left-grid a-spacing-none" ng-if="item.value != 0" >
+                                          <div class="a-fixed-left-grid-inner" style="padding-left:100px">
+
+                                              <!--image of item-->
+                                              <div class="a-text-center a-fixed-left-grid-col a-col-left" style="width:100px;margin-left:-100px;float:left;">
+                                                  <div class="item-view-left-col-inner">
+                                                      <a class="a-link-normal" href="#" ng-click="hrefs($index)">
+                                                          <img alt="" src='{{imgs[$index]}}' class="yo-critical-feature" height="82" width="90">
+
+                                                      </a>
+                                                      <span class="item-view-qty" ng-if="item.value !=1">{{item.value}}</span>
+                                                  </div>
+                                              </div>
+
+                                              <!--title of item and buy again, view your item buttons-->
+                                              <div class="a-fixed-left-grid-col yohtmlc-item a-col-right container" style="padding-left:1.5%;float:left;">
+                                                  <!--title-->
+                                                  <div class="row" style="padding-left:2.5%;">
+                                                      <a class="a-link-normal" href="#" ng-click="hrefs($index)">
+                                                          {{titles[$index]}}
+                                                      </a>
+                                                  </div>
+
+                                                  <div class="row" style="padding-left:2.5%;">
+                                                      <span class="a-size-small">
+                                                          <div class="a-row a-size-small a-color-price">{{prices[$index]}}</div>
+                                                      </span> 
+
+                                                  </div>
+              
+
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>                    
+    </div>
+  </div>
+
+  <uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></uib-pagination>
+</section>
+
+
+                    
