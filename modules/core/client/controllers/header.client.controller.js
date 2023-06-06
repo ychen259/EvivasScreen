@@ -47,18 +47,27 @@
     let cartIcon= document.querySelector('#cart-icon');
     let cart= document.querySelector('.cart');
     let closeCart= document.querySelector('#close-cart');
-
+    let overlay = document.getElementById('overlay');
 
     //open shopping cart
     cartIcon.onclick = () => {
       cart.classList.add('active');
-
+      overlay.classList.toggle('show');
+      document.body.classList.toggle('cart-open');
     };
 
     //close shopping cart
     closeCart.onclick = () => {
       cart.classList.remove('active');
+      overlay.classList.remove('show');
+      document.body.classList.remove('cart-open'); 
     };
+
+    overlay.addEventListener('click', () => {
+      cart.classList.remove('active');
+      overlay.classList.remove('show');
+      document.body.classList.remove('cart-open'); 
+    });
 
     //cart working js
     if(document.readyState=="loading"){

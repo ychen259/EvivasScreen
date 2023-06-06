@@ -32,12 +32,32 @@
 	top: 0;
 	right: -100%;
 	width: 600px;
-	min-height: 100vh;
+	min-height: 95vh;
 	padding: 20px;
 	background: var(--bg-color);
 	box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
 	transition: 0.3s;
+	overflow-y: auto; 
+	height: 95%;
+	z-index: 9998;
 }
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background color */
+  z-index: 9997; /* Ensure the overlay appears below the cart */
+  display: none; /* Initially hidden */
+}
+#overlay.show {
+  display: block;
+}
+body.cart-open {
+  overflow: hidden;
+}
+
 .cart.active{
 	right: 0;
 }
