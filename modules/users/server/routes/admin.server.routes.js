@@ -23,6 +23,9 @@ module.exports = function (app) {
   app.route('/api/orders')
     .get(adminPolicy.isAllowed, admin.listOrders);
 
+  app.route('/api/orders/:orderId')
+    .put(adminPolicy.isAllowed, admin.updateOrder);
+    
   // Single user routes
  /* app.route('/api/orders/:orderId')
     .get(adminPolicy.isAllowed, admin.readOrder)

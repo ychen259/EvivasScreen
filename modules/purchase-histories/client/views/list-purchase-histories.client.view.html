@@ -2,13 +2,14 @@
     <div class="page-header">
         <section id="header">Purchase histories</section>
     </div>
+
     <div id="yourOrders" role='main'>
         <div id="yourOrdersContent">
             <div id="ordersContainer">
                 <div class="list-group" ng-init="find()">
 
              <!--       <div ng-repeat="purchaseHistory in purchaseHistories" ui-sref="purchase-histories.view({ purchaseHistoryId: purchaseHistory._id })" class="list-group-item">-->
-                    <div ng-repeat="purchaseHistory in purchaseHistories" class="list-group-item">
+                    <div ng-repeat="purchaseHistory in pagedItems" class="list-group-item">
 
                         <!--purchase history-->
                         <div class="a-box-group a-spacing-base order js-order-card">
@@ -229,4 +230,5 @@
             </div>
         </div>
     </div>
+      <uib-pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
 </section>

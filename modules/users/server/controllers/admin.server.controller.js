@@ -85,6 +85,25 @@ exports.listOrders = function (req, res) {
   });
 };
 
+/*only update shipping status*/
+exports.updateOrder = function (req, res) {
+  var PurchaseHistory = req.model;
+  PurchaseHistory.isShipped = req.body.isShipped;
+
+console.log("body:" + req.body.isShipped);
+
+  PurchaseHistory.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(PurchaseHistory);
+  });
+};
+
+
 /**
  * User middleware
  */
@@ -123,7 +142,7 @@ exports.purchaseHistoryByID = function(req, res, next, id) {
         message: 'No Purchase history with that identifier has been found'
       });
     }
-    req.purchaseHistory = purchaseHistory;
+    req.model = purchaseHistory;
     next();
   });
 };

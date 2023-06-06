@@ -5,9 +5,9 @@
     .module('purchase-histories')
     .controller('PurchaseHistoriesListController', PurchaseHistoriesListController);
 
-  PurchaseHistoriesListController.$inject = ['PurchaseHistoriesService', '$scope', '$window', '$state'];
+  PurchaseHistoriesListController.$inject = ['PurchaseHistoriesService', '$scope', '$window', '$state', '$filter'];
 
-  function PurchaseHistoriesListController(PurchaseHistoriesService, $scope, $window, $state) {
+  function PurchaseHistoriesListController(PurchaseHistoriesService, $scope, $window, $state, $filter) {
     $scope.imgs = [$window.tabTensionImg,$window.tabTensionImg,$window.tabTensionImg, 
                   $window.floorRisingImg,$window.floorRisingImg,$window.floorRisingImg,
                   $window.mobileImg,$window.mobileImg,$window.mobileImg];
@@ -57,7 +57,10 @@
 
             console.log($scope.purchaseHistories[i].items[0].value+','+$scope.purchaseHistories[i].items[1].value+','+$scope.purchaseHistories[i].items[2].value+','+$scope.purchaseHistories[i].items[3].value+','+$scope.purchaseHistories[i].items[4].value+','+$scope.purchaseHistories[i].items[5].value+','+$scope.purchaseHistories[i].items[6].value+','+$scope.purchaseHistories[i].items[7].value+','+$scope.purchaseHistories[i].items[8].value);
           }
+
+          $scope.buildPager();
         })
+
     }
 
     $scope.hrefs = function(index){
@@ -82,6 +85,28 @@
 
     $scope.goToMobliePage= function(){
       $state.go('things-to-dos.portable');
+    }
+
+    $scope.buildPager = function() {
+      $scope.pagedItems = [];
+      $scope.itemsPerPage = 5;
+      $scope.currentPage = 1;
+      $scope.figureOutItemsToDisplay();
+    }
+
+    $scope.figureOutItemsToDisplay = function() {
+      $scope.filteredItems = $filter('filter')($scope.purchaseHistories, {
+        $: $scope.search
+      });
+
+      $scope.filterLength = $scope.filteredItems.length;
+      var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
+      var end = begin + $scope.itemsPerPage;
+      $scope.pagedItems = $scope.filteredItems.slice(begin, end);
+    }
+
+    $scope.pageChanged= function() {
+      $scope.figureOutItemsToDisplay();
     }
 
   }

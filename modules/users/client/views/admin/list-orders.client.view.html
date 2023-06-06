@@ -2,7 +2,7 @@
   <div class="page-header">
     <div class="row">
       <div class="col-md-4">
-        <h2>Users</h2>
+        <h2>Order</h2>
       </div>
       <div class="col-md-4" style="margin-top: 2em">
         <input class="form-control col-md-4" type="text" ng-model="vm.search" placeholder="Search" ng-change="vm.figureOutItemsToDisplay()" />
@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="list-group">
-    <div ng-repeat="purchaseHistory in vm.pagedItems" class="list-group-item">
+    <div ng-repeat="order in vm.pagedItems"  href='#' class="list-group-item">
       <!--purchase history-->
       <div class="a-box-group a-spacing-base order js-order-card">
           <!--header of each purchase history-->
@@ -29,7 +29,7 @@
                                           <span class="a-color-secondary label" >Order placed</span>
                                       </div>
                                       <div class="a-row a-size-base">
-                                          <span class="a-color-secondary value">{{purchaseHistory.created}}</span>
+                                          <span class="a-color-secondary value">{{order.created}}</span>
                                       </div>
                                   </div>
 
@@ -40,14 +40,14 @@
 
                                       </div>
                                       <div class="a-row a-size-base">
-                                          <span class="a-color-secondary value">${{purchaseHistory.total}}</span>
+                                          <span class="a-color-secondary value">${{order.total}}</span>
                                       </div>
                                       <div class="a-row a-size-mini">
                                           <span class="a-color-secondary label">Username</span>
 
                                       </div>
                                       <div class="a-row a-size-base">
-                                          <span class="a-color-secondary value">{{purchaseHistory.user.username}}</span>
+                                          <span class="a-color-secondary value">{{order.user.username}}</span>
                                       </div>
                                   </div>
 
@@ -60,7 +60,7 @@
                                           <span class="a-color-secondary">
                                               <span class="a-declarative">
                                                   <a aria-label="Link to Shipping Address" href="javascript:void(0)" class="a-popover-trigger a-declarative value">
-                                                      <span class="trigger-text">{{purchaseHistory.address}}</span>
+                                                      <span class="trigger-text">{{order.address}}</span>
                                                       <i class="a-icon a-icon-popover"></i>
                                                   </a>
                                               </span>
@@ -77,7 +77,15 @@
                               <div class="a-row a-size-mini yohtmlc-order-id">
                                   <span class="a-color-secondary label">Order #</span>           
                                       <span class="a-color-secondary value">
-                                          <bdi dir="ltr">{{purchaseHistory._id}}</bdi>
+                                          <bdi dir="ltr">{{order._id}}</bdi>
+                                      </span>
+                              </div>
+                          <div class="a-row ">
+                                  <span class="a-color-secondary label">Shipping Status:</span>           
+                                      <span class="a-color-secondary value">
+
+                                          <button type="button" class="btn btn-danger" ng-hide="order.alreadyShip": ng-click="changeShippingStatus(order._id, order.isShipped)">{{order.isShipped}}</button>
+                                          <button type="button" class="btn btn-success" ng-show="order.alreadyShip" ng-click="changeShippingStatus(order._id, order.isShipped)">{{order.isShipped}}</button>
                                       </span>
                               </div>
                           </div>
@@ -97,7 +105,7 @@
                               <div class="a-row">
 
                                   <!--one item in purchase, you can make it duplicate-->
-                                  <div ng-repeat = "item in purchaseHistory.items">
+                                  <div ng-repeat = "item in order.items">
                                       <div class="a-fixed-left-grid a-spacing-none" ng-if="item.value != 0" >
                                           <div class="a-fixed-left-grid-inner" style="padding-left:100px">
 

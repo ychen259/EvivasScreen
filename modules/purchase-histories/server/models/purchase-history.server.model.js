@@ -29,6 +29,7 @@ var PurchaseHistorySchema = new Schema({
   },
   total:{ type: Number, default:0},
   address:{type: String, default: 'No Address Provided'},
+  isShipped:{type: String, default: 'No'},
   created: {
     type: Date,
     default: Date.now

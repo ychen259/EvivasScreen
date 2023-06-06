@@ -45,7 +45,7 @@
       })
       .state('admin.order', {
         url: '/orders/:orderId',
-        templateUrl: '/modules/users/client/views/admin/view-user.client.view.html',
+        templateUrl: '/modules/users/client/views/admin/view-order.client.view.html',
         controller: 'UserController',
         controllerAs: 'vm',
         resolve: {

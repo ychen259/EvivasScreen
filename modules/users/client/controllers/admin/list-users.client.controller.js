@@ -13,11 +13,6 @@
     vm.figureOutItemsToDisplay = figureOutItemsToDisplay;
     vm.pageChanged = pageChanged;
 
-    /*AdminService.query(function (data) {
-      vm.users = data;
-      vm.buildPager();
-    });*/
-
     AdminService.getAll()
       .then(function(response) {
         vm.users = response.data;
