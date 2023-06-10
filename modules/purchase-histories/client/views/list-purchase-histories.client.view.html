@@ -7,8 +7,6 @@
         <div id="yourOrdersContent">
             <div id="ordersContainer">
                 <div class="list-group" ng-init="find()">
-
-             <!--       <div ng-repeat="purchaseHistory in purchaseHistories" ui-sref="purchase-histories.view({ purchaseHistoryId: purchaseHistory._id })" class="list-group-item">-->
                     <div ng-repeat="purchaseHistory in pagedItems" class="list-group-item">
 
                         <!--purchase history-->
@@ -194,23 +192,6 @@
 
 
                                                        
-<!--            
-                                                        <span class="a-button a-button-normal a-spacing-mini a-button-primary" id="a-autoid-5">
-                                                            <span class="a-button-inner">
-                                                                <a id="Get-product-support_2" href="/ps/product-support/resolutions?_encoding=UTF8&amp;itemId=nhjgsuqlpmktsn&amp;orderId=112-7200308-8488269&amp;ref_=ppx_yo_dt_b_prod_support_single_item_o00_s00&amp;shipmentId=UhzwVPyYZ" class="a-button-text" role="button">
-                                                                    Get product support
-                                                                </a>
-                                                            </span>
-                                                        </span>
-
-                                                        <span class="a-button a-button-normal a-spacing-mini a-button-base" id="a-autoid-6">
-                                                            <span class="a-button-inner">
-                                                                <a id="Write-a-product-review_2" href="/review/review-your-purchases/ref=ppx_yo_dt_b_rev_prod_o00_s00?_encoding=UTF8&amp;asins=B081STX6FB&amp;channel=YAcc-wr" class="a-button-text" role="button">
-                                                                    Write a product review
-                                                                </a>
-                                                            </span>
-                                                        </span>
--->
                                                     </div>
                                                 </div>
                                             </div>
@@ -228,7 +209,8 @@
                     </div>
                 </div>
             </div>
+            <uib-pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
         </div>
     </div>
-      <uib-pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+
 </section>

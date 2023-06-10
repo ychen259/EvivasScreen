@@ -1239,8 +1239,9 @@ a {
 
 @media(max-width: 767px) {
     .header-container .logo {
-        height:55px;
-        //position: absolute;
+
+        //height: 20vh;
+        width: auto;
         top: 0;
         bottom: 0;
         left: 0;
