@@ -128,7 +128,7 @@ console.log("screenWidth:" + screenWidth);
 
     $window.tabTensionImg = '/modules/things-to-dos/client/img/Tab-Tension/1.png';
     $window.floorRisingImg = '/modules/things-to-dos/client/img/floor-rising/1.jpg';
-    $window.mobileImg = '/modules/things-to-dos/client/img/mobile/1.png';
+    $window.mobileImg = '/modules/things-to-dos/client/img/portable/1.webp';
 
 
     $window.cartTabTension92 = 0; 
@@ -146,7 +146,7 @@ console.log("screenWidth:" + screenWidth);
       if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
           $window.cartFloorRising92 == 0 && $window.cartFloorRising100 == 0 && $window.cartFloorRising110 == 0 &&
           $window.cartMobile92 == 0 && $window.cartMobile100 == 0 && $window.cartMobile110 == 0){
-        console.log("get user record");
+
         UsersRecordService.getRecord()
           .then(function(response){
             var productRecord = response.data;
@@ -336,7 +336,18 @@ console.log("screenWidth:" + screenWidth);
         data.shoppingCart.floor_rising._110inch = updatedQuantity;
         $window.cartFloorRising110 = updatedQuantity;
       }
-
+      else if(title == $window.mobile92Title){
+        data.shoppingCart.mobile._92inch = updatedQuantity;
+        $window.cartMobile92 =updatedQuantity;
+      }
+      else if(title == $window.mobile100Title){
+        data.shoppingCart.mobile._100inch = updatedQuantity;
+        $window.cartMobile100 = updatedQuantity;
+      }
+      else if(title == $window.mobile110Title){
+        data.shoppingCart.mobile._110inch = updatedQuantity;
+        $window.cartMobile110 = updatedQuantity;
+      }
       updateShoppingToDatabase(data);
     }
 
@@ -358,7 +369,6 @@ console.log("screenWidth:" + screenWidth);
       if(title == $window.tabTension92Title){
         data.shoppingCart.tab_tension._92inch = 0;
         $window.cartTabTension92 = 0;
-
       }
       else if(title == $window.tabTension100Title){
         data.shoppingCart.tab_tension._100inch = 0;
@@ -379,6 +389,18 @@ console.log("screenWidth:" + screenWidth);
       else if(title == $window.floorRising110Title){
         data.shoppingCart.floor_rising._110inch = 0;
         $window.cartFloorRising110 = 0;
+      }
+      else if(title == $window.mobile92Title){
+        data.shoppingCart.mobile._92inch = 0;
+        $window.cartMobile92 = 0;
+      }
+      else if(title == $window.mobile100Title){
+        data.shoppingCart.mobile._100inch = 0;
+        $window.cartMobile100 = 0;
+      }
+      else if(title == $window.mobile110Title){
+        data.shoppingCart.mobile._110inch = 0;
+        $window.cartMobile110 = 0;
       }
 
       if($window.cartTabTension92 == 0 && $window.cartTabTension100 == 0 && $window.cartTabTension110 == 0 &&
@@ -509,6 +531,18 @@ console.log("screenWidth:" + screenWidth);
                 data.shoppingCart.floor_rising._110inch = updateQuantity;
                 $window.cartFloorRising110 = updateQuantity;
               }
+              if(size == 92 && type == "mobile"){
+                data.shoppingCart.mobile._92inch = updateQuantity;
+                $window.cartMobile92 = updateQuantity;
+              }
+              if(size == 100 && type == "mobile"){
+                data.shoppingCart.mobile._100inch = updateQuantity;
+                $window.cartMobile100 = updateQuantity;
+              }
+              if(size == 110 && type == "mobile"){
+                data.shoppingCart.mobile._110inch = updateQuantity;
+                $window.cartMobile110 = updateQuantity;
+              }
               updateShoppingToDatabase(data);
               return;
             }
@@ -556,6 +590,18 @@ console.log("screenWidth:" + screenWidth);
           if(size == 110 && type == "floor-rising"){
                 data.shoppingCart.floor_rising._110inch = quantity;
                 $window.cartFloorRising110 = quantity;
+          }
+          if(size == 92 && type == "mobile"){
+                data.shoppingCart.mobile._92inch = quantity;
+                $window.cartMobile92 = quantity;
+          }
+          if(size == 100 && type == "mobile"){
+                data.shoppingCart.mobile._100inch = quantity;
+                $window.cartMobile100 = quantity;
+          }
+          if(size == 110 && type == "mobile"){
+                data.shoppingCart.mobile._110inch = quantity;
+                $window.cartMobile110 = quantity;
           }
           updateShoppingToDatabase(data);
 

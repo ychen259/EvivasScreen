@@ -27,19 +27,37 @@
 	font-size: 1.8rem;
 	cursor: pointer;
 }
+
 .cart{
-	position: fixed;
-	top: 0;
-	right: -100%;
-	width: 50vw;
-	min-height: 95vh;
-	padding: 20px;
-	background: var(--bg-color);
-	box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
-	transition: 0.3s;
-	overflow-y: auto; 
-	height: 95%;
-	z-index: 9998;
+		position: fixed;
+		top: 0;
+		right: -100%;
+		width: 600px;
+		min-height: 95vh;
+		padding: 20px;
+		background: var(--bg-color);
+		box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
+		transition: 0.3s;
+		overflow-y: auto; 
+		height: 95%;
+		z-index: 9998;
+	}
+
+@media(max-width: 1080px){
+	.cart{
+		position: fixed;
+		top: 0;
+		right: -100%;
+		width: 50vw;
+		min-height: 95vh;
+		padding: 20px;
+		background: var(--bg-color);
+		box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
+		transition: 0.3s;
+		overflow-y: auto; 
+		height: 95%;
+		z-index: 9998;
+	}
 }
 #overlay {
   position: fixed;

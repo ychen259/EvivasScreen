@@ -16,7 +16,7 @@
       })
       .state('about-us.default', {
         url: '',
-        templateUrl: 'modules/about-us/client/views/view-about-us.client.view.html',
+        templateUrl: '/modules/about-us/client/views/view-about-us.client.view.html',
         controller: 'AboutUsController',
         controllerAs: 'vm',
         data: {
