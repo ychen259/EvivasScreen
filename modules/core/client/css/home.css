@@ -879,7 +879,7 @@ header,#container,footer,#reservation{
 #reservationtable a.button{width:214px}
 #reservationtable ul li{display:inline-block;float:none;padding-right:5px}
 #res-rate-txt{margin-top:4px}
-.button-snippet .pkg-detail-btn,.button-snippet .pkg-book-btn{width:180px}}
+.button-snippet .pkg-detail-btn,.button-snippet .pkg-book-btn{width:180px}
 @media only screen and (max-width:1200px){
 	.googleaddress,.popular-links,.helpful,.information{margin-right:4%}}
 @media only screen and (max-width:1070px){
@@ -891,7 +891,7 @@ $screen-width: 100vw;
 	#wrapper,header,#container,footer,#reservation, section
 	{
 		//max-width:1024px;
-		//min-width:1024px
+		//min-width:1024px;
 
     //max-width: $screen-width;
     //min-width: $screen-width;
