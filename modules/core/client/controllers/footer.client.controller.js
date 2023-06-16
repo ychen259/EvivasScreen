@@ -28,7 +28,7 @@
        $state.go('things-to-dos.list');
        window.scrollTo(0, 0);
     }
-   $scope.aboutUs = function(){
+   $scope.goToAboutUs = function(){
        $state.go('about-us.default');
        window.scrollTo(0, 0);
     }

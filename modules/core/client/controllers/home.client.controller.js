@@ -2,21 +2,17 @@
   angular.module('core').controller('HomeController', ['$scope', '$location', '$stateParams', '$state',
     function ($scope, $location, $stateParams, $state ){
 
-    $scope.goToMeetingEvent = function(){
-       $state.go('meeting-events.default');
+    $scope.goToTabTension = function(){
+       $state.go('things-to-dos.tab-tension');
        window.scrollTo(0, 0);
     }
-    $scope.goToDining = function(){
-       $state.go('dinings.default');
+    $scope.goToFloorRising = function(){
+       $state.go('things-to-dos.floor-rising');
        window.scrollTo(0, 0);
     }
 
-     $scope.goToRooms = function(){
-       $state.go('rooms.default');
-       window.scrollTo(0, 0);
-    }
-    $scope.goToLocation = function(){
-       $state.go('locations.default');
+     $scope.goToPortable = function(){
+       $state.go('things-to-dos.portable');
        window.scrollTo(0, 0);
     }
 

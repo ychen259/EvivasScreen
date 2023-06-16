@@ -128,7 +128,7 @@ console.log("screenWidth:" + screenWidth);
 
     $window.tabTensionImg = '/modules/things-to-dos/client/img/Tab-Tension/1.png';
     $window.floorRisingImg = '/modules/things-to-dos/client/img/floor-rising/1.jpg';
-    $window.mobileImg = '/modules/things-to-dos/client/img/portable/1.webp';
+    $window.mobileImg = '/modules/things-to-dos/client/img/portable/1.jpg';
 
 
     $window.cartTabTension92 = 0; 

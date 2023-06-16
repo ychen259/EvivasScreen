@@ -1153,8 +1153,7 @@ ul.anchor{background-color:#fff;border-color:#d3d3d3;border-style:solid;border-w
     clear:both;
     position:relative;
     width:100%;
-    //max-width:1600px;
-    //margin:0 auto
+    padding-bottom: 65px;
   }
  /* footer{
     color:#fff;
@@ -1171,7 +1170,15 @@ ul.anchor{background-color:#fff;border-color:#d3d3d3;border-style:solid;border-w
         margin-right:50px;
         margin-left: 8%;
       }
-      .ftr-rightcontent.ftr-rightcontent3{width:180px}.title-f{display:block;font-size:15px;padding-bottom:7px;text-transform:capitalize;font-weight:bold}.footer-ul li{display:block}#quick-signup.button{font-size:13px;margin:10px auto 0;width:180px;text-transform:capitalize}#quick-signup.button:hover,#quick-signup.button:focus{background:#fff;color:#dea329!important}
+      .ftr-rightcontent.ftr-rightcontent3{width:180px}
+.title-f{
+  display:block;
+  font-size:18px;
+  padding-bottom:7px;
+  text-transform:capitalize;
+  font-weight:bold
+}
+.footer-ul li{display:block}#quick-signup.button{font-size:13px;margin:10px auto 0;width:180px;text-transform:capitalize}#quick-signup.button:hover,#quick-signup.button:focus{background:#fff;color:#dea329!important}
       footer .googleaddress a:link,footer .googleaddress a:visited{
         //color:#8bc963;
         color:#dea329;

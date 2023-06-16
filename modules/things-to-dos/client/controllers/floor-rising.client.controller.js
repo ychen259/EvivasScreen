@@ -60,7 +60,10 @@
         $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/5.jpg";
         $scope.imgPickOrder = 5;
       }
-
+      $scope.get6Img = function(){
+        $scope.imgSrc = "/modules/things-to-dos/client/img/floor-rising/6.jpg";
+        $scope.imgPickOrder = 6;
+      }
 
       $scope.get92inch = function(){
         $scope.sizePick = 92;

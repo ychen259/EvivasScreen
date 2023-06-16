@@ -40,11 +40,11 @@
 
       /*change image from selection*/
       $scope.get1Img = function(){
-        $scope.imgSrc = "/modules/things-to-dos/client/img/portable/1.webp";
+        $scope.imgSrc = "/modules/things-to-dos/client/img/portable/1.jpg";
         $scope.imgPickOrder = 1;
       }
       $scope.get2Img = function(){
-        $scope.imgSrc = "/modules/things-to-dos/client/img/portable/2.webp";
+        $scope.imgSrc = "/modules/things-to-dos/client/img/portable/2.jpg";
         $scope.imgPickOrder = 2;
       }
     
@@ -61,6 +61,10 @@
       $scope.get5Img = function(){
         $scope.imgSrc = "/modules/things-to-dos/client/img/portable/5.webp";
         $scope.imgPickOrder = 5;
+      }
+      $scope.get6Img = function(){
+        $scope.imgSrc = "/modules/things-to-dos/client/img/portable/6.webp";
+        $scope.imgPickOrder = 6;
       }
 
 
