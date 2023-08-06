@@ -40,9 +40,9 @@ module.exports = {
     p3p: 'ABCDEF',
     xssProtection: true
   },
-  logo: 'modules/core/client/img/brand/nova_logo.png',
+  logo: 'modules/core/client/img/logo/logo.png',
   //favicon: 'modules/core/client/img/brand/favicon.ico',
-  favicon: 'modules/core/client/img/brand/nova_logo.png',
+  favicon: 'modules/core/client/img/logo/logo.png',
   illegalUsernames: ['meanjs', 'administrator', 'password', 'admin', 'user',
     'unknown', 'anonymous', 'null', 'undefined', 'api'
   ],
