@@ -119,12 +119,12 @@ console.log("screenWidth:" + screenWidth);
     $window.tabTension92Price = '$779';
     $window.tabTension100Price = '$799';
     $window.tabTension110Price = '$999';
-    $window.floorRising92Price = '$1299';
-    $window.floorRising100Price = '$1499';
-    $window.floorRising110Price = '$1599';
-    $window.mobile92Price = '$50';
-    $window.mobile100Price = '$60';
-    $window.mobile110Price = '$70';
+    $window.floorRising92Price = '$1799';
+    $window.floorRising100Price = '$1899';
+    $window.floorRising110Price = '$1999';
+    $window.mobile92Price = '$69';
+    $window.mobile100Price = '$79';
+    $window.mobile110Price = '$89';
 
     $window.tabTensionImg = '/modules/things-to-dos/client/img/Tab-Tension/1.png';
     $window.floorRisingImg = '/modules/things-to-dos/client/img/floor-rising/1.jpg';

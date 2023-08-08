@@ -95,12 +95,12 @@ module.exports = {
     tabTension92Price: '$779',
     tabTension100Price:'$799',
     tabTension110Price: '$999',
-    floorRising92Price: '$1299',
-    floorRising100Price: '$1499',
-    floorRising110Price: '$1599',
-    mobile92Price: '$50',
-    mobile100Price: '$60',
-    mobile110Price: '$70'
+    floorRising92Price: '$1799',
+    floorRising100Price: '$1899',
+    floorRising110Price: '$1999',
+    mobile92Price: '$69',
+    mobile100Price: '$79',
+    mobile110Price: '$89'
   },
   taxPercentage: 0.1025,
   mailer: {
