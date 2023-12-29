@@ -4,7 +4,7 @@ var defaultEnvConfig = require('./default');
 
 module.exports = {
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb+srv://admin-nova:Aa947496@cluster0.hfjg9le.mongodb.net/?retryWrites=true&w=majority',
+    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || '',
     //'mongodb+srv://novascreen:Aa947496@cluster0.cuiun1m.mongodb.net/?retryWrites=true&w=majority',
     // 'mongodb+srv://admin-nova:novascreen@cluster0.eqvri.mongodb.net/novascreen?retryWrites=true&w=majority',
     /*'mongodb://ychen259:Aa947496@cluster0-shard-00-00.wccdn.mongodb.net:27017,cluster0-shard-00-01.wccdn.mongodb.net:27017,cluster0-shard-00-02.wccdn.mongodb.net:27017/sasasas?ssl=true&replicaSet=atlas-iulcjf-shard-0&authSource=admin&retryWrites=true&w=majority',*/
@@ -77,26 +77,7 @@ module.exports = {
   },
   taxPercentage: 0.1025,
   mailer: {
-    //from: process.env.MAILER_FROM || 'MAILER_FROM' || 'evivasscreenwebsite@gmail.com',
-    from: 'aztechotelwebsite@gmail.com',
-    to: "rockybikellc@gmail.com",
-    options: {
-      service: 'Gmail',
-      secure: false,
-      port:465,
-      /*auth: {
-        user: 'evivasscreenwebsite@gmail.com',
-        pass: 'wnssubrzjviqofeh'
-      }*/
-      logger: true,
-      transactionLog: true, // include SMTP traffic in the logs
-      auth: {
-        user: 'aztechotelwebsite@gmail.com',
-        pass: 'hinvruqakfdhfwzq',
 
-      },
-      
-    }
   },
   livereload: true,
   seedDB: {
