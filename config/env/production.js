@@ -13,7 +13,7 @@ module.exports = {
   // Binding to 127.0.0.1 is safer in production.
   host: process.env.HOST || '0.0.0.0',
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb+srv://admin-nova:Aa947496@cluster0.hfjg9le.mongodb.net/?retryWrites=true&w=majority',
+    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || '',
     options: {
       /**
       * Uncomment to enable ssl certificate based authentication to mongodb
@@ -113,17 +113,7 @@ module.exports = {
         pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
       }
     }*/
-    from: process.env.MAILER_FROM || 'MAILER_FROM' || 'evivasscreenwebsite@gmail.com',
-    to: "rockybikellc@gmail.com",
-    options: {
-      service: 'Gmail',
-      secure: false,
-      port:465,
-      auth: {
-        user: 'evivasscreenwebsite@gmail.com',
-        pass: 'wnssubrzjviqofeh'
-      }
-    }
+
   },
   seedDB: {
     seed: process.env.MONGO_SEED === 'true',
